@@ -26,7 +26,6 @@
 #include "UpdateMask.h"
 
 class AreaTrigger;
-class AzeriteEmpoweredItem;
 class AzeriteItem;
 class Bag;
 class ByteBuffer;

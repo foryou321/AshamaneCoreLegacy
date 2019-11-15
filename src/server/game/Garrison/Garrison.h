@@ -41,6 +41,7 @@ public:
     struct Follower
     {
         uint32 GetItemLevel() const;
+        bool HasAbility(uint32 garrAbilityId) const;
         void EarnXP(Player* owner, uint32 xp);
         uint32 _EarnXP(uint32 xp);
         uint32 GetRequiredLevelUpXP() const;

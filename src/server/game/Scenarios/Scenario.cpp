@@ -128,6 +128,11 @@ bool Scenario::IsComplete()
     return true;
 }
 
+ScenarioEntry const* Scenario::GetEntry() const
+{
+    return _data->Entry;
+}
+
 ScenarioStepState Scenario::GetStepState(ScenarioStepEntry const* step)
 {
     std::map<ScenarioStepEntry const*, ScenarioStepState>::const_iterator itr = _stepStates.find(step);

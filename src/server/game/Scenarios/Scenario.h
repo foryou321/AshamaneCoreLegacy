@@ -24,6 +24,7 @@
 class InstanceScenario;
 
 struct ScenarioData;
+struct ScenarioEntry;
 struct ScenarioStepEntry;
 
 namespace WorldPackets

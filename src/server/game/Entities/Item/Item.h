@@ -109,11 +109,34 @@ private:
     } _state;
 };
 
-struct ArtifactPowerLoadInfo
+struct ArtifactPowerData
 {
     uint32 ArtifactPowerId;
     uint8 PurchasedRank;
     uint8 CurrentRankWithBonus;
+};
+
+struct ArtifactData
+{
+    uint64 Xp;
+    uint32 ArtifactAppearanceId;
+    uint32 ArtifactTierId;
+    std::vector<ArtifactPowerData> ArtifactPowers;
+};
+
+struct AzeriteItemData
+{
+    uint64 Xp;
+    uint32 Level;
+    uint32 KnowledgeLevel;
+};
+
+struct ItemAdditionalLoadInfo
+{
+    static void Init(std::unordered_map<ObjectGuid::LowType, ItemAdditionalLoadInfo>* loadInfo, PreparedQueryResult artifactResult, PreparedQueryResult azeriteItemResult);
+
+    Optional<ArtifactData> Artifact;
+    Optional<AzeriteItemData> AzeriteItem;
 };
 
 struct ItemDynamicFieldGems
@@ -175,7 +198,7 @@ class TC_GAME_API Item : public Object
         bool IsBoundByEnchant() const;
         virtual void SaveToDB(CharacterDatabaseTransaction& trans);
         virtual bool LoadFromDB(ObjectGuid::LowType guid, ObjectGuid ownerGuid, Field* fields, uint32 entry, Player const* owner = nullptr);
-        void LoadArtifactData(Player* owner, uint64 xp, uint32 artifactAppearanceId, uint32 artifactTier, std::vector<ArtifactPowerLoadInfo>& powers);  // must be called after LoadFromDB to have gems (relics) initialized
+        void LoadArtifactData(Player* owner, uint64 xp, uint32 artifactAppearanceId, uint32 artifactTier, std::vector<ArtifactPowerData>& powers);  // must be called after LoadFromDB to have gems (relics) initialized
         void CheckArtifactRelicSlotUnlock(Player const* owner);
 
         void AddBonuses(uint32 bonusListID);
@@ -358,7 +381,7 @@ class TC_GAME_API Item : public Object
         bool IsArtifactDisabled() const;
 
         UF::ArtifactPower const* GetArtifactPower(uint32 artifactPowerId) const;
-        void AddArtifactPower(ArtifactPowerLoadInfo const* artifactPower);
+        void AddArtifactPower(ArtifactPowerData const* artifactPower);
         void SetArtifactPower(uint16 artifactPowerId, uint8 purchasedRank, uint8 currentRankWithBonus);
 
         void InitArtifactPowers(uint8 artifactId, uint8 artifactTier);

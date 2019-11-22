@@ -322,7 +322,7 @@ public:
     std::vector<uint32> const* GetGlyphRequiredSpecs(uint32 glyphPropertiesId) const;
     ItemBonusList const* GetItemBonusList(uint32 bonusListId) const;
     uint32 GetItemBonusListForItemLevelDelta(int16 delta) const;
-    std::set<uint32> GetItemBonusTree(uint32 itemId, uint32 itemContext) const;
+    std::set<uint32> GetItemBonusTree(uint32 itemId, ItemContext itemContext) const;
     bool HasItemContext(uint32 itemId) const;
     bool HasItemContext(uint32 itemId, uint32 itemContext) const;
     std::vector<int32> GetItemBonusTreeVector(uint32 itemId, uint32 itemContext) const;

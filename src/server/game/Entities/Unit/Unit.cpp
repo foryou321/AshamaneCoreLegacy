@@ -11766,7 +11766,7 @@ void Unit::Kill(Unit* victim, bool durabilityLoss)
                 }
 
                 if (uint32 lootid = creature->GetCreatureTemplate()->lootid)
-                    loot->FillLoot(lootid, LootTemplates_Creature, looter, false, false, creature->GetLootMode());
+                loot->FillLoot(lootid, LootTemplates_Creature, looter, false, false, creature->GetLootMode(), GetMap()->GetDifficultyLootItemContext());
 
                 if (uint32 journalEncounterId = sObjectMgr->GetCreatureTemplateJournalId(creature->GetCreatureTemplate()->Entry))
                 {

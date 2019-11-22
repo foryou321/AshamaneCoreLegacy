@@ -59,7 +59,7 @@ LootItem::LootItem(LootStoreItem const& li)
     }
 
     randomBonusListId = GenerateItemRandomBonusListId(itemid);
-    context = 0;
+    context = ItemContext::NONE;
     count = 0;
     is_looted = 0;
     is_blocked = 0;
@@ -109,7 +109,7 @@ void LootItem::AddAllowedLooter(const Player* player)
 // --------- Loot ---------
 //
 
-Loot::Loot(uint32 _gold /*= 0*/) : gold(_gold), unlootedCount(0), loot_type(LOOT_CORPSE), _itemContext(0)
+Loot::Loot(uint32 _gold /*= 0*/) : gold(_gold), unlootedCount(0), loot_type(LOOT_CORPSE), _itemContext(ItemContext::NONE)
 {
 }
 
@@ -153,7 +153,7 @@ void Loot::clear()
     unlootedCount = 0;
     loot_type = LOOT_NONE;
     i_LootValidatorRefManager.clearReferences();
-    _itemContext = 0;
+    _itemContext = ItemContext::NONE;
 }
 
 uint32 Loot::GetUnlootedCount(Player const* player /*= nullptr*/) const
@@ -265,7 +265,7 @@ void Loot::GenerateJournalEncounterLoot(Player* looter, uint32 journalEncounterI
 }
 
 // Calls processor of corresponding LootTemplate (which handles everything including references)
-bool Loot::FillLoot(uint32 lootId, LootStore const& store, Player* lootOwner, bool /*personal*/, bool noEmptyError, uint16 lootMode /*= LOOT_MODE_DEFAULT*/, bool specOnly /*= false*/)
+bool Loot::FillLoot(uint32 lootId, LootStore const& store, Player* lootOwner, bool /*personal*/, bool noEmptyError, uint16 lootMode /*= LOOT_MODE_DEFAULT*/, ItemContext context /*= ItemContext::NONE*/ bool specOnly /*= false*/)
 {
     // Must be provided
     if (!lootOwner)
@@ -286,9 +286,33 @@ bool Loot::FillLoot(uint32 lootId, LootStore const& store, Player* lootOwner, bo
         return false;
     }
 
+    _itemContext = context;
     items.reserve(MAX_NR_LOOT_ITEMS);
+    quest_items.reserve(MAX_NR_QUEST_ITEMS);
 
     tab->Process(*this, store.IsRatesAllowed(), lootMode, 0, lootOwner, specOnly);          // Processing is done there, callback via Loot::AddItem()
+
+    // Setting access rights for group loot case
+    Group* group = lootOwner->GetGroup();
+    if (!personal && group)
+    {
+        roundRobinPlayer = lootOwner->GetGUID();
+
+        for (GroupReference* itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
+            if (Player* player = itr->GetSource())   // should actually be looted object instead of lootOwner but looter has to be really close so doesnt really matter
+                if (player->IsInMap(lootOwner))
+                    FillNotNormalLootFor(player, player->IsAtGroupRewardDistance(lootOwner));
+
+        for (uint8 i = 0; i < items.size(); ++i)
+        {
+            if (ItemTemplate const* proto = sObjectMgr->GetItemTemplate(items[i].itemid))
+                if (proto->GetQuality() < uint32(group->GetLootThreshold()))
+                    items[i].is_underthreshold = true;
+        }
+    }
+    // ... for personal loot
+    else
+        FillNotNormalLootFor(lootOwner, true);
 
     return true;
 }
@@ -326,7 +350,7 @@ void Loot::AddItem(LootStoreItem const& item, Player const* player /*= nullptr*/
         LootItem generatedLoot(item);
         generatedLoot.context = _itemContext;
         generatedLoot.count = std::min(count, proto->GetMaxStackSize());
-        if (_itemContext)
+        if (_itemContext != ItemContext::NONE)
         {
             std::set<uint32> bonusListIDs = sDB2Manager.GetItemBonusTree(generatedLoot.itemid, _itemContext);
             generatedLoot.BonusListIDs.insert(generatedLoot.BonusListIDs.end(), bonusListIDs.begin(), bonusListIDs.end());

@@ -21,6 +21,7 @@
 #include "ArchaeologyMgr.h"
 #include "ArchaeologyPlayerMgr.h"
 #include "AreaTrigger.h"
+#include "AzeriteItem.h"
 #include "Battleground.h"
 #include "BattlegroundMgr.h"
 #include "BattlePet.h"
@@ -349,7 +350,7 @@ NonDefaultConstructible<pEffect> SpellEffects[TOTAL_SPELL_EFFECTS] =
     &Spell::EffectNULL,                                     //262 SPELL_EFFECT_262
     &Spell::EffectNULL,                                     //263 SPELL_EFFECT_REPAIR_ITEM
     &Spell::EffectNULL,                                     //264 SPELL_EFFECT_REMOVE_GEM
-    &Spell::EffectNULL,                                     //265 SPELL_EFFECT_LEARN_AZERITE_ESSENCE_POWER
+    &Spell::EffectLearnAzeriteEssencePower,                 //265 SPELL_EFFECT_LEARN_AZERITE_ESSENCE_POWER
     &Spell::EffectNULL,                                     //266 SPELL_EFFECT_266
     &Spell::EffectNULL,                                     //267 SPELL_EFFECT_267
     &Spell::EffectNULL,                                     //268 SPELL_EFFECT_APPLY_MOUNT_EQUIPMENT
@@ -6230,4 +6231,41 @@ void Spell::EffectScrapItem(SpellEffIndex /*effIndex*/)
         player->AutoStoreLoot(iSL->Id, LootTemplates_Scrapping);
     }
 
+void Spell::EffectLearnAzeriteEssencePower(SpellEffIndex /*effIndex*/)
+{
+    if (effectHandleMode != SPELL_EFFECT_HANDLE_HIT_TARGET)
+        return;
+
+    Player* playerTarget = unitTarget ? unitTarget->ToPlayer() : nullptr;
+    if (!playerTarget)
+        return;
+
+    Item* heartOfAzeroth = playerTarget->GetItemByEntry(ITEM_ID_HEART_OF_AZEROTH);
+    if (!heartOfAzeroth)
+        return;
+
+    AzeriteItem* azeriteItem = heartOfAzeroth->ToAzeriteItem();
+    if (!azeriteItem)
+        return;
+
+    // remove old rank and apply new one
+    if (azeriteItem->IsEquipped())
+    {
+        if (UF::SelectedAzeriteEssences const* selectedEssences = azeriteItem->GetSelectedAzeriteEssences())
+        {
+            for (int32 slot = 0; slot < MAX_AZERITE_ESSENCE_SLOT; ++slot)
+            {
+                if (selectedEssences->AzeriteEssenceID[slot] == uint32(effectInfo->MiscValue))
+                {
+                    bool major = AzeriteItemMilestoneType(sDB2Manager.GetAzeriteItemMilestonePower(slot)->Type) == AzeriteItemMilestoneType::MajorEssence;
+                    playerTarget->ApplyAzeriteEssence(azeriteItem, effectInfo->MiscValue, MAX_AZERITE_ESSENCE_RANK, major, false);
+                    playerTarget->ApplyAzeriteEssence(azeriteItem, effectInfo->MiscValue, effectInfo->MiscValueB, major, false);
+                    break;
+                }
+            }
+        }
+    }
+
+    azeriteItem->SetEssenceRank(effectInfo->MiscValue, effectInfo->MiscValueB);
+    azeriteItem->SetState(ITEM_CHANGED, playerTarget);
 }

@@ -2145,7 +2145,7 @@ void Item::ItemContainerSaveLootToDB()
             stmt_items->setBool(7, item.is_underthreshold);
             stmt_items->setBool(8, item.needs_quest);
             stmt_items->setUInt32(9, item.randomBonusListId);
-            stmt_items->setUInt8(10, AsUnderlyingType(item->context));
+            stmt_items->setUInt8(10, AsUnderlyingType(item.context));
             std::ostringstream bonusListIDs;
             for (int32 bonusListID : item.BonusListIDs)
                 bonusListIDs << bonusListID << ' ';

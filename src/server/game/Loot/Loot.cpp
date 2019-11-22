@@ -265,7 +265,7 @@ void Loot::GenerateJournalEncounterLoot(Player* looter, uint32 journalEncounterI
 }
 
 // Calls processor of corresponding LootTemplate (which handles everything including references)
-bool Loot::FillLoot(uint32 lootId, LootStore const& store, Player* lootOwner, bool /*personal*/, bool noEmptyError, uint16 lootMode /*= LOOT_MODE_DEFAULT*/, ItemContext context /*= ItemContext::NONE*/ bool specOnly /*= false*/)
+bool Loot::FillLoot(uint32 lootId, LootStore const& store, Player* lootOwner, bool personal, bool noEmptyError, uint16 lootMode /*= LOOT_MODE_DEFAULT*/, ItemContext context /*= ItemContext::NONE*/, bool specOnly /*= false*/)
 {
     // Must be provided
     if (!lootOwner)
@@ -275,7 +275,7 @@ bool Loot::FillLoot(uint32 lootId, LootStore const& store, Player* lootOwner, bo
 
     if (LFGDungeonsEntry const* dungeonEntry = sLFGMgr->GetPlayerLFGDungeonEntry(lootOwner->GetGUID()))
         if (dungeonEntry->Flags[0] & lfg::LfgFlags::LFG_FLAG_TIMEWALKER)
-            _itemContext = uint8(ItemContext::TimeWalker);
+            _itemContext = ItemContext::TimeWalker;
 
     LootTemplate const* tab = store.GetLootFor(lootId);
 
@@ -288,31 +288,8 @@ bool Loot::FillLoot(uint32 lootId, LootStore const& store, Player* lootOwner, bo
 
     _itemContext = context;
     items.reserve(MAX_NR_LOOT_ITEMS);
-    quest_items.reserve(MAX_NR_QUEST_ITEMS);
 
     tab->Process(*this, store.IsRatesAllowed(), lootMode, 0, lootOwner, specOnly);          // Processing is done there, callback via Loot::AddItem()
-
-    // Setting access rights for group loot case
-    Group* group = lootOwner->GetGroup();
-    if (!personal && group)
-    {
-        roundRobinPlayer = lootOwner->GetGUID();
-
-        for (GroupReference* itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
-            if (Player* player = itr->GetSource())   // should actually be looted object instead of lootOwner but looter has to be really close so doesnt really matter
-                if (player->IsInMap(lootOwner))
-                    FillNotNormalLootFor(player, player->IsAtGroupRewardDistance(lootOwner));
-
-        for (uint8 i = 0; i < items.size(); ++i)
-        {
-            if (ItemTemplate const* proto = sObjectMgr->GetItemTemplate(items[i].itemid))
-                if (proto->GetQuality() < uint32(group->GetLootThreshold()))
-                    items[i].is_underthreshold = true;
-        }
-    }
-    // ... for personal loot
-    else
-        FillNotNormalLootFor(lootOwner, true);
 
     return true;
 }

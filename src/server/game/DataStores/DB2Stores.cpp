@@ -2106,14 +2106,14 @@ bool DB2Manager::HasItemContext(uint32 itemId) const
     return false;
 }
 
-bool DB2Manager::HasItemContext(uint32 itemId, uint32 itemContext) const
+bool DB2Manager::HasItemContext(uint32 itemId, ItemContext itemContext) const
 {
     return !GetItemBonusTree(itemId, itemContext).empty();
 }
 
-std::vector<int32> DB2Manager::GetItemBonusTreeVector(uint32 itemId, uint32 itemBonusTreeMod) const
+std::vector<int32> DB2Manager::GetItemBonusTreeVector(uint32 itemId, ItemContext itemContext) const
 {
-    std::set<uint32> bonusListIDs = GetItemBonusTree(itemId, itemBonusTreeMod);
+    std::set<uint32> bonusListIDs = GetItemBonusTree(itemId, itemContext);
     std::vector<int32> vectorBonusListIDs;
 
     for (uint32 bonusList : bonusListIDs)

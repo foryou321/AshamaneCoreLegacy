@@ -11765,8 +11765,8 @@ void Unit::Kill(Unit* victim, bool durabilityLoss)
                     player->SendMessageToSet(lootList.Write(), true);
                 }
 
-                if (uint32 lootid = creature->GetCreatureTemplate()->lootid)
-                loot->FillLoot(lootid, LootTemplates_Creature, looter, false, false, creature->GetLootMode(), GetMap()->GetDifficultyLootItemContext());
+                uint32 lootid = creature->GetCreatureTemplate()->lootid;
+                loot->FillLoot(lootid, LootTemplates_Creature, looter, false, false, creature->GetLootMode());
 
                 if (uint32 journalEncounterId = sObjectMgr->GetCreatureTemplateJournalId(creature->GetCreatureTemplate()->Entry))
                 {
@@ -11779,7 +11779,7 @@ void Unit::Kill(Unit* victim, bool durabilityLoss)
                             if (ItemTemplate const* proto = sObjectMgr->GetItemTemplate(item->ItemID))
                                 if (proto->IsUsableByLootSpecialization(looter, false))
                                     if (item->IsValidDifficultyMask(mapDifficultyMask) &&
-                                        (sDB2Manager.HasItemContext(item->ItemID, loot->GetItemContext()) || !sDB2Manager.HasItemContext(item->ItemID)))
+                                        (sDB2Manager.HasItemContext(item->ItemID, loot->GetContext()) || !sDB2Manager.HasItemContext(item->ItemID)))
                                         potentialItems.push_back(item);
 
                         Trinity::Containers::RandomResize(potentialItems, 1);

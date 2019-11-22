@@ -1328,12 +1328,12 @@ public:
                     bonusListIDs.push_back(atoul(token));
         }
 
-        char const* context = strtok(NULL, " ");
+        /*char const* context = strtok(NULL, " ");
         if (context)
         {
-            std::set<uint32> bonusListIDset = sDB2Manager.GetItemBonusTree(itemId, atoi(context));
+            std::set<uint32> bonusListIDset = sDB2Manager.GetItemBonusTree(itemId, context);
             bonusListIDs.insert(bonusListIDs.end(), bonusListIDset.begin(), bonusListIDset.end());
-        }
+        }*/
 
         Player* player = handler->GetSession()->GetPlayer();
         Player* playerTarget = handler->getSelectedPlayer();

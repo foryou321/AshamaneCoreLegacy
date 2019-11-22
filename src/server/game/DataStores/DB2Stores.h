@@ -324,8 +324,8 @@ public:
     uint32 GetItemBonusListForItemLevelDelta(int16 delta) const;
     std::set<uint32> GetItemBonusTree(uint32 itemId, ItemContext itemContext) const;
     bool HasItemContext(uint32 itemId) const;
-    bool HasItemContext(uint32 itemId, uint32 itemContext) const;
-    std::vector<int32> GetItemBonusTreeVector(uint32 itemId, uint32 itemContext) const;
+    bool HasItemContext(uint32 itemId, ItemContext itemContext) const;
+    std::vector<int32> GetItemBonusTreeVector(uint32 itemId, ItemContext itemContext) const;
     ItemChildEquipmentEntry const* GetItemChildEquipment(uint32 itemId) const;
     ItemClassEntry const* GetItemClassByOldEnum(uint32 itemClass) const;
     bool HasItemCurrencyCost(uint32 itemId) const;

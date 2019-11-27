@@ -1,8 +1,8 @@
 # output generic information about the core and buildtype chosen
 message("")
-message("* TrinityCore revision   : ${rev_hash} ${rev_date} (${rev_branch} branch)")
+message("* AshamaneCoreLegacy revision   : ${rev_hash} ${rev_date} (${rev_branch} branch)")
 if( UNIX )
-  message("* TrinityCore buildtype  : ${CMAKE_BUILD_TYPE}")
+  message("* AshamaneCoreLegacy buildtype  : ${CMAKE_BUILD_TYPE}")
 endif()
 message("")
 
@@ -100,7 +100,7 @@ elseif ( VALGRIND )
   message(" *** jemalloc will be configured to support Valgrind")
   message(" *** Please specify the valgrind include directory in VALGRIND_INCLUDE_DIR option if you get build errors")
   message(" *** Please note that this is for DEBUGGING WITH VALGRIND only!")
-  add_definitions(-DJEMALLOC_VALGRIND)
+  add_definitions(-DJEMALLOC_VALGRIND -DVALGRIND)
 endif()
 
 if ( HELGRIND )

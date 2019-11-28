@@ -49,6 +49,7 @@ struct SpellModifier;
 struct SpellPowerCost;
 struct SpellValue;
 struct TargetInfo;
+enum class ItemContext : uint8;
 
 #define SPELL_EFFECT_ANY (uint16)-1
 #define SPELL_AURA_ANY (uint16)-1

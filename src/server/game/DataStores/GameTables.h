@@ -22,6 +22,8 @@
 #include "Common.h"
 #include <vector>
 
+enum InventoryType : uint8;
+
 struct GtAzeriteKnowledgeMultiplierEntry
 {
     float Multiplier = 0.f;
@@ -195,6 +197,14 @@ struct GtSpellScalingEntry
     float DamageSecondary = 0.0f;
 };
 
+struct GtStaminaMultByILvl
+{
+    float ArmorMultiplier = 0.0f;
+    float WeaponMultiplier = 0.0f;
+    float TrinketMultiplier = 0.0f;
+    float JewelryMultiplier = 0.0f;
+};
+
 struct GtXpEntry
 {
     float Total = 0.0f;
@@ -243,6 +253,7 @@ TC_GAME_API extern GameTable<GtNpcDamageByClassEntry>               sNpcDamageBy
 TC_GAME_API extern GameTable<GtNpcManaCostScalerEntry>              sNpcManaCostScalerGameTable;
 TC_GAME_API extern GameTable<GtNpcTotalHpEntry>                     sNpcTotalHpGameTable[MAX_EXPANSIONS];
 TC_GAME_API extern GameTable<GtSpellScalingEntry>                   sSpellScalingGameTable;
+TC_GAME_API extern GameTable<GtStaminaMultByILvl>                   sStaminaMultByILvlGameTable;
 TC_GAME_API extern GameTable<GtXpEntry>                             sXpGameTable;
 
 TC_GAME_API void LoadGameTables(std::string const& dataPath);
@@ -334,5 +345,8 @@ inline float GetSpellScalingColumnForClass(GtSpellScalingEntry const* row, int32
 
     return 0.0f;
 }
+
+template<class T>
+float GetIlvlStatMultiplier(T const* row, InventoryType invType);
 
 #endif // GameTables_h__

@@ -930,7 +930,7 @@ bool Item::LoadFromDB(ObjectGuid::LowType guid, ObjectGuid ownerGuid, Field* fie
     return true;
 }
 
-void Item::LoadArtifactData(Player* owner, uint64 xp, uint32 artifactAppearanceId, uint32 artifactTier, std::vector<ArtifactPowerData>& powers)
+void Item::LoadArtifactData(Player const* owner, uint64 xp, uint32 artifactAppearanceId, uint32 artifactTier, std::vector<ArtifactPowerData>& powers)
 {
     for (uint8 i = 0; i <= artifactTier; ++i)
         InitArtifactPowers(GetTemplate()->GetArtifactID(), i);
@@ -971,7 +971,7 @@ void Item::LoadArtifactData(Player* owner, uint64 xp, uint32 artifactAppearanceI
                                 if (ArtifactPowerPickerEntry const* artifactPowerPicker = sArtifactPowerPickerStore.LookupEntry(enchant->EffectArg[i]))
                                 {
                                     PlayerConditionEntry const* playerCondition = sPlayerConditionStore.LookupEntry(artifactPowerPicker->PlayerConditionID);
-                                    if (!playerCondition || sConditionMgr->IsPlayerMeetingCondition(owner, playerCondition))
+                                    if (!playerCondition || (owner && sConditionMgr->IsPlayerMeetingCondition(owner, playerCondition)))
                                         if (artifactPower->Label == _bonusData.GemRelicType[e - SOCK_ENCHANTMENT_SLOT])
                                             power.CurrentRankWithBonus += enchant->EffectPointsMin[i];
                                 }
@@ -996,7 +996,7 @@ void Item::LoadArtifactData(Player* owner, uint64 xp, uint32 artifactAppearanceI
         SetArtifactPower(power.ArtifactPowerId, power.PurchasedRank, totalPurchasedRanks + 1);
     }
 
-    CheckArtifactRelicSlotUnlock(owner ? owner : GetOwner());
+    CheckArtifactRelicSlotUnlock(owner);
 }
 
 void Item::CheckArtifactRelicSlotUnlock(Player const* owner)

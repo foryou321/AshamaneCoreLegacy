@@ -4017,8 +4017,7 @@ void Player::DeleteFromDB(ObjectGuid playerguid, uint32 accountId, bool updateRe
                     PreparedQueryResult azeriteItemUnlockedEssencesResult = CharacterDatabase.Query(stmt);
 
                     std::unordered_map<ObjectGuid::LowType, ItemAdditionalLoadInfo> additionalData;
-                    ItemAdditionalLoadInfo::Init(&additionalData, artifactResult, azeriteResult, azeriteItemMilestonePowersResult,
-                        azeriteItemUnlockedEssencesResult, azeriteEmpoweredItemResult);
+                    ItemAdditionalLoadInfo::Init(&additionalData, artifactResult, azeriteResult, azeriteItemMilestonePowersResult, azeriteItemUnlockedEssencesResult);
 
                     do
                     {

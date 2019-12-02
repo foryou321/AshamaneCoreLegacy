@@ -830,6 +830,7 @@ void Player::_ApplyAllStatBonuses()
 
     _ApplyAllAuraStatMods();
     _ApplyAllItemMods();
+    ApplyAllAzeriteItemMods(true);
 
     SetCanModifyStats(true);
 
@@ -840,6 +841,7 @@ void Player::_RemoveAllStatBonuses()
 {
     SetCanModifyStats(false);
 
+    ApplyAllAzeriteItemMods(false);
     _RemoveAllItemMods();
     _RemoveAllAuraStatMods();
 

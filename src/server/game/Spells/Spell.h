@@ -517,6 +517,7 @@ class TC_GAME_API Spell
         void EffectDash(SpellEffIndex effIndex);
         void EffectLearnTransmogSet(SpellEffIndex effIndex);
         void EffectScrapItem(SpellEffIndex effIndex);
+        void EffectRespecAzeriteEmpoweredItem(SpellEffIndex effIndex);
         void EffectLearnAzeriteEssencePower(SpellEffIndex effIndex);
 
         typedef std::unordered_set<Aura*> UsedSpellMods;

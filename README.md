@@ -1,5 +1,7 @@
 # AshamaneCoreLegacy
 
+# Donate
+https://www.paypal.me/zgn88
 --------------
 
 
@@ -20,7 +22,7 @@
 [![Build Status](https://travis-ci.com/ReyDonovan/AshamaneCoreLegacy.svg?branch=master)](https://travis-ci.com/ReyDonovan/AshamaneCoreLegacy)
 ## Introduction
 
-AshamaneCore is a *MMORPG* Framework based mostly in C++.
+AshamaneCoreLegacy is a *MMORPG* Framework based mostly in C++.
 
 It is fully based on *TrinityCore*
 

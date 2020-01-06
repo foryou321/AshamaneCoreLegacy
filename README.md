@@ -17,8 +17,7 @@
 
 ## Build Status
 
-[![Build Status](https://travis-ci.com/ReyDonovan/AshamaneCore.svg?branch=master)](https://travis-ci.com/ReyDonovan/AshamaneCore)
-
+[![Build Status](https://travis-ci.com/ReyDonovan/AshamaneCoreLegacy.svg?branch=master)](https://travis-ci.com/ReyDonovan/AshamaneCoreLegacy)
 ## Introduction
 
 AshamaneCore is a *MMORPG* Framework based mostly in C++.

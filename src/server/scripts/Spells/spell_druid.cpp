@@ -2629,6 +2629,35 @@ class aura_dru_guardian_affinity_dps : public AuraScript
     }
 };
 
+// Mastery: Nature's Guardian - 155783
+class spell_dru_natures_guardian : public AuraScript
+{
+    PrepareAuraScript(spell_dru_natures_guardian);
+
+    void OnProc(AuraEffect const* aurEff, ProcEventInfo& eventInfo)
+    {
+        if (DamageInfo* dmgInfo = eventInfo.GetDamageInfo())
+        {
+            if (dmgInfo->GetSpellInfo()->Id == 227034)
+                return;
+
+            if (uint32 heal = dmgInfo->GetDamage())
+            {
+                if (Unit* dru = GetUnitOwner())
+                {
+                    float finalHeal = CalculatePct(heal, aurEff->GetAmount());
+                    dru->CastCustomSpell(dru, 227034, &finalHeal, nullptr, nullptr, true);
+                }
+            }
+        }
+    }
+
+    void Register() override
+    {
+        OnEffectProc += AuraEffectProcFn(spell_dru_natures_guardian::OnProc, EFFECT_1, SPELL_AURA_MOD_ABSORB_EFFECTS_AMOUNT_PCT_2);
+    }
+};
+
 void AddSC_druid_spell_scripts()
 {
     // Spells Scripts
@@ -2697,4 +2726,7 @@ void AddSC_druid_spell_scripts()
 
     // NPC Scripts
     RegisterCreatureAI(npc_dru_efflorescence);
+
+    ///LEGACY
+    RegisterAuraScript(spell_dru_natures_guardian);
 }

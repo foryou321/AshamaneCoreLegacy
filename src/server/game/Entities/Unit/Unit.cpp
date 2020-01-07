@@ -12961,7 +12961,7 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                             return 892;
                     }
                 }
-                else if (getRace() == RACE_TROLL)
+                else if (getRace() == RACE_TROLL || getRace() == RACE_ZANDALARI_TROLL)
                 {
                     uint8 hairColor = thisPlayer->m_playerData->HairColorID;
                     if (HasAura(210333)) // Glyph of the Feral Chameleon
@@ -12986,7 +12986,7 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                             return 33669;
                     }
                 }
-                else if (getRace() == RACE_WORGEN)
+                else if (getRace() == RACE_WORGEN || getRace() == RACE_KUL_TIRAN)
                 {
                     // Based on Skin color
                     uint8 skinColor = thisPlayer->m_playerData->SkinID;
@@ -13143,7 +13143,7 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                             return 29415;
                     }
                 }
-                else if (getRace() == RACE_TROLL)
+                else if (getRace() == RACE_TROLL || getRace() == RACE_ZANDALARI_TROLL)
                 {
                     uint8 hairColor = thisPlayer->m_playerData->HairColorID;
                     if (HasAura(107059)) // Glyph of the Ursol Chameleon
@@ -13169,7 +13169,7 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                             return 33655;
                     }
                 }
-                else if (getRace() == RACE_WORGEN)
+                else if (getRace() == RACE_WORGEN || getRace() == RACE_KUL_TIRAN)
                 {
                     // Based on Skin color
                     uint8 skinColor = thisPlayer->m_playerData->SkinID;
@@ -13316,8 +13316,10 @@ uint32 Unit::GetModelForForm(ShapeshiftForm form, uint32 spellId) const
                             return 81439;
                         case RACE_TAUREN: // Brown
                             return 64329;
+                        case RACE_KUL_TIRAN:
                         case RACE_WORGEN: // Purple
                             return 64330;
+                        case RACE_ZANDALARI_TROLL:
                         case RACE_TROLL: // White
                             return 64331;
                         default:

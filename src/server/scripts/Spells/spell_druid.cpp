@@ -2643,10 +2643,10 @@ class spell_dru_natures_guardian : public AuraScript
 
             if (uint32 heal = dmgInfo->GetDamage())
             {
-                if (Unit* dru = GetUnitOwner())
+                if (Unit* owner = GetUnitOwner())
                 {
-                    float finalHeal = CalculatePct(heal, aurEff->GetAmount());
-                    dru->CastCustomSpell(dru, 227034, &finalHeal, nullptr, nullptr, true);
+                    int healAmount = CalculatePct(heal, aurEff->GetAmount());
+                    owner->CastCustomSpell(owner, 227034, &healAmount, nullptr, nullptr, true);
                 }
             }
         }

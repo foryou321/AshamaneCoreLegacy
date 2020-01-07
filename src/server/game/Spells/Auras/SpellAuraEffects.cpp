@@ -6449,13 +6449,13 @@ void AuraEffect::HandleAuraWarMode(AuraApplication const* auraApp, uint8 mode, b
         {
             target->TogglePvpTalents(true);
             target->AddPlayerFlag(PLAYER_FLAGS_WAR_MODE_ACTIVE);
-            target->AddPlayerLocalFlag(PLAYER_LOCAL_FLAG_WAR_MODE);
+            target->AddPlayerFlag(PLAYER_FLAGS_WAR_MODE_DESIRED);
         }
         else if (!target->HasAuraType(SPELL_AURA_WAR_MODE))
         {
             target->TogglePvpTalents(false);
             target->RemovePlayerFlag(PLAYER_FLAGS_WAR_MODE_ACTIVE);
-            target->RemovePlayerLocalFlag(PLAYER_LOCAL_FLAG_WAR_MODE);
+            target->RemovePlayerFlag(PLAYER_FLAGS_WAR_MODE_DESIRED);
         }
     }
 }

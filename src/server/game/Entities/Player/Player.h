@@ -470,7 +470,6 @@ enum PlayerLocalFlags
     PLAYER_LOCAL_FLAG_USING_PARTY_GARRISON          = 0x00000100,
     PLAYER_LOCAL_FLAG_CAN_USE_OBJECTS_MOUNTED       = 0x00000200,
     PLAYER_LOCAL_FLAG_CAN_VISIT_PARTY_GARRISON      = 0x00000400,
-    PLAYER_LOCAL_FLAG_WAR_MODE                      = 0x00000800,
     PLAYER_LOCAL_FLAG_ACCOUNT_SECURED               = 0x00001000,   // Script_IsAccountSecured
 };
 
@@ -1667,7 +1666,7 @@ class TC_GAME_API Player : public Unit, public GridObject<Player>
         bool HasPvpRulesEnabled() const;
         bool IsInAreaThatActivatesPvpTalents() const;
         bool IsAreaThatActivatesPvpTalents(AreaTableEntry const* area) const;
-        bool IsInWarMode() const { return HasPlayerLocalFlag(PLAYER_LOCAL_FLAG_WAR_MODE); }
+        bool IsInWarMode() const { return HasPlayerFlag(PLAYER_FLAGS_WAR_MODE_DESIRED); }
 
         // Dual Spec
         void ActivateTalentGroup(ChrSpecializationEntry const* spec);

@@ -115,7 +115,10 @@ public:
             me->SetFacingTo(5.631830f);
 
             if (Player* player = ObjectAccessor::FindPlayer(playerGuid))
-                player->ForceCompleteQuest(QUEST_FINDING_A_FOOTHOLD);
+            {
+                if (player->GetQuestStatus(QUEST_FINDING_A_FOOTHOLD) != QUEST_STATUS_COMPLETE)
+                    player->CompleteQuest(QUEST_FINDING_A_FOOTHOLD);
+			}
         }
     };
 };

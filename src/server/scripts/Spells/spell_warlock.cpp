@@ -6274,6 +6274,32 @@ public:
     }
 };
 
+// Create Healthstone - 23517
+class spell_warl_create_healthstone : public SpellScript
+{
+    PrepareSpellScript(spell_warl_create_healthstone);
+
+    void FilterTargets(WorldObject*& target)
+    {
+        if (!target)
+            return;
+
+        if (Player* player = target->ToPlayer())
+        {
+            if (Item* item = player->GetItemByEntry(5512))
+            {
+                item->SetSpellCharges(1, -3);
+                target = nullptr;
+            }
+        }
+    }
+
+    void Register() override
+    {
+        OnObjectTargetSelect += SpellObjectTargetSelectFn(spell_warl_create_healthstone::FilterTargets, EFFECT_0, TARGET_UNIT_CASTER);
+    }
+};
+
 void AddSC_warlock_spell_scripts()
 {
     // ADDED IN MOP
@@ -6401,6 +6427,7 @@ void AddSC_warlock_spell_scripts()
     new spell_warlock_rain_of_fire_damage();
     new spell_warlock_unending_resolve();
     RegisterSpellScript(spell_warlock_summon_darkglare);
+    RegisterSpellScript(spell_warl_create_healthstone);
 
     RegisterAreaTriggerAI(at_warlock_casting_circle);
     RegisterAreaTriggerAI(at_warlock_artifact_thalkiels_discord);

@@ -6662,6 +6662,11 @@ SpellCastResult Spell::CheckItems(uint32* param1 /*= nullptr*/, uint32* param2 /
                             else if (SpellEffectInfo const* efi = GetEffect(EFFECT_1))
                                 player->CastSpell(m_caster, efi->CalcValue(), false);        // move this to anywhere
                             return SPELL_FAILED_DONT_REPORT;
+
+                            // Conjure Healthstone
+                            if (m_spellInfo->Id == 23517)
+                                player->CastSpell(m_caster, 120038, false);
+                            return SPELL_FAILED_DONT_REPORT;
                         }
                     }
                 }

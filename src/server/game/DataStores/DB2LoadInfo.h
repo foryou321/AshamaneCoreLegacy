@@ -4776,21 +4776,6 @@ struct SpecializationSpellsLoadInfo
     }
 };
 
-struct SpecSetMemberLoadInfo
-{
-    static DB2LoadInfo const* Instance()
-    {
-        static DB2FieldMeta const fields[] =
-        {
-            { false, FT_INT, "ID" },
-            { true, FT_INT, "ChrSpecializationID" },
-            { false, FT_INT, "SpecSetID" },
-        };
-        static DB2LoadInfo const loadInfo(&fields[0], std::extent<decltype(fields)>::value, SpecSetMemberMeta::Instance(), HOTFIX_SEL_SPEC_SET_MEMBER);
-        return &loadInfo;
-    }
-};
-
 struct SpellAuraOptionsLoadInfo
 {
     static DB2LoadInfo const* Instance()

@@ -52,8 +52,6 @@ ALTER TABLE `pvp_difficulty` MODIFY COLUMN `MapID` int(10) UNSIGNED NOT NULL DEF
 
 ALTER TABLE `reward_pack_x_item` MODIFY COLUMN `RewardPackID` int(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `ItemQuantity`;
 
-ALTER TABLE `spec_set_member` MODIFY COLUMN `SpecSetID` int(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `ChrSpecializationID`;
-
 ALTER TABLE `spell_aura_options` MODIFY COLUMN `SpellID` int(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `ProcTypeMask2`;
 
 ALTER TABLE `spell_aura_restrictions` MODIFY COLUMN `SpellID` int(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `ExcludeTargetAuraSpell`;

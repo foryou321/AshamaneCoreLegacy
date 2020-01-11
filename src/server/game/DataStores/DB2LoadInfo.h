@@ -573,7 +573,7 @@ struct AzeriteTierUnlockLoadInfo
             { false, FT_BYTE, "ItemCreationContext" },
             { false, FT_BYTE, "Tier" },
             { false, FT_BYTE, "AzeriteLevel" },
-            { false, FT_BYTE, "AzeriteTierUnlockSetID" },
+            { false, FT_INT, "AzeriteTierUnlockSetID" },
         };
         static DB2LoadInfo const loadInfo(&fields[0], std::extent<decltype(fields)>::value, AzeriteTierUnlockMeta::Instance(), HOTFIX_SEL_AZERITE_TIER_UNLOCK);
         return &loadInfo;
@@ -683,7 +683,7 @@ struct BattlePetAbilityStateLoadInfo
             { false, FT_INT, "ID" },
             { false, FT_INT, "BattlePetStateID" },
             { true, FT_INT, "Value" },
-            { false, FT_SHORT, "BattlePetAbilityID" },
+            { false, FT_INT, "BattlePetAbilityID" },
         };
         static DB2LoadInfo const loadInfo(&fields[0], std::extent<decltype(fields)>::value, BattlePetAbilityStateMeta::Instance(), HOTFIX_SEL_BATTLE_PET_ABILITY_STATE);
         return &loadInfo;
@@ -788,7 +788,7 @@ struct BattlePetSpeciesXAbilityLoadInfo
             { false, FT_SHORT, "BattlePetAbilityID" },
             { false, FT_BYTE, "RequiredLevel" },
             { true, FT_BYTE, "SlotEnum" },
-            { false, FT_SHORT, "BattlePetSpeciesID" },
+            { false, FT_INT, "BattlePetSpeciesID" },
         };
         static DB2LoadInfo const loadInfo(&fields[0], std::extent<decltype(fields)>::value, BattlePetSpeciesXAbilityMeta::Instance(), HOTFIX_SEL_BATTLE_PET_SPECIES_X_ABILITY);
         return &loadInfo;

@@ -357,7 +357,7 @@ struct AzeriteTierUnlockEntry
     uint8       ItemCreationContext;
     uint8       Tier;
     uint8       AzeriteLevel;
-    uint8       AzeriteTierUnlockSetID;
+    uint32      AzeriteTierUnlockSetID;
 };
 
 struct BankBagSlotPricesEntry
@@ -414,7 +414,7 @@ struct BattlePetAbilityStateEntry
     uint32 ID;
     uint32 BattlePetStateID;
     int32 Value;
-    uint16 BattlePetAbilityID;
+    uint32 BattlePetAbilityID;
 };
 
 struct BattlePetAbilityTurnEntry
@@ -471,7 +471,7 @@ struct BattlePetSpeciesXAbilityEntry
     uint16 BattlePetAbilityID;
     uint8 RequiredLevel;
     int8 SlotEnum;
-    uint16 BattlePetSpeciesID;
+    uint32 BattlePetSpeciesID;
 };
 
 struct BattlemasterListEntry

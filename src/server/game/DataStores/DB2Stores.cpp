@@ -628,7 +628,7 @@ void DB2Manager::LoadStores(std::string const& dataPath, uint32 defaultLocale)
     LOAD_DB2(sGarrFollowerQualityStore);
     LOAD_DB2(sGarrFollowerTypeStore);
     LOAD_DB2(sGarrFollowerXAbilityStore);
-    LOAD_DB2(sGarrMissionStore);
+    //LOAD_DB2(sGarrMissionStore); TODO: fix me
     LOAD_DB2(sGarrPlotBuildingStore);
     LOAD_DB2(sGarrPlotStore);
     LOAD_DB2(sGarrPlotInstanceStore);
@@ -719,7 +719,7 @@ void DB2Manager::LoadStores(std::string const& dataPath, uint32 defaultLocale)
     LOAD_DB2(sPvpTalentSlotUnlockStore);
     LOAD_DB2(sQuestFactionRewardStore);
     LOAD_DB2(sQuestMoneyRewardStore);
-    LOAD_DB2(sQuestPOIPointStore);
+    //LOAD_DB2(sQuestPOIPointStore); TODO: fix me
     LOAD_DB2(sQuestPOIBlobStore);
     LOAD_DB2(sQuestPackageItemStore);
     LOAD_DB2(sQuestSortStore);

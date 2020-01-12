@@ -1449,7 +1449,7 @@ struct GarrMissionEntry
     uint8  FollowerDeathChance;
     int32 AreaId;
     uint32 Flags;
-    int32 GarrMissionSetId;
+    uint32 GarrMissionSetId;
 };
 
 struct GarrPlotEntry

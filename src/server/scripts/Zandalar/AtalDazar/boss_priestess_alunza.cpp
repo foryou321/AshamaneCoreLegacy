@@ -271,7 +271,7 @@ struct npc_corrupted_gold : public ScriptedAI
     void MoveForward(float distance)
     {
         Position movePos;
-        float ori = M_PI_2 + M_PI + frand(0.f, M_PI);
+        float ori = M_PI_2 + M_PI + frand(0.0f, M_PI);
         float x = me->GetPositionX() + distance * cos(ori);
         float y = me->GetPositionY() + distance * sin(ori);
         float z = me->GetPositionZ();

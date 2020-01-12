@@ -3876,6 +3876,13 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->RequiredAreasID = 0;
     });
 
+    ApplySpellFix({
+    254904, // Revitalize Spirit Obelisk
+        }, [](SpellInfo* spellInfo)
+    {
+        const_cast<SpellEffectInfo*>(spellInfo->GetEffect(0))->TargetA = SpellImplicitTargetInfo(TARGET_UNIT_CASTER);
+    });
+
     SpellInfo* spellInfo = NULL;
     for (uint32 i = 0; i < GetSpellInfoStoreSize(); ++i)
     {

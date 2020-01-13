@@ -96,6 +96,17 @@ public:
     uint32 GetFollowerActivationLimit() const { return _followerActivationsRemainingToday; }
     void ResetFollowerActivationLimit() { _followerActivationsRemainingToday = 1; }
 
+    template<typename Predicate>
+    uint32 CountFollowers(Predicate&& predicate) const
+    {
+        uint32 count = 0;
+        for (auto itr = _followers.begin(); itr != _followers.end(); ++itr)
+            if (predicate(itr->second))
+                ++count;
+
+        return count;
+    }
+
     // Missions
     void AddMission(uint32 garrMissionId);
     Mission* GetMission(uint64 dbId);

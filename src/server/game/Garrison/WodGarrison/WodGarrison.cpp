@@ -322,7 +322,7 @@ void WodGarrison::LearnBlueprint(uint32 garrBuildingId)
 
     if (!sGarrBuildingStore.LookupEntry(garrBuildingId))
         learnBlueprintResult.Result = GARRISON_ERROR_INVALID_BUILDINGID;
-    else if (_knownBuildings.count(garrBuildingId))
+    else if (HasBlueprint(garrBuildingId))
         learnBlueprintResult.Result = GARRISON_ERROR_BLUEPRINT_EXISTS;
     else
         _knownBuildings.insert(garrBuildingId);
@@ -339,7 +339,7 @@ void WodGarrison::UnlearnBlueprint(uint32 garrBuildingId)
 
     if (!sGarrBuildingStore.LookupEntry(garrBuildingId))
         unlearnBlueprintResult.Result = GARRISON_ERROR_INVALID_BUILDINGID;
-    else if (!_knownBuildings.count(garrBuildingId))
+    else if (!HasBlueprint(garrBuildingId))
         unlearnBlueprintResult.Result = GARRISON_ERROR_REQUIRES_BLUEPRINT;
     else
         _knownBuildings.erase(garrBuildingId);
@@ -508,7 +508,7 @@ GarrisonError WodGarrison::CheckBuildingPlacement(uint32 garrPlotInstanceId, uin
 
     if (building->Flags & GARRISON_BUILDING_FLAG_NEEDS_PLAN)
     {
-        if (!_knownBuildings.count(garrBuildingId))
+        if (!HasBlueprint(garrBuildingId))
             return GARRISON_ERROR_REQUIRES_BLUEPRINT;
     }
     else // Building is built as a quest reward
@@ -680,10 +680,10 @@ void WodGarrison::Plot::DeleteGameObject(Map* map)
     BuildingInfo.Guid.Clear();
 }
 
-void WodGarrison::Plot::ClearBuildingInfo(Player* owner)
+void WodGarrison::Plot::ClearBuildingInfo(GarrisonType _garrisonType, Player* owner)
 {
     WorldPackets::Garrison::GarrisonPlotPlaced plotPlaced;
-    plotPlaced.GarrTypeID = GARRISON_TYPE_GARRISON;
+    plotPlaced.GarrTypeID = _garrisonType;
     plotPlaced.PlotInfo = &PacketInfo;
     owner->SendDirectMessage(plotPlaced.Write());
 

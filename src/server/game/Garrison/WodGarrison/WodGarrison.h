@@ -66,7 +66,7 @@ public:
     {
         GameObject* CreateGameObject(Map* map, GarrisonFactionIndex faction);
         void DeleteGameObject(Map* map);
-        void ClearBuildingInfo(Player* owner);
+        void ClearBuildingInfo(GarrisonType _garrisonType, Player* owner);
         void SetBuildingInfo(WorldPackets::Garrison::GarrisonBuildingInfo const& buildingInfo, Player* owner);
 
         WorldPackets::Garrison::GarrisonPlotInfo PacketInfo;

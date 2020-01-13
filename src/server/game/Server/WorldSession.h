@@ -89,7 +89,6 @@ namespace WorldPackets
         class ArtifactAddPower;
         class ArtifactSetAppearance;
         class ConfirmArtifactRespec;
-        class AzeriteEmpoweredItemSelectPower;
     }
 
     namespace AuctionHouse
@@ -1811,7 +1810,6 @@ class TC_GAME_API WorldSession
         void HandleArtifactAddPower(WorldPackets::Artifact::ArtifactAddPower& artifactAddPower);
         void HandleArtifactSetAppearance(WorldPackets::Artifact::ArtifactSetAppearance& artifactSetAppearance);
         void HandleConfirmArtifactRespec(WorldPackets::Artifact::ConfirmArtifactRespec& confirmArtifactRespec);
-        void HandleAzeriteEmpoweredItemSelectPower(WorldPackets::Artifact::AzeriteEmpoweredItemSelectPower& packet);
 
         // Scenario
         void HandleQueryScenarioPOI(WorldPackets::Scenario::QueryScenarioPOI& queryScenarioPOI);

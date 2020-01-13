@@ -1078,6 +1078,22 @@ bool Unit::CastSpell(Unit* victim, SpellInfo const* spellInfo, TriggerCastFlags 
     return CastSpell(targets, spellInfo, nullptr, triggerFlags, castItem, triggeredByAura, originalCaster);
 }
 
+bool Unit::CastSpellWithOrientation(Unit* victim, uint32 spellId, bool triggered, float orientation)
+{
+    SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(spellId);
+    if (!spellInfo)
+    {
+        TC_LOG_ERROR("entities.unit", "CastSpellWithOrientation: unknown spell id %u by caster: %s", spellId, GetGUID().ToString().c_str());
+        return false;
+    }
+    SetFacingTo(orientation);
+    SpellCastTargets targets;
+    targets.SetUnitTarget(victim);
+    targets.SetOrientation(orientation);
+    targets.SetMapId(GetMapId());   // always set in sniffs
+    return CastSpell(targets, spellInfo, nullptr, triggered ? TRIGGERED_FULL_MASK : TRIGGERED_NONE);
+}
+
 bool Unit::CastCustomSpell(Unit* target, uint32 spellId, int32 const* bp0, int32 const* bp1, int32 const* bp2, bool triggered, Item* castItem, AuraEffect const* triggeredByAura, ObjectGuid originalCaster)
 {
     CustomSpellValues values;
@@ -2050,18 +2066,32 @@ void Unit::CalcHealAbsorb(HealInfo& healInfo) const
     AuraEffectList const& vHealAbsorb = healInfo.GetTarget()->GetAuraEffectsByType(SPELL_AURA_SCHOOL_HEAL_ABSORB);
     for (AuraEffectList::const_iterator i = vHealAbsorb.begin(); i != vHealAbsorb.end() && healInfo.GetHeal() > 0; ++i)
     {
+        // Check if aura was removed during iteration - we don't need to work on such auras
+        AuraApplication const* aurApp = (*i)->GetBase()->GetApplicationOfTarget(healInfo.GetTarget()->GetGUID());
+        if (!aurApp)
+            continue;
+
         if (!((*i)->GetMiscValue() & healInfo.GetSpellInfo()->SchoolMask))
             continue;
 
         // Max Amount can be absorbed by this aura
         int32 currentAbsorb = (*i)->GetAmount();
 
-        // Found empty aura (impossible but..)
-        if (currentAbsorb <= 0)
-        {
-            existExpired = true;
+        // aura with infinite absorb amount - let the scripts handle absorbtion amount, set here to 0 for safety
+        if (currentAbsorb < 0)
+            currentAbsorb = 0;
+
+        AuraEffect* absorbAurEff = *i;
+
+        uint32 tempAbsorb = uint32(currentAbsorb);
+
+        bool defaultPrevented = false;
+
+        absorbAurEff->GetBase()->CallScriptEffectHealAbsorbHandlers(absorbAurEff, aurApp, healInfo, tempAbsorb, defaultPrevented);
+        currentAbsorb = tempAbsorb;
+
+        if (defaultPrevented)
             continue;
-        }
 
         // currentAbsorb - damage can be absorbed by shield
         // If need absorb less damage
@@ -2069,11 +2099,15 @@ void Unit::CalcHealAbsorb(HealInfo& healInfo) const
 
         healInfo.AbsorbHeal(currentAbsorb);
 
-        // Reduce shield amount
-        (*i)->ChangeAmount((*i)->GetAmount() - currentAbsorb);
-        // Need remove it later
-        if ((*i)->GetAmount() <= 0)
-            existExpired = true;
+        // Check if our aura is using amount to count damage
+        if (absorbAurEff->GetAmount() >= 0)
+        {
+            // Reduce shield amount
+            (*i)->ChangeAmount((*i)->GetAmount() - currentAbsorb);
+            // Need remove it later
+            if ((*i)->GetAmount() <= 0)
+                existExpired = true;
+        }
     }
 
     // Remove all expired absorb auras
@@ -11138,12 +11172,12 @@ void Unit::RestoreDisplayId(bool ignorePositiveAurasPreventingMounting /*= false
             if (!ignorePositiveAurasPreventingMounting || !IsDisallowedMountForm(0, GetShapeshiftForm(), modelId))
                 SetDisplayId(modelId);
             else
-                SetDisplayId(GetNativeDisplayId());
+                SetDisplayId(GetNativeDisplayId(), GetNativeDisplayScale());
         }
     }
     // no auras found - set modelid to default
     else
-        SetDisplayId(GetNativeDisplayId());
+        SetDisplayId(GetNativeDisplayId(), GetNativeDisplayScale());
 }
 
 void Unit::ClearAllReactives()

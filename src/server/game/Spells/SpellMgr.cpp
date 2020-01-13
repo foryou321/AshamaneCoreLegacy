@@ -3876,11 +3876,51 @@ void SpellMgr::LoadSpellInfoCorrections()
         spellInfo->RequiredAreasID = 0;
     });
 
-    ApplySpellFix({
-    254904, // Revitalize Spirit Obelisk
-        }, [](SpellInfo* spellInfo)
+    // Revitalize Spirit Obelisk
+    ApplySpellFix({ 254904 }, [](SpellInfo* spellInfo)
     {
         const_cast<SpellEffectInfo*>(spellInfo->GetEffect(0))->TargetA = SpellImplicitTargetInfo(TARGET_UNIT_CASTER);
+    });
+
+    // Requiem of the Abyss
+    ApplySpellFix({ 274365 }, [](SpellInfo* spellInfo)
+    {
+        const_cast<SpellEffectInfo*>(spellInfo->GetEffect(EFFECT_0))->TargetA = SpellImplicitTargetInfo(TARGET_DEST_DB);
+    });
+
+    // Surging Rush (HACK: charge effect is scripted in boss script)
+    ApplySpellFix({ 264101 }, [](SpellInfo* spellInfo)
+    {
+        const_cast<SpellEffectInfo*>(spellInfo->GetEffect(EFFECT_0))->Effect = 0;
+    });
+
+    // Erupting Waters
+    ApplySpellFix({ 264911, 264912, 264913 }, [](SpellInfo* spellInfo)
+    {
+        const_cast<SpellEffectInfo*>(spellInfo->GetEffect(EFFECT_0))->TargetA = SpellImplicitTargetInfo(TARGET_DEST_DB);
+    });
+
+    // Swiftness Ward
+    // Reinforcing Ward
+    ApplySpellFix({ 267891, 267905 }, [](SpellInfo* spellInfo)
+    {
+        const_cast<SpellEffectInfo*>(spellInfo->GetEffect(EFFECT_0))->TargetA = SpellImplicitTargetInfo(TARGET_DEST_DEST);
+    });
+
+    // Grasp from the Depths
+    // Mind Rend
+    // Tentacle Slam
+    ApplySpellFix({ 264477, 268896, 267364 }, [](SpellInfo* spellInfo)
+    {
+        spellInfo->MaxAffectedTargets = 1;
+    });
+
+    // Disciple of the Vol'zith
+    ApplySpellFix({ 269289 }, [](SpellInfo* spellInfo)
+    {
+        //const_cast<SpellEffectInfo*>(spellInfo->GetEffect(EFFECT_2))->Effect = 0;
+        spellInfo->AuraInterruptFlags[0] = 0;
+        spellInfo->AuraInterruptFlags[1] = 0;
     });
 
     SpellInfo* spellInfo = NULL;

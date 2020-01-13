@@ -219,6 +219,9 @@ void SpellCastTargets::Write(WorldPackets::Spells::SpellTargetData& data)
 
     if (m_targetMask & TARGET_FLAG_STRING)
         data.Name = m_strTarget;
+
+    data.Orientation = m_orientation;
+    data.MapID = m_mapId;
 }
 
 ObjectGuid SpellCastTargets::GetOrigUnitTargetGUID() const

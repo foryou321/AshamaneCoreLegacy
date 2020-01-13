@@ -145,7 +145,7 @@ struct boss_lord_stormsong : public BossAI
         me->AddUnitState(UNIT_STATE_IGNORE_PATHFINDING); // map is bugged, has los and movement issues
     }
 
-    void OnPowerChanged(Powers power, int32 oldValue, int32& newValue)
+    void OnPowerChanged(Powers power, int32 /*oldValue*/, int32& newValue) override
     {
         if (power != POWER_MANA || newValue < me->GetMaxPower(POWER_MANA) || !me->IsInCombat())
             return;

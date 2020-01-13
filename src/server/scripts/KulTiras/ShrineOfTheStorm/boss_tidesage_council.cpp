@@ -107,7 +107,7 @@ struct boss_brother_ironhull : public BossAI
                 faye->AI()->EnterEvadeMode();
     }
 
-    void OnPowerChanged(Powers power, int32 oldValue, int32& newValue)
+    void OnPowerChanged(Powers power, int32 /*oldValue*/, int32& newValue) override
     {
         if (power != POWER_MANA || newValue < me->GetMaxPower(POWER_MANA) || !me->IsInCombat())
             return;
@@ -201,7 +201,7 @@ struct boss_galecaller_faye : public BossAI
         DoCastSelf(SPELL_COSMETIC_SWIFTNESS_WARD);
     }
 
-    void OnPowerChanged(Powers power, int32 oldValue, int32& newValue)
+    void OnPowerChanged(Powers power, int32 /*oldValue*/, int32& newValue) override
     {
         if (power != POWER_MANA || newValue < me->GetMaxPower(POWER_MANA) || !me->IsInCombat())
             return;
@@ -255,7 +255,7 @@ struct boss_galecaller_faye : public BossAI
         }
     }
 
-    void OnSpellCastInterrupt(SpellInfo const* /*spell*/)
+    void OnSpellCastInterrupt(SpellInfo const* /*spell*/) override
     {
         if (me->HasAura(SPELL_BLESSING_OF_THE_TEMPEST))
         {

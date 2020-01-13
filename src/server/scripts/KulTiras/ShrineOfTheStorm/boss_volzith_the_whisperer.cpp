@@ -184,7 +184,7 @@ struct boss_volzith : public BossAI
         }
     }
 
-    void OnPowerChanged(Powers power, int32 oldValue, int32& newValue)
+    void OnPowerChanged(Powers power, int32 /*oldValue*/, int32& newValue) override
     {
         if (power != POWER_ENERGY || newValue < me->GetMaxPower(POWER_ENERGY) || !me->IsInCombat())
             return;

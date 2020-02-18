@@ -661,8 +661,8 @@ enum Difficulty : uint8
     DIFFICULTY_NORMAL_WARFRONT      = 147,
     DIFFICULTY_HEROIC_WARFRONT      = 149,
     DIFFICULTY_LFR_15TH_ANNIVERSARY = 151,
-
-    MAX_DIFFICULTY
+    DIFFICULTY_VISIONS_OF_NZOTH     = 152,
+    DIFFICULTY_TEEMING_ISLAND       = 153
 };
 
 enum DifficultyFlags
@@ -1128,7 +1128,7 @@ enum SpellShapeshiftFormFlags
     SHAPESHIFT_FORM_PREVENT_EMOTE_SOUNDS        = 0x1000
 };
 
-#define TaxiMaskSize 311
+#define TaxiMaskSize 319
 typedef std::array<uint8, TaxiMaskSize> TaxiMask;
 
 enum TotemCategoryType

@@ -643,6 +643,7 @@ struct ChrRacesEntry
     int32 FemaleSkeletonFileDataID;
     int32 MaleSkeletonFileDataID;
     int32 HelmVisFallbackRaceID;
+    int32 TransmogrifyDisabledSlotMask;
     int16 FactionID;
     int16 CinematicSequenceID;
     int16 ResSicknessSpellID;
@@ -719,6 +720,7 @@ struct ContentTuningXExpectedEntry
 {
     uint32 ID;
     int32 ExpectedStatModID;
+    int32 MythicPlusSeasonID;
     uint32 ContentTuningID;
 };
 
@@ -1000,7 +1002,7 @@ struct CriteriaTreeEntry
     int8 Operator;
     uint32 CriteriaID;
     int32 OrderIndex;
-    int16 Flags;
+    int32 Flags;
 };
 
 struct CurrencyTypesEntry
@@ -1018,6 +1020,8 @@ struct CurrencyTypesEntry
     int8 Quality;
     int32 FactionID;
     int32 ItemGroupSoundsID;
+    int32 ConvertToPlayerExperience;
+    int32 PlayerConditionID;
 };
 
 struct CurveEntry
@@ -1648,7 +1652,6 @@ struct ItemAppearanceEntry
 {
     uint32 ID;
     uint8 DisplayType;
-    int32 SubclassID;
     int32 ItemDisplayInfoID;
     int32 DefaultIconFileDataID;
     int32 UiOrder;
@@ -2300,6 +2303,8 @@ struct MountEntry
     uint32 PlayerConditionID;
     float MountFlyRideHeight;
     int32 UiModelSceneID;
+    int32 MountSpecialRiderAnimKitID;
+    int32 MountSpecialSpellVisualKitID;
 
     bool IsSelfMount() const { return (Flags & MOUNT_FLAG_SELF_MOUNT) != 0; }
 };
@@ -3254,11 +3259,11 @@ struct SpellTotemsEntry
 struct SpellVisualKitEntry
 {
     uint32 ID;
-    int32 Flags;
     int8 FallbackPriority;
-    uint32 FallbackSpellVisualKitId;
+    int32 FallbackSpellVisualKitId;
     uint16 DelayMin;
     uint16 DelayMax;
+    int32 Flags[2];
 };
 
 struct SpellXSpellVisualEntry
@@ -3436,6 +3441,7 @@ struct UiMapEntry
     int32 VisibilityPlayerConditionID;
     int8 HelpTextPosition;
     int32 BkgAtlasID;
+    int32 AlternateUiMapGroup;
 };
 
 struct UiMapAssignmentEntry

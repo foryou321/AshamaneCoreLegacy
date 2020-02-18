@@ -1867,7 +1867,7 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
         {
             uint32 zoneId = referencePlayer->GetAreaId();
             if (AreaTableEntry const* areaEntry = sAreaTableStore.LookupEntry(zoneId))
-                if (areaEntry->Flags[0] & AREA_FLAG_UNK9)
+                if (areaEntry->Flags[0] & AREA_FLAG_SUB_ZONE)
                     zoneId = areaEntry->ParentAreaID;
             if (zoneId != reqValue)
                 return false;
@@ -1879,7 +1879,7 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
                 return false;
             uint32 zoneId = unit->GetAreaId();
             if (AreaTableEntry const* areaEntry = sAreaTableStore.LookupEntry(zoneId))
-                if (areaEntry->Flags[0] & AREA_FLAG_UNK9)
+                if (areaEntry->Flags[0] & AREA_FLAG_SUB_ZONE)
                     zoneId = areaEntry->ParentAreaID;
             if (zoneId != reqValue)
                 return false;
@@ -1964,7 +1964,7 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
                 return false;
             break;
         case CRITERIA_ADDITIONAL_CONDITION_RATED_BATTLEGROUND_RATING: // 64
-            if (referencePlayer->GetRBGPersonalRating() < reqValue)
+            //if (referencePlayer->GetRBGPersonalRating() < reqValue)
                 return false;
             break;
         case CRITERIA_ADDITIONAL_CONDITION_WORLD_STATE_EXPRESSION: // 67
@@ -2153,7 +2153,7 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
             if (!referencePlayer->HasPlayerFlag(PLAYER_FLAGS_MENTOR))
                 return false;
             break;
-        case CRITERIA_ADDITIONAL_CONDITION_GARRISON_LEVEL_ABOVE: // 126
+        /*case CRITERIA_ADDITIONAL_CONDITION_GARRISON_LEVEL_ABOVE: // 126
         {
             Garrison const* garrison = referencePlayer->GetGarrison();
             if (!garrison || garrison->GetType() != GarrisonType(secondaryAsset) || garrison->GetSiteLevel()->GarrLevel < reqValue)
@@ -2425,7 +2425,7 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
                     return false;
             }
             break;
-        }
+        }*/
         case CRITERIA_ADDITIONAL_CONDITION_BATTLE_PET_SPECIES_IN_TEAM: // 151
         {
             uint32 count = 0;
@@ -2447,7 +2447,7 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
                 return false;
             break;
         }
-        case CRITERIA_ADDITIONAL_CONDITION_GARRISON_FOLLOWER_ID: // 157
+        /*case CRITERIA_ADDITIONAL_CONDITION_GARRISON_FOLLOWER_ID: // 157
         {
             Garrison const* garrison = referencePlayer->GetGarrison();
             if (!garrison)
@@ -2461,9 +2461,9 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
             else
             {
                 uint32 followerCount = garrison->CountFollowers([reqValue](Garrison::Follower const& follower)
-                {
-                    return follower.PacketInfo.GarrFollowerID == reqValue;
-                });
+                    {
+                        return follower.PacketInfo.GarrFollowerID == reqValue;
+                    });
                 if (followerCount < 1)
                     return false;
             }
@@ -2510,12 +2510,12 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
             if (!garrison || garrison->GetType() != GARRISON_TYPE_GARRISON || garrison->GetSiteLevel()->GarrLevel != reqValue)
                 return false;
             break;
-        }
+        }*/
         case CRITERIA_ADDITIONAL_CONDITION_TARGETING_CORPSE: // 173
             if (referencePlayer->GetTarget().GetHigh() != HighGuid::Corpse)
                 return false;
             break;
-        case CRITERIA_ADDITIONAL_CONDITION_GARRISON_FOLLOWERS_LEVEL_EQUAL: // 175
+        /*case CRITERIA_ADDITIONAL_CONDITION_GARRISON_FOLLOWERS_LEVEL_EQUAL: // 175
         {
             Garrison const* garrison = referencePlayer->GetGarrison();
             if (!garrison || garrison->GetType() != GarrisonType(tertiaryAsset))
@@ -2545,7 +2545,7 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
             if (followerCount < 1)
                 return false;
             break;
-        }
+        }*/
         case CRITERIA_ADDITIONAL_CONDITION_WORLD_PVP_AREA: // 179
         {
             Battlefield const* bf = sBattlefieldMgr->GetBattlefieldToZoneId(referencePlayer->GetZoneId());
@@ -2553,7 +2553,7 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
                 return false;
             break;
         }
-        case CRITERIA_ADDITIONAL_CONDITION_GARRISON_FOLLOWERS_ITEM_LEVEL_ABOVE: // 184
+        /*case CRITERIA_ADDITIONAL_CONDITION_GARRISON_FOLLOWERS_ITEM_LEVEL_ABOVE: // 184
         {
             Garrison const* garrison = referencePlayer->GetGarrison();
             if (!garrison)
@@ -2568,7 +2568,7 @@ bool CriteriaHandler::ModifierSatisfied(ModifierTreeEntry const* modifier, uint6
             if (followerCount < reqValue)
                 return false;
             break;
-        }
+        }*/
         case CRITERIA_ADDITIONAL_CONDITION_HONOR_LEVEL: // 193
             if (referencePlayer->GetHonorLevel() != reqValue)
                 return false;

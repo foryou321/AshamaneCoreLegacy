@@ -1212,6 +1212,14 @@ enum MapDifficultyFlags : uint8
     MAP_DIFFICULTY_FLAG_CANNOT_EXTEND   = 0x10
 };
 
+enum class ModifierTreeOperator : int8
+{
+    SingleTrue  = 2,
+    SingleFalse = 3,
+    All         = 4,
+    Some        = 8
+};
+
 enum MountCapabilityFlags
 {
     MOUNT_CAPABILITY_FLAG_GROUND                = 0x1,

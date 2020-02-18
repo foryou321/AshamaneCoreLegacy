@@ -24,7 +24,7 @@ class spell_play_chapter_1 : public AuraScript
 {
     PrepareAuraScript(spell_play_chapter_1);
 
-    void OnRemove(AuraEffect const* aurEff, AuraEffectHandleModes /*mode*/)
+    void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
         Unit* caster = GetCaster();
         if (!caster)

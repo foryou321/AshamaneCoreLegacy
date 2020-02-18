@@ -100,7 +100,7 @@ struct boss_aspix : public BossAI
         DoMeleeAttackIfReady();
     }
 
-    void DoAction(int32 param)
+    void DoAction(int32 param) override
     {
         if (param == ACTION_SHIELD_ASPIX)
         {
@@ -144,9 +144,8 @@ struct boss_adderis : public BossAI
         DoMeleeAttackIfReady();
     }
 
-    void DoAction(int32 param)
+    void DoAction(int32 /*param*/) override
     {
-
     }
 
 };
@@ -156,7 +155,7 @@ class spell_lightning_shield : public AuraScript
 {
     PrepareAuraScript(spell_lightning_shield);
 
-    void OnRemove(AuraEffect const* aurEff, AuraEffectHandleModes /*mode*/)
+    void OnRemove(AuraEffect const* /*&aurEff*/, AuraEffectHandleModes /*mode*/)
     {
         if (Unit* caster = GetCaster())
             caster->AddAura(SPELL_LIGHTNING_SHIELD_AURA);

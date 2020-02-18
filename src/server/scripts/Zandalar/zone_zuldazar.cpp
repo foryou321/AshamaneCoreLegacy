@@ -245,7 +245,7 @@ public:
            summoner->CastSpell(me, 46598);
         }
     }
-    void PassengerBoarded(Unit* who, int8 seatId, bool apply) override
+    void PassengerBoarded(Unit* who, int8 /*seatId*/, bool /*apply*/) override
     {
         if (Player* player = who->ToPlayer())
             player->KilledMonsterCredit(126822);
@@ -280,7 +280,7 @@ public:
             summoner->CastSpell(me, 46598);
         }
     }
-    void PassengerBoarded(Unit* who, int8 seatId, bool apply) override
+    void PassengerBoarded(Unit* who, int8 /*seatId*/, bool /*apply*/) override
     {
         if (Player* player = who->ToPlayer())
             player->KilledMonsterCredit(127414);
@@ -317,7 +317,7 @@ public:
         }
     }
 
-    void PassengerBoarded(Unit* who, int8 seatId, bool apply) override
+    void PassengerBoarded(Unit* who, int8 /*seatId*/, bool /*apply*/) override
     {
         if (Player* player = who->ToPlayer())
             player->KilledMonsterCredit(127512);
@@ -344,7 +344,7 @@ struct npc_paku : public ScriptedAI
         player->KilledMonsterCredit(127377);
     }
 
-    void UpdateAI(uint32 diff) override
+    void UpdateAI(uint32 /*diff*/) override
     {
         std::list<Player*> players;
         me->GetPlayerListInGrid(players, 75.0f);
@@ -514,7 +514,7 @@ struct npc_voljamba : public ScriptedAI
     }
 
 
-    void EnterCombat(Unit* who) override
+    void EnterCombat(Unit* /*who*/) override
     {
         events.ScheduleEvent(EVENT_SOUL_BLAST, 2000);
         events.ScheduleEvent(EVENT_SUMMON_MASK, 9000);
@@ -555,7 +555,7 @@ struct npc_voljamba : public ScriptedAI
         DoMeleeAttackIfReady();
     }
 
-    void DamageTaken(Unit* /*attacker*/, uint32& damage)
+    void DamageTaken(Unit* /*attacker*/, uint32& damage) override
     {
         if (me->GetHealthPct() <= 80 && !gong)
         {

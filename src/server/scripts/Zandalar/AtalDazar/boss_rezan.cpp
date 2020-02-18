@@ -113,7 +113,7 @@ struct boss_ataldazar_rezan : public BossAI
         BossAI::InitializeAI();
     }
 
-    void SpellHitTarget(Unit* target, SpellInfo const* spell) override
+    void SpellHitTarget(Unit* /*target*/, SpellInfo const* /*spell*/) override
     {
     }
 
@@ -238,7 +238,7 @@ struct boss_ataldazar_rezan : public BossAI
     }
 
 
-    void JustDied(Unit* killer) override
+    void JustDied(Unit* /*killer*/) override
     {
     }
 

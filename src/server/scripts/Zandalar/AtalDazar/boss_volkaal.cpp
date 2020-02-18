@@ -305,7 +305,7 @@ struct npc_ataldazar_reanimation_totem : public ScriptedAI
         }
     }
 
-    void SpellHitTarget(Unit* target, SpellInfo const* spell) override
+    void SpellHitTarget(Unit* /*target*/, SpellInfo const* /*spell*/) override
     {
         if (Creature* boss = me->FindNearestCreature(NPC_VOLKAAL, 100.f))
                 boss->AI()->DoAction(ACTION_TOTEM_HEALED);
@@ -327,9 +327,8 @@ struct npc_ataldazar_reanimation_totem : public ScriptedAI
         }
     }
 
-    void UpdateAI(uint32 diff) override
+    void UpdateAI(uint32 /*diff*/) override
     {
-        // Do nothing?
     }
 };
 

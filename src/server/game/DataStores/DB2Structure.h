@@ -2895,13 +2895,6 @@ struct SpecSetMemberEntry
     int32 SpecSetID;
 };
 
-struct SpecSetMemberEntry
-{
-    uint32 ID;
-    int32 ChrSpecializationID;
-    uint32 SpecSetID;
-};
-
 struct SpellAuraOptionsEntry
 {
     uint32 ID;

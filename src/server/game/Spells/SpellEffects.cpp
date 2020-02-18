@@ -6230,6 +6230,7 @@ void Spell::EffectScrapItem(SpellEffIndex /*effIndex*/)
         player->DestroyItem(itemTarget->GetBagSlot(), itemTarget->GetSlot(), true);
         player->AutoStoreLoot(iSL->Id, LootTemplates_Scrapping);
     }
+}
 
 void Spell::EffectLearnAzeriteEssencePower(SpellEffIndex /*effIndex*/)
 {

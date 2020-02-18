@@ -27,6 +27,7 @@
 
 class AreaTrigger;
 class AzeriteItem;
+class AzeriteEmpoweredItem;
 class Bag;
 class ByteBuffer;
 class Conversation;

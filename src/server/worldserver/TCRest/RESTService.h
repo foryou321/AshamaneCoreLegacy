@@ -19,13 +19,13 @@
 #define RESTService_h__
 
 #include "Define.h"
+#include "DeadlineTimer.h"
 #include "Login.pb.h"
 #include "RestCommon.h"
 #include "server_http.h"
 #include <boost/asio/io_service.hpp>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/ip/address.hpp>
-#include <boost/asio/deadline_timer.hpp>
 #include <atomic>
 #include <mutex>
 #include <thread>

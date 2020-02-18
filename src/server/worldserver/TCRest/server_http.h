@@ -2,6 +2,7 @@
 #define SERVER_HTTP_HPP
 
 #include "utility.h"
+#include "DeadlineTimer.h"
 #include "IoContext.h"
 #include "IpAddress.h"
 #include <functional>
@@ -235,7 +236,7 @@ namespace SimpleWeb {
       std::unique_ptr<socket_type> socket; // Socket must be unique_ptr since asio::ssl::stream<asio::ip::tcp::socket> is not movable
       std::mutex socket_close_mutex;
 
-      std::unique_ptr<asio::deadline_timer> timer;
+      std::unique_ptr<Trinity::Asio::DeadlineTimer> timer;
 
       std::shared_ptr<asio::ip::tcp::endpoint> remote_endpoint;
 
@@ -252,7 +253,7 @@ namespace SimpleWeb {
           return;
         }
 
-        timer = std::unique_ptr<asio::deadline_timer>(new asio::deadline_timer(Trinity::Asio::get_io_context(*socket)));
+        timer = std::unique_ptr<Trinity::Asio::DeadlineTimer>(new Trinity::Asio::DeadlineTimer(Trinity::Asio::get_io_context(*socket)));
         timer->expires_from_now(boost::posix_time::minutes(seconds));
         auto self = this->shared_from_this();
         timer->async_wait([self](const error_code &ec) {

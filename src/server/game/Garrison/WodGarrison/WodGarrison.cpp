@@ -369,7 +369,7 @@ void WodGarrison::PlaceBuilding(uint32 garrPlotInstanceId, uint32 garrBuildingId
         {
             oldBuildingId = plot->BuildingInfo.PacketInfo->GarrBuildingID;
             if (sGarrBuildingStore.AssertEntry(oldBuildingId)->BuildingType != building->BuildingType)
-                plot->ClearBuildingInfo(_owner);
+                plot->ClearBuildingInfo(_garrisonType, _owner);
         }
 
         plot->SetBuildingInfo(placeBuildingResult.BuildingInfo, _owner);
@@ -412,7 +412,7 @@ void WodGarrison::CancelBuildingConstruction(uint32 garrPlotInstanceId)
         if (map)
             plot->DeleteGameObject(map);
 
-        plot->ClearBuildingInfo(_owner);
+        plot->ClearBuildingInfo(_garrisonType, _owner);
         _owner->SendDirectMessage(buildingRemoved.Write());
 
         GarrBuildingEntry const* constructing = sGarrBuildingStore.AssertEntry(buildingRemoved.GarrBuildingID);

@@ -51,6 +51,7 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
         case RACE_LIGHTFORGED_DRAENEI:
         case RACE_KUL_TIRAN:
         case RACE_DARK_IRON_DWARF:
+        case RACE_MECHAGNOME:
             SetTaximaskNode(2);     // Stormwind, Elwynn
             SetTaximaskNode(6);     // Ironforge, Dun Morogh
             SetTaximaskNode(26);    // Lor'danel, Darkshore

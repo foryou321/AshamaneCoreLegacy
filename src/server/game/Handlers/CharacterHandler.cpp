@@ -2025,6 +2025,7 @@ void WorldSession::HandleCharRaceOrFactionChangeCallback(std::shared_ptr<WorldPa
                 case RACE_LIGHTFORGED_DRAENEI:
                     stmt->setUInt16(1, 759);
                     break;
+                case RACE_MECHAGNOME:
                 case RACE_GNOME:
                     stmt->setUInt16(1, 313);
                     break;

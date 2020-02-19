@@ -410,7 +410,6 @@ struct AzeriteUnlockMappingEntry
     int32 ItemBonusListChest;
     uint32 AzeriteUnlockMappingSetID;
 };
-
 struct BankBagSlotPricesEntry
 {
     uint32 ID;
@@ -2935,7 +2934,7 @@ struct SpecSetMemberEntry
 {
     uint32 ID;
     int32 ChrSpecializationID;
-    int32 SpecSetID;
+    uint32 SpecSetID;
 };
 
 struct SpellAuraOptionsEntry

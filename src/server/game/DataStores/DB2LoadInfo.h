@@ -4888,7 +4888,7 @@ struct SpecSetMemberLoadInfo
         {
             { false, FT_INT, "ID" },
             { true, FT_INT, "ChrSpecializationID" },
-            { true, FT_INT, "SpecSetID" },
+            { false, FT_INT, "SpecSetID" },
         };
         static DB2LoadInfo const loadInfo(&fields[0], std::extent<decltype(fields)>::value, SpecSetMemberMeta::Instance(), HOTFIX_SEL_SPEC_SET_MEMBER);
         return &loadInfo;

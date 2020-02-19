@@ -18358,7 +18358,7 @@ bool Player::LoadFromDB(ObjectGuid guid, CharacterDatabaseQueryHolder* holder)
     //"totalKills, todayKills, yesterdayKills, chosenTitle, watchedFaction, drunk, "
     // 56      57      58      59      60      61      62      63           64                 65          66             67           68          69               70                     71          72            
     //"health, power1, power2, power3, power4, power5, power6, instance_id, activeTalentGroup, lootSpecId, exploredZones, knownTitles, actionBars, raidDifficulty, legacyRaidDifficulty, xpRate, fishing_steps "
-    // 73     74          75             76                77     78
+    // 73     74           75                    76               77   
     //"honor, honorLevel, honor_rest_state, honor_rest_bonus, numRespecs "
     //
     //"FROM characters WHERE guid = ?", CONNECTION_ASYNC);
@@ -18886,7 +18886,7 @@ bool Player::LoadFromDB(ObjectGuid guid, CharacterDatabaseQueryHolder* holder)
     _LoadSkills(holder->GetPreparedResult(PLAYER_LOGIN_QUERY_LOAD_SKILLS));
     UpdateSkillsForLevel(); //update skills after load, to make sure they are correctly update at player load
 
-    SetNumRespecs(fields[78].GetUInt8());
+    SetNumRespecs(fields[77].GetUInt8());
     SetPrimarySpecialization(fields[36].GetUInt32());
     SetActiveTalentGroup(fields[64].GetUInt8());
     ChrSpecializationEntry const* primarySpec = sChrSpecializationStore.LookupEntry(GetPrimarySpecialization());

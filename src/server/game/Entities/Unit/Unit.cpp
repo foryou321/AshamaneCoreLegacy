@@ -11765,8 +11765,8 @@ void Unit::Kill(Unit* victim, bool durabilityLoss)
                     player->SendMessageToSet(lootList.Write(), true);
                 }
 
-                uint32 lootid = creature->GetCreatureTemplate()->lootid;
-                loot->FillLoot(lootid, LootTemplates_Creature, looter, false, false, creature->GetLootMode(), GetMap()->GetDifficultyLootItemContext());
+                if (uint32 lootid = creature->GetCreatureTemplate()->lootid);
+                    loot->FillLoot(lootid, LootTemplates_Creature, looter, false, false, creature->GetLootMode(), GetMap()->GetDifficultyLootItemContext());
 
                 if (uint32 journalEncounterId = sObjectMgr->GetCreatureTemplateJournalId(creature->GetCreatureTemplate()->Entry))
                 {

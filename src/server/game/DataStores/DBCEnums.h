@@ -173,7 +173,7 @@ enum ArtifactPowerFlag : uint8
 
 #define MAX_AZERITE_EMPOWERED_TIER 5
 
-#define MAX_AZERITE_ESSENCE_SLOT 3
+#define MAX_AZERITE_ESSENCE_SLOT 4
 #define MAX_AZERITE_ESSENCE_RANK 4
 
 enum class AzeriteItemMilestoneType : int32
@@ -188,7 +188,7 @@ enum AzeriteTierUnlockSetFlags
     AZERITE_TIER_UNLOCK_SET_FLAG_DEFAULT = 0x1
 };
 
-#define BATTLE_PET_SPECIES_MAX_ID 2796
+#define BATTLE_PET_SPECIES_MAX_ID 2873
 
 enum BattlePetSpeciesFlags
 {

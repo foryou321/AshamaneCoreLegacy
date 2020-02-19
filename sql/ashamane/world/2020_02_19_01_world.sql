@@ -5,7 +5,7 @@ ALTER TABLE `creature_questitem` MODIFY `VerifiedBuild` INT(10) NOT NULL DEFAULT
 ALTER TABLE `creature_template` MODIFY `VerifiedBuild` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `creature_template_locale` MODIFY `VerifiedBuild` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `creature_template_model` MODIFY `VerifiedBuild` INT(10) NOT NULL DEFAULT '0';
-ALTER TABLE `creature_template_scaling` MODIFY `VerifiedBuild` int(11) NOT NULL DEFAULT '0';
+-- ALTER TABLE `creature_template_scaling` MODIFY `VerifiedBuild` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `gameobject` MODIFY `VerifiedBuild` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `gameobject_questitem` MODIFY `VerifiedBuild` INT(10) NOT NULL DEFAULT '0';
 ALTER TABLE `gameobject_template` MODIFY `VerifiedBuild` int(11) NOT NULL DEFAULT '0';

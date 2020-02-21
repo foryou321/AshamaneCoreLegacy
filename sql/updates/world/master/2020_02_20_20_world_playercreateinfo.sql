@@ -1,0 +1,8 @@
+UPDATE `playercreateinfo` SET `map` = 648, `zone` = 4765, `position_x` = -8423.81, `position_y` = 1361.3, `position_z` = 104.671, `orientation` = 1.55428 WHERE `race` = 9 AND `class` = 1;
+UPDATE `playercreateinfo` SET `map` = 648, `zone` = 4765, `position_x` = -8423.81, `position_y` = 1361.3, `position_z` = 104.671, `orientation` = 1.55428 WHERE `race` = 9 AND `class` = 3;
+UPDATE `playercreateinfo` SET `map` = 648, `zone` = 4765, `position_x` = -8423.81, `position_y` = 1361.3, `position_z` = 104.671, `orientation` = 1.55428 WHERE `race` = 9 AND `class` = 4;
+UPDATE `playercreateinfo` SET `map` = 648, `zone` = 4765, `position_x` = -8423.81, `position_y` = 1361.3, `position_z` = 104.671, `orientation` = 1.55428 WHERE `race` = 9 AND `class` = 5;
+UPDATE `playercreateinfo` SET `map` = 609, `zone` = 4298, `position_x` = 2355.05, `position_y` = -5661.7, `position_z` = 426.026, `orientation` = 3.93485 WHERE `race` = 9 AND `class` = 6;
+UPDATE `playercreateinfo` SET `map` = 648, `zone` = 4765, `position_x` = -8423.81, `position_y` = 1361.3, `position_z` = 104.671, `orientation` = 1.55428 WHERE `race` = 9 AND `class` = 7;
+UPDATE `playercreateinfo` SET `map` = 648, `zone` = 4765, `position_x` = -8423.81, `position_y` = 1361.3, `position_z` = 104.671, `orientation` = 1.55428 WHERE `race` = 9 AND `class` = 8;
+UPDATE `playercreateinfo` SET `map` = 648, `zone` = 4765, `position_x` = -8423.81, `position_y` = 1361.3, `position_z` = 104.671, `orientation` = 1.55428 WHERE `race` = 9 AND `class` = 9;

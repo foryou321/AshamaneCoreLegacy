@@ -1124,6 +1124,29 @@ public:
     }
 };
 
+// 142721 - Ralston Karn 
+class npc_ralston_karn  : public ScriptedAI
+{
+public:
+    enum
+    {
+        QUEST_TO_THE_FRONT            = 53194,
+        NPC_YVERA_DAWNWING_KILLCREDIT = 143380,
+        SPELL_TELEPORT_TO_STROMGARDE  = 279518
+    };
+
+    npc_ralston_karn(Creature* creature) : ScriptedAI(creature) { }
+
+    void sQuestAccept(Player* player, Quest const* quest) override
+    {
+        if (quest->ID == QUEST_TO_THE_FRONT)
+		{
+            player->KilledMonsterCredit(NPC_YVERA_DAWNWING_KILLCREDIT);
+            player->CastSpell(player, SPELL_TELEPORT_TO_STROMGARDE);
+        }
+    }
+};
+
 void AddSC_zone_tiragarde_sound()
 {
     RegisterCreatureAI(npc_jaina_boralus_intro);
@@ -1155,4 +1178,5 @@ void AddSC_zone_tiragarde_sound()
     RegisterCreatureAI(npc_penny_hardwick);
     RegisterCreatureAI(npc_penny_hardwick_escort);
     RegisterCreatureAI(npc_riding_macaw_patrol);
+    RegisterCreatureAI(npc_ralston_karn);
 }

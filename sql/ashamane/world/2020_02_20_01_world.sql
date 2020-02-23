@@ -3422,10 +3422,9 @@ UPDATE `creature_template` SET `ScriptName`='npc_vha_phase_spider' WHERE (`entry
 UPDATE `creature_template` SET `ScriptName`='npc_faceless_tendril' WHERE (`entry`='101994');
 
 
+DELETE FROM spell_script_names WHERE `spell_id` IN (202487, 203622, 202361, 210879, 202339, 202328, 201598, 201495, 201369, 201356);
 INSERT INTO spell_script_names VALUES 
 (202487, 'spell_anubesset_summon_blistering_ooze'),
-
-
 (203622, 'spell_betrug_chaotic_energy'),
 (202361, 'spell_betrug_execution'),
 (210879, 'spell_betrug_seed_of_destruction'),
@@ -3490,76 +3489,6 @@ INSERT INTO `instance_template` (`map`, `parent`, `script`, `allowMount`) VALUES
 DELETE FROM `creature_template_addon` WHERE `entry` = 110966;
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `auras`) VALUES
 (110966, 0, 0, 50331648, 1, 0, '');
-
-
-INSERT INTO spell_script_names VALUES 
-(8042, 'spell_sha_fulmination'),
-(55440,'spell_sha_glyph_of_healing_wave'),
-(-324, 'spell_sha_lightning_shield'), 
-(691, 'spell_warlock_summon_demon'),
-(688, 'spell_warlock_summon_demon'),
-(712, 'spell_warlock_summon_demon'),
-(697, 'spell_warlock_summon_demon'),
-(-30881, 'spell_sha_nature_guardian'), 
-(119898, 'spell_warlock_command_demon'),
-(8232, 'spell_shaman_windfury_weapon'),
-(246985, 'aura_warlock_soul_shard_driver'),
-(61882, 'aura_sha_earthquake'),
-(204288, 'spell_sha_earth_shield'),
-(206237, 'spell_rog_enveloping_shadows'),
-(205065, 'aura_pri_void_torrent'),
-(108945, 'spell_priest_angelic_bulwark'),
-(108920, 'spell_pri_void_tendrils'),
-(47948, 'spell_pri_pain_and_suffering_proc'),
-(64904, 'spell_pri_hymn_of_hope'),
-(123273, 'spell_monk_surging_mist_glyphed'),
-(140023, 'spell_monk_ring_of_peace_aura'),
-(119607, 'spell_monk_renewing_mist_jump'),
-(115151, 'spell_monk_renewing_mist_hot'),
-(124336, 'spell_monk_path_of_blossom'),
-(255588, 'spell_generic_rastari_skull_whistle'),
-(115921, 'spell_monk_legacy_of_the_emperor'),
-(47541, 'spell_dk_blood_charges'),
-(56815, 'spell_dk_blood_charges'),
-(49143, 'spell_dk_blood_charges'),
-(255588, 'spell_rastari_skull_whistle'),
-(202341, 'spell_anubesset_impale'),
-(201863, 'spell_anubesset_call_of_swarm'),
-(25040, 'spell_mark_of_nature'),
-(200653, 'spell_arti_pal_tyr_deliverance'),
-(99887, 'npc_warl_shadowy_tear'),
-(108493, 'npc_warl_chaos_tear'),
-(53253, 'spell_hun_invigoration'),
-(50453, 'spell_dk_blood_gorged'),
-(108196, 'spell_dk_death_siphon'),
-(58677, 'spell_dk_glyph_of_deaths_embrace'),
-(159429, 'spell_dk_glyph_of_runic_power'),
-(45462, 'spell_dk_plague_strike'),
-(61698, 'spell_gen_ds_flush_knockback'),
-(20217, 'spell_pal_blessing_of_kings'),
-(19740, 'spell_pal_blessing_of_might'),
-(1126, 'spell_dru_mark_of_the_wild'),
-(21562, 'spell_pri_power_word_fortitude'),
-(27683, 'spell_pri_shadow_protection'),
-(10848, 'spell_gen_shroud_of_death'),
-(56672, 'spell_player_mount_wyrm'),
-(55795, 'spell_falling_dragon_feign_death'),
-(60587, 'spell_fatal_strike'),
-(56705, 'spell_claw_swipe_check'),
-(60864, 'spell_jaws_of_death_claw_swipe_pct_damage'),
-(60596, 'spell_low_health_trigger'),
-(60586, 'spell_mighty_spear_thrust'),
-(56690, 'spell_thrust_spear'),
-(60603, 'spell_eject_passenger_wild_wyrm'),
-(56689, 'spell_grip'),
-(60533, 'spell_grab_on'),
-(203057, 'spell_thalena_shroud_of_sorrow_dmg'),
-(202659, 'spell_thalena_blood_swarn'),
-(203381, 'spell_thalena_blood_call'),
-(202805, 'spell_thalena_vampiric_kiss_player'),
-(202676, 'spell_thalena_vampiric_kiss'),
-(202779, 'spell_thalena_frenzied_bloodthirst');
-
 
 /*==================
 -- Gilneas More Fixes
@@ -5421,6 +5350,7 @@ UPDATE `creature_template` SET `spell1` = 0 WHERE `entry` = 43851;
 UPDATE `creature_template` SET `HoverHeight` = 2.4 WHERE `entry` = 50372;
 UPDATE `creature_template` SET `InhabitType` = 2 WHERE `entry` = 50372;
 
+DELETE FROM `creature_loot_template` WHERE `Entry` = 703;
 INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES
 (703,59522,0,100,1,1,0,1,1,'Key of Ilgalar'), -- 100%
 (703,2589,0,20,0,1,1,1,3,'Linen Cloth'), -- 10%

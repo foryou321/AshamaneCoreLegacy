@@ -77,6 +77,7 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
         case RACE_HIGHMOUNTAIN_TAUREN:
         case RACE_ZANDALARI_TROLL:
         case RACE_MAGHAR_ORC:
+        case RACE_VULPERA:
             SetTaximaskNode(11);    // Undercity, Tirisfal
             SetTaximaskNode(22);    // Thunder Bluff, Mulgore
             SetTaximaskNode(23);    // Orgrimmar, Durotar

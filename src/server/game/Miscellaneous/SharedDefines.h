@@ -174,7 +174,7 @@ enum Races
     RACE_KUL_TIRAN              = 32,
     //RACE_THIN_HUMAN         = 33,
     RACE_DARK_IRON_DWARF        = 34,
-    //RACE_VULPERA            = 35,
+    RACE_VULPERA                = 35,
     RACE_MAGHAR_ORC             = 36,
     RACE_MECHAGNOME             = 37
 };
@@ -209,7 +209,8 @@ enum Races
      (UI64LIT(1)<<(RACE_KUL_TIRAN-1))           | \
      (UI64LIT(1)<<(RACE_DARK_IRON_DWARF-1))     | \
      (UI64LIT(1)<<(RACE_MAGHAR_ORC-1))          | \
-	 (UI64LIT(1)<<(RACE_MECHAGNOME-1)))
+	 (UI64LIT(1)<<(RACE_MECHAGNOME-1))          | \
+	 (UI64LIT(1)<<(RACE_VULPERA-1)))
 
 #define RACEMASK_NEUTRAL (UI64LIT(1)<<(RACE_PANDAREN_NEUTRAL-1))
 

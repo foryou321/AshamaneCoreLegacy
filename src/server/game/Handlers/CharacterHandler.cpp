@@ -2010,7 +2010,7 @@ void WorldSession::HandleCharRaceOrFactionChangeCallback(std::shared_ptr<WorldPa
         trans->Append(stmt);
 
         // Race specific languages
-        if (factionChangeInfo->RaceID != RACE_ORC && factionChangeInfo->RaceID != RACE_HUMAN && factionChangeInfo->RaceID != RACE_MAGHAR_ORC && factionChangeInfo->RaceID != RACE_KUL_TIRAN)
+        if (factionChangeInfo->RaceID != RACE_ORC && factionChangeInfo->RaceID != RACE_HUMAN && factionChangeInfo->RaceID != RACE_MAGHAR_ORC && factionChangeInfo->RaceID != RACE_KUL_TIRAN && factionChangeInfo->RaceID != RACE_VULPERA)
         {
             stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_CHAR_SKILL_LANGUAGE);
             stmt->setUInt64(0, lowGuid);

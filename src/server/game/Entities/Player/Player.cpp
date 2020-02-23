@@ -19737,7 +19737,7 @@ Item* Player::_LoadMailedItem(ObjectGuid const& playerGuid, Player* player, uint
 
     Item* item = NewItemOrBag(proto);
 
-    ObjectGuid ownerGuid = fields[49].GetUInt64() ? ObjectGuid::Create<HighGuid::Player>(fields[52].GetUInt64()) : ObjectGuid::Empty;
+    ObjectGuid ownerGuid = fields[49].GetUInt64() ? ObjectGuid::Create<HighGuid::Player>(fields[49].GetUInt64()) : ObjectGuid::Empty;
     if (!item->LoadFromDB(itemGuid, ownerGuid, fields, itemEntry))
     {
         TC_LOG_ERROR("entities.player", "Player::_LoadMailedItems: Item (GUID: " UI64FMTD ") in mail (%u) doesn't exist, deleted from mail.", itemGuid, mailId);

@@ -2328,6 +2328,26 @@ public:
     uint32 _raceId;
 };
 
+// 144152 - Moira Thaurissan
+class npc_moira_thaurissan_bfa  : public ScriptedAI
+{
+public:
+    enum
+    {
+        QUEST_FER_THE_ALLIANCE = 51486
+    };
+
+    npc_moira_thaurissan_bfa(Creature* creature) : ScriptedAI(creature) { }
+
+    void sQuestAccept(Player* player, Quest const* quest) override
+    {
+        if (quest->ID == QUEST_FER_THE_ALLIANCE)
+		{
+            player->TeleportTo(0, -8177.66f, 792.195f, 73.9964f, 0.781548f);
+        }
+    }
+};
+
 void AddSC_npcs_special()
 {
     new npc_air_force_bots();
@@ -2354,4 +2374,5 @@ void AddSC_npcs_special()
     new npc_allied_race_infos("npc_allied_race_infos_tauren", 28);
     new npc_allied_race_infos("npc_allied_race_infos_voidelf", 29);
     new npc_allied_race_infos("npc_allied_race_infos_draenei", 30);
+    RegisterCreatureAI(npc_moira_thaurissan_bfa);
 }

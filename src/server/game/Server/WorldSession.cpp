@@ -1071,6 +1071,7 @@ void WorldSession::InitializeSessionCallback(LoginDatabaseQueryHolder* realmHold
 
     SendSetTimeZoneInformation();
     SendFeatureSystemStatusGlueScreen();
+    SendGetDistributionListResponse();
     SendClientCacheVersion(sWorld->getIntConfig(CONFIG_CLIENTCACHE_VERSION));
     SendAvailableHotfixes(int32(sWorld->getIntConfig(CONFIG_HOTFIX_CACHE_VERSION)));
     SendTutorialsData();

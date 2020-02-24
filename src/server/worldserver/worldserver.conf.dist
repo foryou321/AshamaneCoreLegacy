@@ -102,6 +102,7 @@ LogsDir = ""
 #                     "127.0.0.1;3306;trinity;trinity;world"      - (WorldDatabaseInfo)
 #                     "127.0.0.1;3306;trinity;trinity;characters" - (CharacterDatabaseInfo)
 #                     "127.0.0.1;3306;trinity;trinity;hotfixes"   - (HotfixDatabaseInfo)
+#                     "127.0.0.1;3306;trinity;trinity;shop"       - (ShopDatabaseInfo)
 #
 #    Don't change hostname unless you are hosting mysql on a different machine, if you need help
 #    with configuration allowing to connect from diferent machine than the one running server
@@ -113,6 +114,7 @@ LoginDatabaseInfo     = "127.0.0.1;3306;trinity;trinity;auth"
 WorldDatabaseInfo     = "127.0.0.1;3306;trinity;trinity;world"
 CharacterDatabaseInfo = "127.0.0.1;3306;trinity;trinity;characters"
 HotfixDatabaseInfo    = "127.0.0.1;3306;trinity;trinity;hotfixes"
+ShopDatabaseInfo      = "127.0.0.1;3306;trinity;trinity;shop"
 
 #
 #    LoginDatabase.WorkerThreads
@@ -126,11 +128,13 @@ HotfixDatabaseInfo    = "127.0.0.1;3306;trinity;trinity;hotfixes"
 #                     1 - (WorldDatabase.WorkerThreads)
 #                     1 - (CharacterDatabase.WorkerThreads)
 #                     1 - (HotfixDatabase.WorkerThreads)
+#                     1 - (ShopDatabase.SynchThreads)
 
 LoginDatabase.WorkerThreads     = 1
 WorldDatabase.WorkerThreads     = 1
 CharacterDatabase.WorkerThreads = 1
 HotfixDatabase.WorkerThreads    = 1
+ShopDatabase.WorkerThreads      = 1
 
 #
 #    LoginDatabase.SynchThreads
@@ -142,11 +146,13 @@ HotfixDatabase.WorkerThreads    = 1
 #                     1 - (WorldDatabase.SynchThreads)
 #                     2 - (CharacterDatabase.SynchThreads)
 #                     1 - (HotfixDatabase.SynchThreads)
+#                     1 - (ShopDatabase.SynchThreads)
 
 LoginDatabase.SynchThreads     = 1
 WorldDatabase.SynchThreads     = 1
 CharacterDatabase.SynchThreads = 2
 HotfixDatabase.SynchThreads    = 1
+ShopDatabase.SynchThreads      = 1
 
 #
 #    MaxPingTime
@@ -4127,6 +4133,16 @@ Metric.ConnectionInfo = "127.0.0.1;8086;worldserver"
 #
 
 Metric.OverallStatusInterval = 1
+
+#
+###################################################################################################
+
+###################################################################################################
+# CUSTOM
+
+IngameShop.Enabled = 1
+IngameShop.Available = 1
+IngameShop.AccountBalance = 0
 
 #
 ###################################################################################################

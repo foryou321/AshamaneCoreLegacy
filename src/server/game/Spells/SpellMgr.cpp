@@ -3555,9 +3555,9 @@ void SpellMgr::LoadSpellInfoCorrections()
     });
 
     // Tree of Life (Passive)
-    ApplySpellFix({ 5420 }, [](SpellInfo* spellInfo)
+    ApplySpellFix({ 5420, 81097 }, [](SpellInfo* spellInfo)
     {
-        spellInfo->Stances = UI64LIT(1) << (FORM_TREE_OF_LIFE - 1);
+         spellInfo->Stances = 1 << (FORM_TREE_OF_LIFE - 1);
     });
 
     // Feral Charge (Cat Form)

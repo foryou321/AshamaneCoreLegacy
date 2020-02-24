@@ -22,7 +22,9 @@
 #include "Chat.h"
 #include "ObjectMgr.h"
 #include "Guild.h"
+#include "GameTime.h"
 #include "Item.h"
+#include "Player.h"
 #include "Bag.h"
 #include "SpellMgr.h"
 #include "SpellInfo.h"
@@ -290,7 +292,7 @@ uint32 Manager::FinalizePurchase(WorldSession * session, Purchase * purchase)
         {
             player->GiveLevel(sWorld->getIntConfig(CONFIG_MAX_PLAYER_LEVEL));
             player->InitTalentForLevel();
-            player->SetUInt32Value(ACTIVE_PLAYER_FIELD_XP, 0);
+            //SetUpdateFieldValue(m_values.ModifyValue(&Player::m_activePlayerData).ModifyValue(&UF::ActivePlayerData::XP), 0); TODO FIX UP
             // add end-level quests
             bool isPandarenNeutral = player->getRace() == RACE_PANDAREN_NEUTRAL;
             std::vector<uint32> questsToAdd;
@@ -432,7 +434,7 @@ uint32 Manager::FinalizePurchase(WorldSession * session, Purchase * purchase)
             ChatHandler(session).PSendSysMessage(LANG_YOUR_CHAT_ENABLED);
 
             // must also update database
-            PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_UPD_MUTE_TIME);
+            LoginDatabasePreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_UPD_MUTE_TIME);
             stmt->setInt64(0, 0);
             stmt->setString(1, "");
             stmt->setString(2, "");
@@ -598,9 +600,9 @@ uint32 Manager::FinalizePurchase(WorldSession * session, Purchase * purchase)
                     count -= noSpaceForCount;
                 if (count > 0 && !dest.empty())
                 {
-                    if (Item * item = player->StoreNewItem(dest, currentItemId, true, GenerateItemRandomPropertyId(currentItemId)))
+                    if (Item * item = player->StoreNewItem(dest, currentItemId, true, GenerateItemRandomBonusListId(currentItemId)))
                     {
-                        item->SetFlag(ITEM_FIELD_FLAGS, ITEM_FLAG_BOUGHT_FROM_SHOP);
+                        item->AddItemFlag(ITEM_FIELD_FLAG_BOUGHT_FROM_SHOP);
                         player->SendNewItem(item, count, false, true);
                     }
                 }
@@ -1010,7 +1012,7 @@ void Manager::UpdateProductForPlayer(WorldSession * session, Product * product, 
         case HardcodedProducts::UNMUTE:
             if (!player)
                 break;
-            if (player->CanSpeak())
+            if (player->GetSession()->CanSpeak())
                 product->SetNotBuyableIngame();
             break;
         // Full ilvl upgrade
@@ -1238,7 +1240,7 @@ void Manager::UpdateProductListForPlayer(WorldSession * session, ProductList & c
 float Manager::GetPlayerFunds(WorldSession * session)
 {
     return 0.0f;
-    PreparedStatement* stmt = ShopDatabase.GetPreparedStatement(SHOP_SEL_DONATIONS_POINTS);
+    ShopDatabasePreparedStatement* stmt = ShopDatabase.GetPreparedStatement(SHOP_SEL_DONATIONS_POINTS);
     stmt->setInt32(0, session->GetAccountId());
     if (PreparedQueryResult result = ShopDatabase.Query(stmt))
         return float(result->Fetch()[0].GetDouble());
@@ -1250,7 +1252,7 @@ void Manager::SpendPlayerFunds(WorldSession * session, Product * product)
 {
     return;
     float cost = product->GetCost();
-    PreparedStatement* stmt = ShopDatabase.GetPreparedStatement(SHOP_UPD_DONATIONS_POINTS);
+    ShopDatabasePreparedStatement* stmt = ShopDatabase.GetPreparedStatement(SHOP_UPD_DONATIONS_POINTS);
     stmt->setFloat(0, cost);
     stmt->setFloat(1, cost);
     stmt->setUInt32(2, session->GetAccountId());
@@ -1300,7 +1302,7 @@ bool Manager::HasBonusCooldown(WorldSession * session)
         return false;
 
     uint32 lastDonation = 0;
-    PreparedStatement* stmt = ShopDatabase.GetPreparedStatement(SHOP_SEL_DONATIONS_COOLDOWN);
+    ShopDatabasePreparedStatement* stmt = ShopDatabase.GetPreparedStatement(SHOP_SEL_DONATIONS_COOLDOWN);
     stmt->setUInt32(0, session->GetAccountId());
     stmt->setUInt32(1, player->GetGUID().GetCounter());
     if (PreparedQueryResult result = ShopDatabase.Query(stmt))
@@ -1322,7 +1324,7 @@ void Manager::AddBonusCooldown(WorldSession * session, uint32 currentTime)
     if (!currentTime)
         currentTime = time(nullptr);
 
-    PreparedStatement* stmt = ShopDatabase.GetPreparedStatement(SHOP_REP_DONATIONS_BONUS_COOLDOWN);
+    ShopDatabasePreparedStatement* stmt = ShopDatabase.GetPreparedStatement(SHOP_REP_DONATIONS_BONUS_COOLDOWN);
     stmt->setUInt32(0, session->GetAccountId());
     stmt->setUInt32(1, player->GetGUID().GetCounter());
     stmt->setUInt32(2, currentTime);
@@ -1339,7 +1341,7 @@ void Manager::AddBonus(WorldSession * session, uint32 bonusType, uint32 currentT
     if (!currentTime)
         currentTime = time(nullptr);
 
-    PreparedStatement* stmt = ShopDatabase.GetPreparedStatement(SHOP_INS_DONATIONS_BONUS);
+    ShopDatabasePreparedStatement* stmt = ShopDatabase.GetPreparedStatement(SHOP_INS_DONATIONS_BONUS);
     stmt->setUInt32(0, session->GetAccountId());
     stmt->setUInt32(1, player->GetGUID().GetCounter());
     stmt->setUInt32(2, realm.Id.Realm);

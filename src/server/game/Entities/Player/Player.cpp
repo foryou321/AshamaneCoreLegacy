@@ -2116,12 +2116,20 @@ void Player::Regenerate(Powers power)
     }
 
     if (m_regenTimerCount >= 2000)
+    {
         SetPower(power, curValue);
+    }
     else
     {
-        // throttle packet sending
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Power, powerIndex), curValue);
-        const_cast<UF::UnitData&>(*m_unitData).ClearChanged(&UF::UnitData::Power, powerIndex);
+        if (curValue == 0)
+        {
+            SetPower(power, curValue);
+        }
+        else
+        {
+            SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Power, powerIndex), curValue);
+            const_cast<UF::UnitData&>(*m_unitData).ClearChanged(&UF::UnitData::Power, powerIndex);
+        }
     }
 }
 

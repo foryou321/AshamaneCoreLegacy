@@ -1009,6 +1009,9 @@ void InstanceScript::UpdateEncounterState(EncounterCreditType type, uint32 credi
         {
             completedEncounters |= 1 << encounter->dbcEntry->Bit;
 
+            if (type == ENCOUNTER_CREDIT_KILL_CREATURE)
+                SendBossKillCredit(encounter->dbcEntry->ID);
+
             if (InstanceScenario* scenario = instance->ToInstanceMap()->GetInstanceScenario())
             {
                 Map::PlayerList const& players = instance->GetPlayers();

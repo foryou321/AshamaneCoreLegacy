@@ -321,3 +321,13 @@ WorldPacket const* WorldPackets::Battleground::RatedBattleFieldInfo::Write()
 
     return &_worldPacket;
 }
+
+WorldPacket const* WorldPackets::Battleground::RequestPvpBrawlInfoResponse::Write()
+{
+    _worldPacket << BrawlType;
+    _worldPacket << TimeToEnd;
+    _worldPacket.FlushBits();
+    _worldPacket.WriteBit(IsActive);
+
+    return &_worldPacket;
+}

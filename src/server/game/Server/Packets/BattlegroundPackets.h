@@ -452,6 +452,18 @@ namespace WorldPackets
 
             std::array<RatedInfo, MAX_PVP_SLOT> Infos;
         };
+
+        class RequestPvpBrawlInfoResponse final : public ServerPacket
+        {
+        public:
+            RequestPvpBrawlInfoResponse() : ServerPacket(SMSG_REQUEST_PVP_BRAWL_INFO_RESPONSE, 12 + 6 + 1) { }
+
+            WorldPacket const* Write() override;
+
+            uint32 BrawlType = 0;
+            uint32 TimeToEnd = 0;
+            bool IsActive = false;
+        };
     }
 }
 

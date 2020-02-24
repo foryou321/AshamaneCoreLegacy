@@ -16,7 +16,7 @@
  */
 
 #include "ShopDatabase.h"
-#include "PreparedStatement.h"
+#include "MySQLPreparedStatement.h"
 
 void ShopDatabaseConnection::DoPrepareStatements()
 {

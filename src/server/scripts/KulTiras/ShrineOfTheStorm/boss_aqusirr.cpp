@@ -252,7 +252,7 @@ struct npc_aqualing : public AquasirrBase
     {
         //AquasirrBase::JustDied(killer);
         if (Creature* boss = instance->GetCreature(NPC_AQUSIRR))
-            boss->AI()->SetData(NULL, NULL);
+            boss->AI()->SetData(0, 0);
     }
 };
 
@@ -286,7 +286,7 @@ class spell_surging_rush : public AuraScript
             // charge movement must happen after aura apply (sniffed)
             target->GetScheduler().Schedule(1ms, [this](TaskContext context)
             {
-                Position pos = platformPoints[GetContextCreature()->AI()->GetData(NULL)];
+                Position pos = platformPoints[GetContextCreature()->AI()->GetData(0)];
                 GetContextCreature()->GetMotionMaster()->MoveCharge(pos.GetPositionX(), pos.GetPositionY(), pos.GetPositionZ());
             });
             

@@ -315,7 +315,7 @@ class spell_grasp_of_the_sunken_city_channel : public AuraScript
                 PhasingHandler::AddPhase(summon, 10745, true);
             if (Creature* summon = me->SummonCreature(NPC_SUNKEN_DENIZEN, spawnPoints[2], TEMPSUMMON_CORPSE_DESPAWN))
                 PhasingHandler::AddPhase(summon, 10747, true);
-            me->AI()->SetData(DATA_RESET_COUNT, NULL);
+            me->AI()->SetData(DATA_RESET_COUNT, 0);
             me->CastSpell(me, SPELL_OLD_TONGUE, true);
         }
     }
@@ -442,7 +442,7 @@ struct npc_forgotten_denizen : public ScriptedAI
     {
         ScriptedAI::JustDied(killer);
         if (Creature* volzith = instance->GetCreature(NPC_VOLZITH_THE_WHISPERER))
-            volzith->AI()->SetData(DATA_FORGOTTEN, NULL);
+            volzith->AI()->SetData(DATA_FORGOTTEN, 0);
     }
 };
 
@@ -461,7 +461,7 @@ struct npc_sunken_denizen : public ScriptedAI
     {
         ScriptedAI::JustDied(killer);
         if (Creature* volzith = instance->GetCreature(NPC_VOLZITH_THE_WHISPERER))
-            volzith->AI()->SetData(DATA_SUNKEN, NULL);
+            volzith->AI()->SetData(DATA_SUNKEN, 0);
     }
 };
 

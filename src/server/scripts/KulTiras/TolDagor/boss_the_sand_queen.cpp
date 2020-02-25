@@ -115,7 +115,7 @@ struct areatrigger_sand_trap : AreaTriggerAI
     };
     InstanceScript * _instance;
 
-    void OnUnitEnter(Unit* unit)
+    void OnUnitEnter(Unit* unit) override
     {
         unit->CastSpell(unit, SPELL_SAND_TRAP_DAMAGE);
         at->Remove();

@@ -18,7 +18,11 @@
 
 ## Build Status
 
-[![Build Status](https://travis-ci.com/ReyDonovan/AshamaneCoreLegacy.svg?branch=master)](https://travis-ci.com/ReyDonovan/AshamaneCoreLegacy)
+bfa | legion
+:------------: | :------------:
+[![bfa Build Status](https://travis-ci.com/ReyDonovan/AshamaneCore.svg?branch=bfa)](https://travis-ci.com/ReyDonovan/AshamaneCore) 
+| [![legion Build Status](https://travis-ci.com/ReyDonovan/AshamaneCore.svg?branch=legion)](https://travis-ci.com/ReyDonovan/AshamaneCore)
+
 ## Introduction
 
 AshamaneCoreLegacy is a *MMORPG* Framework based mostly in C++.

@@ -1,10 +1,6 @@
 # AshamaneCoreLegacy
 
-# Donate
-https://www.paypal.me/zgn88
---------------
-
-
+* [Discord Server](#Discord Server)
 * [Build Status](#build-status)
 * [Introduction](#introduction)
 * [Requirements](#requirements)
@@ -16,6 +12,9 @@ https://www.paypal.me/zgn88
 * [Links](#links)
 
 
+## Discord Server
+
+* [Discord](https://discord.gg/kxRA8ks)
 
 ## Build Status
 
@@ -60,4 +59,3 @@ Read file [THANKS](THANKS).
 
 * [Wiki](https://www.trinitycore.info)
 * [TrinityCore](https://www.trinitycore.org/)
-* [Discord](https://discord.trinitycore.org/)

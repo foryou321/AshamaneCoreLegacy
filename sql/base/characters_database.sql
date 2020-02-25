@@ -1,19 +1,16 @@
--- --------------------------------------------------------
--- Хост:                         127.0.0.1
--- Версия сервера:               5.6.45-log - MySQL Community Server (GPL)
--- Операционная система:         Win64
--- HeidiSQL Версия:              10.2.0.5599
--- --------------------------------------------------------
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*Table structure for table `account_data` */
 
--- Дамп структуры для таблица characters_dump.account_data
 DROP TABLE IF EXISTS `account_data`;
-CREATE TABLE IF NOT EXISTS `account_data` (
+
+CREATE TABLE `account_data` (
   `accountId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Account Identifier',
   `type` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `time` int(10) unsigned NOT NULL DEFAULT '0',
@@ -21,26 +18,26 @@ CREATE TABLE IF NOT EXISTS `account_data` (
   PRIMARY KEY (`accountId`,`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.account_data: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `account_data` DISABLE KEYS */;
-/*!40000 ALTER TABLE `account_data` ENABLE KEYS */;
+/*Data for the table `account_data` */
 
--- Дамп структуры для таблица characters_dump.account_instance_times
+/*Table structure for table `account_instance_times` */
+
 DROP TABLE IF EXISTS `account_instance_times`;
-CREATE TABLE IF NOT EXISTS `account_instance_times` (
+
+CREATE TABLE `account_instance_times` (
   `accountId` int(10) unsigned NOT NULL,
   `instanceId` int(10) unsigned NOT NULL DEFAULT '0',
   `releaseTime` bigint(20) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`accountId`,`instanceId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.account_instance_times: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `account_instance_times` DISABLE KEYS */;
-/*!40000 ALTER TABLE `account_instance_times` ENABLE KEYS */;
+/*Data for the table `account_instance_times` */
 
--- Дамп структуры для таблица characters_dump.account_tutorial
+/*Table structure for table `account_tutorial` */
+
 DROP TABLE IF EXISTS `account_tutorial`;
-CREATE TABLE IF NOT EXISTS `account_tutorial` (
+
+CREATE TABLE `account_tutorial` (
   `accountId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Account Identifier',
   `tut0` int(10) unsigned NOT NULL DEFAULT '0',
   `tut1` int(10) unsigned NOT NULL DEFAULT '0',
@@ -53,13 +50,13 @@ CREATE TABLE IF NOT EXISTS `account_tutorial` (
   PRIMARY KEY (`accountId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.account_tutorial: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `account_tutorial` DISABLE KEYS */;
-/*!40000 ALTER TABLE `account_tutorial` ENABLE KEYS */;
+/*Data for the table `account_tutorial` */
 
--- Дамп структуры для таблица characters_dump.arena_team
+/*Table structure for table `arena_team` */
+
 DROP TABLE IF EXISTS `arena_team`;
-CREATE TABLE IF NOT EXISTS `arena_team` (
+
+CREATE TABLE `arena_team` (
   `arenaTeamId` int(10) unsigned NOT NULL DEFAULT '0',
   `name` varchar(24) NOT NULL,
   `captainGuid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -78,13 +75,13 @@ CREATE TABLE IF NOT EXISTS `arena_team` (
   PRIMARY KEY (`arenaTeamId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.arena_team: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `arena_team` DISABLE KEYS */;
-/*!40000 ALTER TABLE `arena_team` ENABLE KEYS */;
+/*Data for the table `arena_team` */
 
--- Дамп структуры для таблица characters_dump.arena_team_member
+/*Table structure for table `arena_team_member` */
+
 DROP TABLE IF EXISTS `arena_team_member`;
-CREATE TABLE IF NOT EXISTS `arena_team_member` (
+
+CREATE TABLE `arena_team_member` (
   `arenaTeamId` int(10) unsigned NOT NULL DEFAULT '0',
   `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `weekGames` smallint(5) unsigned NOT NULL DEFAULT '0',
@@ -95,13 +92,13 @@ CREATE TABLE IF NOT EXISTS `arena_team_member` (
   PRIMARY KEY (`arenaTeamId`,`guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.arena_team_member: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `arena_team_member` DISABLE KEYS */;
-/*!40000 ALTER TABLE `arena_team_member` ENABLE KEYS */;
+/*Data for the table `arena_team_member` */
 
--- Дамп структуры для таблица characters_dump.auctionhouse
+/*Table structure for table `auctionhouse` */
+
 DROP TABLE IF EXISTS `auctionhouse`;
-CREATE TABLE IF NOT EXISTS `auctionhouse` (
+
+CREATE TABLE `auctionhouse` (
   `id` int(10) unsigned NOT NULL DEFAULT '0',
   `auctioneerguid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `itemguid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -116,13 +113,13 @@ CREATE TABLE IF NOT EXISTS `auctionhouse` (
   UNIQUE KEY `item_guid` (`itemguid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.auctionhouse: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `auctionhouse` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auctionhouse` ENABLE KEYS */;
+/*Data for the table `auctionhouse` */
 
--- Дамп структуры для таблица characters_dump.blackmarket_auctions
+/*Table structure for table `blackmarket_auctions` */
+
 DROP TABLE IF EXISTS `blackmarket_auctions`;
-CREATE TABLE IF NOT EXISTS `blackmarket_auctions` (
+
+CREATE TABLE `blackmarket_auctions` (
   `marketId` int(10) NOT NULL DEFAULT '0',
   `currentBid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `time` int(10) NOT NULL DEFAULT '0',
@@ -131,26 +128,40 @@ CREATE TABLE IF NOT EXISTS `blackmarket_auctions` (
   PRIMARY KEY (`marketId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.blackmarket_auctions: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `blackmarket_auctions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `blackmarket_auctions` ENABLE KEYS */;
+/*Data for the table `blackmarket_auctions` */
 
--- Дамп структуры для таблица characters_dump.bugreport
+insert  into `blackmarket_auctions`(`marketId`,`currentBid`,`time`,`numBids`,`bidder`) values 
+(15,0,1582724350,0,0),
+(34,0,1582724350,0,0),
+(35,0,1582724350,0,0),
+(38,0,1582724350,0,0),
+(41,0,1582724350,0,0),
+(47,0,1582724350,0,0),
+(65,0,1582724350,0,0),
+(67,0,1582724350,0,0),
+(75,0,1582724350,0,0),
+(78,0,1582724350,0,0),
+(80,0,1582724350,0,0),
+(86,0,1582724350,0,0);
+
+/*Table structure for table `bugreport` */
+
 DROP TABLE IF EXISTS `bugreport`;
-CREATE TABLE IF NOT EXISTS `bugreport` (
+
+CREATE TABLE `bugreport` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Identifier',
   `type` longtext NOT NULL,
   `content` longtext NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Debug System';
 
--- Дамп данных таблицы characters_dump.bugreport: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `bugreport` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bugreport` ENABLE KEYS */;
+/*Data for the table `bugreport` */
 
--- Дамп структуры для таблица characters_dump.calendar_events
+/*Table structure for table `calendar_events` */
+
 DROP TABLE IF EXISTS `calendar_events`;
-CREATE TABLE IF NOT EXISTS `calendar_events` (
+
+CREATE TABLE `calendar_events` (
   `EventID` bigint(20) unsigned NOT NULL DEFAULT '0',
   `Owner` bigint(20) unsigned NOT NULL DEFAULT '0',
   `Title` varchar(255) NOT NULL DEFAULT '',
@@ -163,13 +174,13 @@ CREATE TABLE IF NOT EXISTS `calendar_events` (
   PRIMARY KEY (`EventID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.calendar_events: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `calendar_events` DISABLE KEYS */;
-/*!40000 ALTER TABLE `calendar_events` ENABLE KEYS */;
+/*Data for the table `calendar_events` */
 
--- Дамп структуры для таблица characters_dump.calendar_invites
+/*Table structure for table `calendar_invites` */
+
 DROP TABLE IF EXISTS `calendar_invites`;
-CREATE TABLE IF NOT EXISTS `calendar_invites` (
+
+CREATE TABLE `calendar_invites` (
   `InviteID` bigint(20) unsigned NOT NULL DEFAULT '0',
   `EventID` bigint(20) unsigned NOT NULL DEFAULT '0',
   `Invitee` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -181,13 +192,13 @@ CREATE TABLE IF NOT EXISTS `calendar_invites` (
   PRIMARY KEY (`InviteID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.calendar_invites: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `calendar_invites` DISABLE KEYS */;
-/*!40000 ALTER TABLE `calendar_invites` ENABLE KEYS */;
+/*Data for the table `calendar_invites` */
 
--- Дамп структуры для таблица characters_dump.channels
+/*Table structure for table `channels` */
+
 DROP TABLE IF EXISTS `channels`;
-CREATE TABLE IF NOT EXISTS `channels` (
+
+CREATE TABLE `channels` (
   `name` varchar(128) NOT NULL,
   `team` int(10) unsigned NOT NULL,
   `announce` tinyint(3) unsigned NOT NULL DEFAULT '1',
@@ -198,13 +209,965 @@ CREATE TABLE IF NOT EXISTS `channels` (
   PRIMARY KEY (`name`,`team`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Channel System';
 
--- Дамп данных таблицы characters_dump.channels: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `channels` DISABLE KEYS */;
-/*!40000 ALTER TABLE `channels` ENABLE KEYS */;
+/*Data for the table `channels` */
 
--- Дамп структуры для таблица characters_dump.characters
+/*Table structure for table `character_account_data` */
+
+DROP TABLE IF EXISTS `character_account_data`;
+
+CREATE TABLE `character_account_data` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `type` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `time` int(10) unsigned NOT NULL DEFAULT '0',
+  `data` blob NOT NULL,
+  PRIMARY KEY (`guid`,`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_account_data` */
+
+/*Table structure for table `character_achievement` */
+
+DROP TABLE IF EXISTS `character_achievement`;
+
+CREATE TABLE `character_achievement` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `achievement` int(10) unsigned NOT NULL,
+  `date` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`achievement`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_achievement` */
+
+/*Table structure for table `character_achievement_progress` */
+
+DROP TABLE IF EXISTS `character_achievement_progress`;
+
+CREATE TABLE `character_achievement_progress` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `criteria` int(10) unsigned NOT NULL,
+  `counter` bigint(20) unsigned NOT NULL,
+  `date` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`criteria`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_achievement_progress` */
+
+/*Table structure for table `character_action` */
+
+DROP TABLE IF EXISTS `character_action`;
+
+CREATE TABLE `character_action` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `spec` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `button` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `action` int(10) unsigned NOT NULL DEFAULT '0',
+  `type` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`spec`,`button`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_action` */
+
+/*Table structure for table `character_archaeology_branchs` */
+
+DROP TABLE IF EXISTS `character_archaeology_branchs`;
+
+CREATE TABLE `character_archaeology_branchs` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `projectId` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`projectId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `character_archaeology_branchs` */
+
+/*Table structure for table `character_archaeology_digsites` */
+
+DROP TABLE IF EXISTS `character_archaeology_digsites`;
+
+CREATE TABLE `character_archaeology_digsites` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `digsiteId` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `point_x` float DEFAULT '0',
+  `point_y` float DEFAULT '0',
+  `count` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`digsiteId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `character_archaeology_digsites` */
+
+/*Table structure for table `character_archaeology_history` */
+
+DROP TABLE IF EXISTS `character_archaeology_history`;
+
+CREATE TABLE `character_archaeology_history` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `time` int(10) unsigned NOT NULL DEFAULT '0',
+  `projectId` int(10) unsigned NOT NULL DEFAULT '0',
+  `count` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`projectId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `character_archaeology_history` */
+
+/*Table structure for table `character_arena_data` */
+
+DROP TABLE IF EXISTS `character_arena_data`;
+
+CREATE TABLE `character_arena_data` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `slot` tinyint(3) unsigned NOT NULL,
+  `rating` int(10) unsigned NOT NULL DEFAULT '0',
+  `bestRatingOfWeek` int(10) unsigned NOT NULL DEFAULT '0',
+  `bestRatingOfSeason` int(10) unsigned NOT NULL DEFAULT '0',
+  `matchMakerRating` int(10) unsigned NOT NULL DEFAULT '0',
+  `weekGames` int(10) unsigned NOT NULL DEFAULT '0',
+  `weekWins` int(10) unsigned NOT NULL DEFAULT '0',
+  `prevWeekGames` int(10) unsigned NOT NULL DEFAULT '0',
+  `prevWeekWins` int(10) unsigned NOT NULL DEFAULT '0',
+  `seasonGames` int(10) unsigned NOT NULL DEFAULT '0',
+  `seasonWins` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`slot`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `character_arena_data` */
+
+/*Table structure for table `character_aura` */
+
+DROP TABLE IF EXISTS `character_aura`;
+
+CREATE TABLE `character_aura` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `casterGuid` binary(16) NOT NULL COMMENT 'Full Global Unique Identifier',
+  `itemGuid` binary(16) NOT NULL,
+  `spell` int(10) unsigned NOT NULL,
+  `effectMask` int(10) unsigned NOT NULL,
+  `recalculateMask` int(10) unsigned NOT NULL DEFAULT '0',
+  `stackCount` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `maxDuration` int(11) NOT NULL DEFAULT '0',
+  `remainTime` int(11) NOT NULL DEFAULT '0',
+  `remainCharges` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `castItemId` int(10) unsigned NOT NULL DEFAULT '0',
+  `castItemLevel` int(11) NOT NULL DEFAULT '-1',
+  PRIMARY KEY (`guid`,`casterGuid`,`itemGuid`,`spell`,`effectMask`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_aura` */
+
+/*Table structure for table `character_aura_effect` */
+
+DROP TABLE IF EXISTS `character_aura_effect`;
+
+CREATE TABLE `character_aura_effect` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `casterGuid` binary(16) NOT NULL COMMENT 'Full Global Unique Identifier',
+  `itemGuid` binary(16) NOT NULL,
+  `spell` int(10) unsigned NOT NULL,
+  `effectMask` int(10) unsigned NOT NULL,
+  `effectIndex` tinyint(3) unsigned NOT NULL,
+  `amount` int(11) NOT NULL DEFAULT '0',
+  `baseAmount` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`casterGuid`,`itemGuid`,`spell`,`effectMask`,`effectIndex`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_aura_effect` */
+
+/*Table structure for table `character_banned` */
+
+DROP TABLE IF EXISTS `character_banned`;
+
+CREATE TABLE `character_banned` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `bandate` int(10) unsigned NOT NULL DEFAULT '0',
+  `unbandate` int(10) unsigned NOT NULL DEFAULT '0',
+  `bannedby` varchar(50) NOT NULL,
+  `banreason` varchar(255) NOT NULL,
+  `active` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`guid`,`bandate`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Ban List';
+
+/*Data for the table `character_banned` */
+
+/*Table structure for table `character_battleground_data` */
+
+DROP TABLE IF EXISTS `character_battleground_data`;
+
+CREATE TABLE `character_battleground_data` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `instanceId` int(10) unsigned NOT NULL COMMENT 'Instance Identifier',
+  `team` smallint(5) unsigned NOT NULL,
+  `joinX` float NOT NULL DEFAULT '0',
+  `joinY` float NOT NULL DEFAULT '0',
+  `joinZ` float NOT NULL DEFAULT '0',
+  `joinO` float NOT NULL DEFAULT '0',
+  `joinMapId` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Map Identifier',
+  `taxiStart` int(10) unsigned NOT NULL DEFAULT '0',
+  `taxiEnd` int(10) unsigned NOT NULL DEFAULT '0',
+  `mountSpell` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_battleground_data` */
+
+/*Table structure for table `character_battleground_random` */
+
+DROP TABLE IF EXISTS `character_battleground_random`;
+
+CREATE TABLE `character_battleground_random` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_battleground_random` */
+
+/*Table structure for table `character_cuf_profiles` */
+
+DROP TABLE IF EXISTS `character_cuf_profiles`;
+
+CREATE TABLE `character_cuf_profiles` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Character Guid',
+  `id` tinyint(3) unsigned NOT NULL COMMENT 'Profile Id (0-4)',
+  `name` varchar(12) NOT NULL COMMENT 'Profile Name',
+  `frameHeight` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Profile Frame Height',
+  `frameWidth` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Profile Frame Width',
+  `sortBy` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame Sort By',
+  `healthText` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame Health Text',
+  `boolOptions` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Many Configurable Bool Options',
+  `topPoint` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame top alignment',
+  `bottomPoint` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame bottom alignment',
+  `leftPoint` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame left alignment',
+  `topOffset` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame position offset from top',
+  `bottomOffset` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame position offset from bottom',
+  `leftOffset` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame position offset from left',
+  PRIMARY KEY (`guid`,`id`),
+  KEY `index` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_cuf_profiles` */
+
+/*Table structure for table `character_currency` */
+
+DROP TABLE IF EXISTS `character_currency`;
+
+CREATE TABLE `character_currency` (
+  `CharacterGuid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `Currency` smallint(5) unsigned NOT NULL,
+  `Quantity` int(10) unsigned NOT NULL,
+  `WeeklyQuantity` int(10) unsigned NOT NULL,
+  `TrackedQuantity` int(10) unsigned NOT NULL,
+  `Flags` tinyint(3) unsigned NOT NULL,
+  `WeekCap` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`CharacterGuid`,`Currency`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_currency` */
+
+/*Table structure for table `character_declinedname` */
+
+DROP TABLE IF EXISTS `character_declinedname`;
+
+CREATE TABLE `character_declinedname` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `genitive` varchar(15) NOT NULL DEFAULT '',
+  `dative` varchar(15) NOT NULL DEFAULT '',
+  `accusative` varchar(15) NOT NULL DEFAULT '',
+  `instrumental` varchar(15) NOT NULL DEFAULT '',
+  `prepositional` varchar(15) NOT NULL DEFAULT '',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_declinedname` */
+
+/*Table structure for table `character_equipmentsets` */
+
+DROP TABLE IF EXISTS `character_equipmentsets`;
+
+CREATE TABLE `character_equipmentsets` (
+  `guid` bigint(20) NOT NULL DEFAULT '0',
+  `setguid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `setindex` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(31) NOT NULL,
+  `iconname` varchar(100) NOT NULL,
+  `ignore_mask` int(11) unsigned NOT NULL DEFAULT '0',
+  `AssignedSpecIndex` int(11) NOT NULL DEFAULT '-1',
+  `item0` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item1` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item2` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item3` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item4` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item5` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item6` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item7` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item8` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item9` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item10` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item11` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item12` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item13` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item14` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item15` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item16` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item17` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item18` bigint(20) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`setguid`),
+  UNIQUE KEY `idx_set` (`guid`,`setguid`,`setindex`),
+  KEY `Idx_setindex` (`setindex`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_equipmentsets` */
+
+/*Table structure for table `character_fishingsteps` */
+
+DROP TABLE IF EXISTS `character_fishingsteps`;
+
+CREATE TABLE `character_fishingsteps` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `fishingSteps` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_fishingsteps` */
+
+/*Table structure for table `character_garrison` */
+
+DROP TABLE IF EXISTS `character_garrison`;
+
+CREATE TABLE `character_garrison` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `type` tinyint(3) unsigned NOT NULL,
+  `siteLevelId` int(10) unsigned NOT NULL DEFAULT '0',
+  `followerActivationsRemainingToday` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_garrison` */
+
+/*Table structure for table `character_garrison_blueprints` */
+
+DROP TABLE IF EXISTS `character_garrison_blueprints`;
+
+CREATE TABLE `character_garrison_blueprints` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `garrison_type` tinyint(3) unsigned NOT NULL,
+  `buildingId` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`garrison_type`,`buildingId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_garrison_blueprints` */
+
+/*Table structure for table `character_garrison_buildings` */
+
+DROP TABLE IF EXISTS `character_garrison_buildings`;
+
+CREATE TABLE `character_garrison_buildings` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `garrison_type` tinyint(3) unsigned NOT NULL,
+  `plotInstanceId` int(10) unsigned NOT NULL DEFAULT '0',
+  `buildingId` int(10) unsigned NOT NULL DEFAULT '0',
+  `timeBuilt` bigint(20) unsigned NOT NULL,
+  `active` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`garrison_type`,`plotInstanceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_garrison_buildings` */
+
+/*Table structure for table `character_garrison_follower_abilities` */
+
+DROP TABLE IF EXISTS `character_garrison_follower_abilities`;
+
+CREATE TABLE `character_garrison_follower_abilities` (
+  `dbId` bigint(20) unsigned NOT NULL,
+  `abilityId` int(10) unsigned NOT NULL,
+  `slot` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`dbId`,`abilityId`,`slot`),
+  CONSTRAINT `fk_foll_dbid` FOREIGN KEY (`dbId`) REFERENCES `character_garrison_followers` (`dbId`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_garrison_follower_abilities` */
+
+/*Table structure for table `character_garrison_followers` */
+
+DROP TABLE IF EXISTS `character_garrison_followers`;
+
+CREATE TABLE `character_garrison_followers` (
+  `dbId` bigint(20) unsigned NOT NULL,
+  `guid` bigint(20) unsigned NOT NULL,
+  `garrison_type` tinyint(3) unsigned NOT NULL,
+  `followerId` int(10) unsigned NOT NULL,
+  `quality` int(10) unsigned NOT NULL DEFAULT '2',
+  `level` int(10) unsigned NOT NULL DEFAULT '90',
+  `itemLevelWeapon` int(10) unsigned NOT NULL DEFAULT '600',
+  `itemLevelArmor` int(10) unsigned NOT NULL DEFAULT '600',
+  `xp` int(10) unsigned NOT NULL DEFAULT '0',
+  `currentBuilding` int(10) unsigned NOT NULL DEFAULT '0',
+  `currentMission` int(10) unsigned NOT NULL DEFAULT '0',
+  `status` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`dbId`),
+  UNIQUE KEY `idx_guid_id` (`guid`,`followerId`),
+  CONSTRAINT `fk_foll_owner` FOREIGN KEY (`guid`) REFERENCES `characters` (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_garrison_followers` */
+
+/*Table structure for table `character_garrison_mission_rewards` */
+
+DROP TABLE IF EXISTS `character_garrison_mission_rewards`;
+
+CREATE TABLE `character_garrison_mission_rewards` (
+  `dbId` int(10) unsigned NOT NULL,
+  `type` tinyint(3) unsigned NOT NULL,
+  `itemId` int(10) NOT NULL DEFAULT '0',
+  `itemQuantity` int(10) unsigned NOT NULL DEFAULT '0',
+  `currencyId` int(10) NOT NULL DEFAULT '0',
+  `currencyQuantity` int(10) unsigned NOT NULL DEFAULT '0',
+  `FollowerXP` int(10) unsigned NOT NULL DEFAULT '0',
+  `BonusAbilityId` int(10) unsigned NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `character_garrison_mission_rewards` */
+
+/*Table structure for table `character_garrison_missions` */
+
+DROP TABLE IF EXISTS `character_garrison_missions`;
+
+CREATE TABLE `character_garrison_missions` (
+  `dbId` bigint(20) unsigned NOT NULL,
+  `guid` bigint(20) unsigned NOT NULL,
+  `garrison_type` tinyint(3) unsigned NOT NULL,
+  `missionId` int(10) unsigned NOT NULL,
+  `offerTime` int(10) NOT NULL,
+  `startTime` int(10) NOT NULL,
+  `status` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`dbId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `character_garrison_missions` */
+
+/*Table structure for table `character_gifts` */
+
+DROP TABLE IF EXISTS `character_gifts`;
+
+CREATE TABLE `character_gifts` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `item_guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `entry` int(10) unsigned NOT NULL DEFAULT '0',
+  `flags` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`item_guid`),
+  KEY `idx_guid` (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_gifts` */
+
+/*Table structure for table `character_glyphs` */
+
+DROP TABLE IF EXISTS `character_glyphs`;
+
+CREATE TABLE `character_glyphs` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `talentGroup` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `glyphId` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`talentGroup`,`glyphId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_glyphs` */
+
+/*Table structure for table `character_homebind` */
+
+DROP TABLE IF EXISTS `character_homebind`;
+
+CREATE TABLE `character_homebind` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `mapId` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Map Identifier',
+  `zoneId` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Zone Identifier',
+  `posX` float NOT NULL DEFAULT '0',
+  `posY` float NOT NULL DEFAULT '0',
+  `posZ` float NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_homebind` */
+
+/*Table structure for table `character_instance` */
+
+DROP TABLE IF EXISTS `character_instance`;
+
+CREATE TABLE `character_instance` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `instance` int(10) unsigned NOT NULL DEFAULT '0',
+  `permanent` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `extendState` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`guid`,`instance`),
+  KEY `instance` (`instance`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_instance` */
+
+/*Table structure for table `character_inventory` */
+
+DROP TABLE IF EXISTS `character_inventory`;
+
+CREATE TABLE `character_inventory` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `bag` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `slot` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `item` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Item Global Unique Identifier',
+  PRIMARY KEY (`item`),
+  UNIQUE KEY `guid` (`guid`,`bag`,`slot`),
+  KEY `idx_guid` (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_inventory` */
+
+/*Table structure for table `character_pet` */
+
+DROP TABLE IF EXISTS `character_pet`;
+
+CREATE TABLE `character_pet` (
+  `id` int(10) unsigned NOT NULL DEFAULT '0',
+  `entry` int(10) unsigned NOT NULL DEFAULT '0',
+  `owner` bigint(10) unsigned NOT NULL DEFAULT '0',
+  `modelid` int(10) unsigned DEFAULT '0',
+  `CreatedBySpell` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `PetType` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `level` smallint(5) unsigned NOT NULL DEFAULT '1',
+  `exp` int(10) unsigned NOT NULL DEFAULT '0',
+  `Reactstate` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(21) NOT NULL DEFAULT 'Pet',
+  `renamed` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `active` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `slot` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `curhealth` int(10) unsigned NOT NULL DEFAULT '1',
+  `curmana` int(10) unsigned NOT NULL DEFAULT '0',
+  `savetime` int(10) unsigned NOT NULL DEFAULT '0',
+  `abdata` text,
+  `specialization` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `owner` (`owner`),
+  KEY `idx_slot` (`slot`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Pet System';
+
+/*Data for the table `character_pet` */
+
+/*Table structure for table `character_pet_declinedname` */
+
+DROP TABLE IF EXISTS `character_pet_declinedname`;
+
+CREATE TABLE `character_pet_declinedname` (
+  `id` int(10) unsigned NOT NULL DEFAULT '0',
+  `owner` int(10) unsigned NOT NULL DEFAULT '0',
+  `genitive` varchar(12) NOT NULL DEFAULT '',
+  `dative` varchar(12) NOT NULL DEFAULT '',
+  `accusative` varchar(12) NOT NULL DEFAULT '',
+  `instrumental` varchar(12) NOT NULL DEFAULT '',
+  `prepositional` varchar(12) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `owner_key` (`owner`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_pet_declinedname` */
+
+/*Table structure for table `character_pvp_talent` */
+
+DROP TABLE IF EXISTS `character_pvp_talent`;
+
+CREATE TABLE `character_pvp_talent` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `talentId0` int(10) unsigned NOT NULL,
+  `talentId1` int(10) unsigned NOT NULL,
+  `talentId2` int(10) unsigned NOT NULL,
+  `talentId3` int(10) unsigned NOT NULL,
+  `talentGroup` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`talentGroup`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_pvp_talent` */
+
+/*Table structure for table `character_queststatus` */
+
+DROP TABLE IF EXISTS `character_queststatus`;
+
+CREATE TABLE `character_queststatus` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `quest` int(10) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `timer` int(10) unsigned NOT NULL DEFAULT '0',
+  `explored` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`quest`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_queststatus` */
+
+/*Table structure for table `character_queststatus_daily` */
+
+DROP TABLE IF EXISTS `character_queststatus_daily`;
+
+CREATE TABLE `character_queststatus_daily` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `quest` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest Identifier',
+  `time` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`quest`),
+  KEY `idx_guid` (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_queststatus_daily` */
+
+/*Table structure for table `character_queststatus_monthly` */
+
+DROP TABLE IF EXISTS `character_queststatus_monthly`;
+
+CREATE TABLE `character_queststatus_monthly` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `quest` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest Identifier',
+  PRIMARY KEY (`guid`,`quest`),
+  KEY `idx_guid` (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_queststatus_monthly` */
+
+/*Table structure for table `character_queststatus_objectives` */
+
+DROP TABLE IF EXISTS `character_queststatus_objectives`;
+
+CREATE TABLE `character_queststatus_objectives` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `quest` int(10) unsigned NOT NULL DEFAULT '0',
+  `objective` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `data` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`quest`,`objective`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_queststatus_objectives` */
+
+/*Table structure for table `character_queststatus_objectives_criteria` */
+
+DROP TABLE IF EXISTS `character_queststatus_objectives_criteria`;
+
+CREATE TABLE `character_queststatus_objectives_criteria` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `questObjectiveId` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`guid`,`questObjectiveId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_queststatus_objectives_criteria` */
+
+/*Table structure for table `character_queststatus_objectives_criteria_progress` */
+
+DROP TABLE IF EXISTS `character_queststatus_objectives_criteria_progress`;
+
+CREATE TABLE `character_queststatus_objectives_criteria_progress` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `criteriaId` int(10) unsigned NOT NULL,
+  `counter` bigint(20) unsigned NOT NULL,
+  `date` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`criteriaId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_queststatus_objectives_criteria_progress` */
+
+/*Table structure for table `character_queststatus_rewarded` */
+
+DROP TABLE IF EXISTS `character_queststatus_rewarded`;
+
+CREATE TABLE `character_queststatus_rewarded` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `quest` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest Identifier',
+  `active` tinyint(10) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`guid`,`quest`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_queststatus_rewarded` */
+
+/*Table structure for table `character_queststatus_seasonal` */
+
+DROP TABLE IF EXISTS `character_queststatus_seasonal`;
+
+CREATE TABLE `character_queststatus_seasonal` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `quest` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest Identifier',
+  `event` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Event Identifier',
+  PRIMARY KEY (`guid`,`quest`),
+  KEY `idx_guid` (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_queststatus_seasonal` */
+
+/*Table structure for table `character_queststatus_weekly` */
+
+DROP TABLE IF EXISTS `character_queststatus_weekly`;
+
+CREATE TABLE `character_queststatus_weekly` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `quest` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest Identifier',
+  PRIMARY KEY (`guid`,`quest`),
+  KEY `idx_guid` (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_queststatus_weekly` */
+
+/*Table structure for table `character_recovery` */
+
+DROP TABLE IF EXISTS `character_recovery`;
+
+CREATE TABLE `character_recovery` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `delivered` tinyint(1) DEFAULT '0',
+  `account` int(11) unsigned NOT NULL,
+  `race` int(11) unsigned NOT NULL,
+  `class` int(11) unsigned NOT NULL,
+  `level` int(11) unsigned NOT NULL,
+  `skill1` int(11) NOT NULL DEFAULT '0',
+  `skill1_value` int(11) NOT NULL DEFAULT '0',
+  `skill2` int(11) NOT NULL DEFAULT '0',
+  `skill2_value` int(11) NOT NULL DEFAULT '0',
+  `items` text NOT NULL,
+  `spells` text NOT NULL,
+  `at_login` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50917 DEFAULT CHARSET=latin1;
+
+/*Data for the table `character_recovery` */
+
+/*Table structure for table `character_reputation` */
+
+DROP TABLE IF EXISTS `character_reputation`;
+
+CREATE TABLE `character_reputation` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `faction` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `standing` int(11) NOT NULL DEFAULT '0',
+  `flags` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`faction`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_reputation` */
+
+/*Table structure for table `character_shop` */
+
+DROP TABLE IF EXISTS `character_shop`;
+
+CREATE TABLE `character_shop` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `guid` bigint(20) NOT NULL,
+  `type` tinyint(3) NOT NULL,
+  `itemId` int(10) NOT NULL DEFAULT '0',
+  `itemCount` int(10) NOT NULL DEFAULT '0',
+  `delivered` tinyint(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `character_shop` */
+
+/*Table structure for table `character_skills` */
+
+DROP TABLE IF EXISTS `character_skills`;
+
+CREATE TABLE `character_skills` (
+  `guid` bigint(20) unsigned NOT NULL COMMENT 'Global Unique Identifier',
+  `skill` smallint(5) unsigned NOT NULL,
+  `value` smallint(5) unsigned NOT NULL,
+  `max` smallint(5) unsigned NOT NULL,
+  PRIMARY KEY (`guid`,`skill`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_skills` */
+
+/*Table structure for table `character_social` */
+
+DROP TABLE IF EXISTS `character_social`;
+
+CREATE TABLE `character_social` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Character Global Unique Identifier',
+  `friend` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Friend Global Unique Identifier',
+  `flags` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Friend Flags',
+  `note` varchar(48) NOT NULL DEFAULT '' COMMENT 'Friend Note',
+  PRIMARY KEY (`guid`,`friend`,`flags`),
+  KEY `friend` (`friend`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_social` */
+
+/*Table structure for table `character_spell` */
+
+DROP TABLE IF EXISTS `character_spell`;
+
+CREATE TABLE `character_spell` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `spell` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'Spell Identifier',
+  `active` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `disabled` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`spell`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
+
+/*Data for the table `character_spell` */
+
+/*Table structure for table `character_spell_charges` */
+
+DROP TABLE IF EXISTS `character_spell_charges`;
+
+CREATE TABLE `character_spell_charges` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier, Low part',
+  `categoryId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'SpellCategory.dbc Identifier',
+  `rechargeStart` int(10) unsigned NOT NULL DEFAULT '0',
+  `rechargeEnd` int(10) unsigned NOT NULL DEFAULT '0',
+  KEY `idx_guid` (`guid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_spell_charges` */
+
+/*Table structure for table `character_spell_cooldown` */
+
+DROP TABLE IF EXISTS `character_spell_cooldown`;
+
+CREATE TABLE `character_spell_cooldown` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier, Low part',
+  `spell` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Spell Identifier',
+  `item` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Item Identifier',
+  `time` int(10) unsigned NOT NULL DEFAULT '0',
+  `categoryId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Spell category Id',
+  `categoryEnd` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`spell`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_spell_cooldown` */
+
+/*Table structure for table `character_stats` */
+
+DROP TABLE IF EXISTS `character_stats`;
+
+CREATE TABLE `character_stats` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier, Low part',
+  `maxhealth` int(10) unsigned NOT NULL DEFAULT '0',
+  `maxpower1` int(10) unsigned NOT NULL DEFAULT '0',
+  `maxpower2` int(10) unsigned NOT NULL DEFAULT '0',
+  `maxpower3` int(10) unsigned NOT NULL DEFAULT '0',
+  `maxpower4` int(10) unsigned NOT NULL DEFAULT '0',
+  `maxpower5` int(10) unsigned NOT NULL DEFAULT '0',
+  `maxpower6` int(10) unsigned NOT NULL DEFAULT '0',
+  `strength` int(10) unsigned NOT NULL DEFAULT '0',
+  `agility` int(10) unsigned NOT NULL DEFAULT '0',
+  `stamina` int(10) unsigned NOT NULL DEFAULT '0',
+  `intellect` int(10) unsigned NOT NULL DEFAULT '0',
+  `armor` int(10) unsigned NOT NULL DEFAULT '0',
+  `resHoly` int(10) unsigned NOT NULL DEFAULT '0',
+  `resFire` int(10) unsigned NOT NULL DEFAULT '0',
+  `resNature` int(10) unsigned NOT NULL DEFAULT '0',
+  `resFrost` int(10) unsigned NOT NULL DEFAULT '0',
+  `resShadow` int(10) unsigned NOT NULL DEFAULT '0',
+  `resArcane` int(10) unsigned NOT NULL DEFAULT '0',
+  `blockPct` float unsigned NOT NULL DEFAULT '0',
+  `dodgePct` float unsigned NOT NULL DEFAULT '0',
+  `parryPct` float unsigned NOT NULL DEFAULT '0',
+  `critPct` float unsigned NOT NULL DEFAULT '0',
+  `rangedCritPct` float unsigned NOT NULL DEFAULT '0',
+  `spellCritPct` float unsigned NOT NULL DEFAULT '0',
+  `attackPower` int(10) unsigned NOT NULL DEFAULT '0',
+  `rangedAttackPower` int(10) unsigned NOT NULL DEFAULT '0',
+  `spellPower` int(10) unsigned NOT NULL DEFAULT '0',
+  `resilience` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_stats` */
+
+/*Table structure for table `character_talent` */
+
+DROP TABLE IF EXISTS `character_talent`;
+
+CREATE TABLE `character_talent` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `talentId` mediumint(8) unsigned NOT NULL,
+  `talentGroup` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`talentId`,`talentGroup`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_talent` */
+
+/*Table structure for table `character_transmog_outfits` */
+
+DROP TABLE IF EXISTS `character_transmog_outfits`;
+
+CREATE TABLE `character_transmog_outfits` (
+  `guid` bigint(20) NOT NULL DEFAULT '0',
+  `setguid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `setindex` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(128) NOT NULL,
+  `iconname` varchar(256) NOT NULL,
+  `ignore_mask` int(11) NOT NULL DEFAULT '0',
+  `appearance0` int(10) NOT NULL DEFAULT '0',
+  `appearance1` int(10) NOT NULL DEFAULT '0',
+  `appearance2` int(10) NOT NULL DEFAULT '0',
+  `appearance3` int(10) NOT NULL DEFAULT '0',
+  `appearance4` int(10) NOT NULL DEFAULT '0',
+  `appearance5` int(10) NOT NULL DEFAULT '0',
+  `appearance6` int(10) NOT NULL DEFAULT '0',
+  `appearance7` int(10) NOT NULL DEFAULT '0',
+  `appearance8` int(10) NOT NULL DEFAULT '0',
+  `appearance9` int(10) NOT NULL DEFAULT '0',
+  `appearance10` int(10) NOT NULL DEFAULT '0',
+  `appearance11` int(10) NOT NULL DEFAULT '0',
+  `appearance12` int(10) NOT NULL DEFAULT '0',
+  `appearance13` int(10) NOT NULL DEFAULT '0',
+  `appearance14` int(10) NOT NULL DEFAULT '0',
+  `appearance15` int(10) NOT NULL DEFAULT '0',
+  `appearance16` int(10) NOT NULL DEFAULT '0',
+  `appearance17` int(10) NOT NULL DEFAULT '0',
+  `appearance18` int(10) NOT NULL DEFAULT '0',
+  `mainHandEnchant` int(10) NOT NULL DEFAULT '0',
+  `offHandEnchant` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`setguid`),
+  UNIQUE KEY `idx_set` (`guid`,`setguid`,`setindex`),
+  KEY `Idx_setindex` (`setindex`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_transmog_outfits` */
+
+/*Table structure for table `character_void_storage` */
+
+DROP TABLE IF EXISTS `character_void_storage`;
+
+CREATE TABLE `character_void_storage` (
+  `itemId` bigint(20) unsigned NOT NULL,
+  `playerGuid` bigint(20) unsigned NOT NULL,
+  `itemEntry` mediumint(8) unsigned NOT NULL,
+  `slot` tinyint(3) unsigned NOT NULL,
+  `creatorGuid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `randomBonusListId` int(10) unsigned NOT NULL DEFAULT '0',
+  `fixedScalingLevel` int(10) unsigned DEFAULT '0',
+  `artifactKnowledgeLevel` int(10) unsigned DEFAULT '0',
+  `challengeId` int(10) unsigned NOT NULL DEFAULT '0',
+  `challengeLevel` int(10) unsigned NOT NULL DEFAULT '0',
+  `challengeAffix1` int(10) unsigned NOT NULL DEFAULT '0',
+  `challengeAffix2` int(10) unsigned NOT NULL DEFAULT '0',
+  `challengeAffix3` int(10) unsigned NOT NULL DEFAULT '0',
+  `challengeIsCharged` int(10) unsigned NOT NULL DEFAULT '0',
+  `context` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `bonusListIDs` text,
+  PRIMARY KEY (`itemId`),
+  UNIQUE KEY `idx_player_slot` (`playerGuid`,`slot`),
+  KEY `idx_player` (`playerGuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `character_void_storage` */
+
+/*Table structure for table `character_world_quest` */
+
+DROP TABLE IF EXISTS `character_world_quest`;
+
+CREATE TABLE `character_world_quest` (
+  `guid` bigint(20) unsigned NOT NULL,
+  `questId` int(10) unsigned NOT NULL,
+  `lastupdate` int(10) unsigned NOT NULL,
+  `timer` int(10) unsigned NOT NULL,
+  `variableID` int(10) unsigned NOT NULL,
+  `value` int(10) NOT NULL,
+  PRIMARY KEY (`guid`,`questId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `character_world_quest` */
+
+/*Table structure for table `characters` */
+
 DROP TABLE IF EXISTS `characters`;
-CREATE TABLE IF NOT EXISTS `characters` (
+
+CREATE TABLE `characters` (
   `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
   `account` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Account Identifier',
   `name` varchar(12) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
@@ -247,6 +1210,7 @@ CREATE TABLE IF NOT EXISTS `characters` (
   `rest_bonus` float NOT NULL DEFAULT '0',
   `resettalents_cost` int(10) unsigned NOT NULL DEFAULT '0',
   `resettalents_time` int(10) unsigned NOT NULL DEFAULT '0',
+  `numRespecs` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `primarySpecialization` int(10) unsigned NOT NULL DEFAULT '0',
   `trans_x` float NOT NULL DEFAULT '0',
   `trans_y` float NOT NULL DEFAULT '0',
@@ -295,964 +1259,13 @@ CREATE TABLE IF NOT EXISTS `characters` (
   KEY `idx_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
 
--- Дамп данных таблицы characters_dump.characters: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `characters` DISABLE KEYS */;
-/*!40000 ALTER TABLE `characters` ENABLE KEYS */;
+/*Data for the table `characters` */
 
--- Дамп структуры для таблица characters_dump.character_account_data
-DROP TABLE IF EXISTS `character_account_data`;
-CREATE TABLE IF NOT EXISTS `character_account_data` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `type` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `time` int(10) unsigned NOT NULL DEFAULT '0',
-  `data` blob NOT NULL,
-  PRIMARY KEY (`guid`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*Table structure for table `corpse` */
 
--- Дамп данных таблицы characters_dump.character_account_data: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_account_data` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_account_data` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_achievement
-DROP TABLE IF EXISTS `character_achievement`;
-CREATE TABLE IF NOT EXISTS `character_achievement` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `achievement` int(10) unsigned NOT NULL,
-  `date` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`achievement`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_achievement: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_achievement` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_achievement` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_achievement_progress
-DROP TABLE IF EXISTS `character_achievement_progress`;
-CREATE TABLE IF NOT EXISTS `character_achievement_progress` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `criteria` int(10) unsigned NOT NULL,
-  `counter` bigint(20) unsigned NOT NULL,
-  `date` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`criteria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_achievement_progress: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_achievement_progress` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_achievement_progress` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_action
-DROP TABLE IF EXISTS `character_action`;
-CREATE TABLE IF NOT EXISTS `character_action` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `spec` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `button` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `action` int(10) unsigned NOT NULL DEFAULT '0',
-  `type` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`spec`,`button`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_action: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_action` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_action` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_archaeology_branchs
-DROP TABLE IF EXISTS `character_archaeology_branchs`;
-CREATE TABLE IF NOT EXISTS `character_archaeology_branchs` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `projectId` smallint(5) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`projectId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Дамп данных таблицы characters_dump.character_archaeology_branchs: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_archaeology_branchs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_archaeology_branchs` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_archaeology_digsites
-DROP TABLE IF EXISTS `character_archaeology_digsites`;
-CREATE TABLE IF NOT EXISTS `character_archaeology_digsites` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `digsiteId` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `point_x` float DEFAULT '0',
-  `point_y` float DEFAULT '0',
-  `count` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`digsiteId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Дамп данных таблицы characters_dump.character_archaeology_digsites: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_archaeology_digsites` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_archaeology_digsites` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_archaeology_history
-DROP TABLE IF EXISTS `character_archaeology_history`;
-CREATE TABLE IF NOT EXISTS `character_archaeology_history` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `time` int(10) unsigned NOT NULL DEFAULT '0',
-  `projectId` int(10) unsigned NOT NULL DEFAULT '0',
-  `count` smallint(5) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`projectId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Дамп данных таблицы characters_dump.character_archaeology_history: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_archaeology_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_archaeology_history` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_arena_data
-DROP TABLE IF EXISTS `character_arena_data`;
-CREATE TABLE IF NOT EXISTS `character_arena_data` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `slot` tinyint(3) unsigned NOT NULL,
-  `rating` int(10) unsigned NOT NULL DEFAULT '0',
-  `bestRatingOfWeek` int(10) unsigned NOT NULL DEFAULT '0',
-  `bestRatingOfSeason` int(10) unsigned NOT NULL DEFAULT '0',
-  `matchMakerRating` int(10) unsigned NOT NULL DEFAULT '0',
-  `weekGames` int(10) unsigned NOT NULL DEFAULT '0',
-  `weekWins` int(10) unsigned NOT NULL DEFAULT '0',
-  `prevWeekGames` int(10) unsigned NOT NULL DEFAULT '0',
-  `prevWeekWins` int(10) unsigned NOT NULL DEFAULT '0',
-  `seasonGames` int(10) unsigned NOT NULL DEFAULT '0',
-  `seasonWins` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`slot`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Дамп данных таблицы characters_dump.character_arena_data: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_arena_data` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_arena_data` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_aura
-DROP TABLE IF EXISTS `character_aura`;
-CREATE TABLE IF NOT EXISTS `character_aura` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `casterGuid` binary(16) NOT NULL COMMENT 'Full Global Unique Identifier',
-  `itemGuid` binary(16) NOT NULL,
-  `spell` int(10) unsigned NOT NULL,
-  `effectMask` int(10) unsigned NOT NULL,
-  `recalculateMask` int(10) unsigned NOT NULL DEFAULT '0',
-  `stackCount` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `maxDuration` int(11) NOT NULL DEFAULT '0',
-  `remainTime` int(11) NOT NULL DEFAULT '0',
-  `remainCharges` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `castItemLevel` int(11) NOT NULL DEFAULT '-1',
-  PRIMARY KEY (`guid`,`casterGuid`,`itemGuid`,`spell`,`effectMask`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_aura: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_aura` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_aura` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_aura_effect
-DROP TABLE IF EXISTS `character_aura_effect`;
-CREATE TABLE IF NOT EXISTS `character_aura_effect` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `casterGuid` binary(16) NOT NULL COMMENT 'Full Global Unique Identifier',
-  `itemGuid` binary(16) NOT NULL,
-  `spell` int(10) unsigned NOT NULL,
-  `effectMask` int(10) unsigned NOT NULL,
-  `effectIndex` tinyint(3) unsigned NOT NULL,
-  `amount` int(11) NOT NULL DEFAULT '0',
-  `baseAmount` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`casterGuid`,`itemGuid`,`spell`,`effectMask`,`effectIndex`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_aura_effect: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_aura_effect` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_aura_effect` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_banned
-DROP TABLE IF EXISTS `character_banned`;
-CREATE TABLE IF NOT EXISTS `character_banned` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `bandate` int(10) unsigned NOT NULL DEFAULT '0',
-  `unbandate` int(10) unsigned NOT NULL DEFAULT '0',
-  `bannedby` varchar(50) NOT NULL,
-  `banreason` varchar(255) NOT NULL,
-  `active` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`guid`,`bandate`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Ban List';
-
--- Дамп данных таблицы characters_dump.character_banned: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_banned` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_banned` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_battleground_data
-DROP TABLE IF EXISTS `character_battleground_data`;
-CREATE TABLE IF NOT EXISTS `character_battleground_data` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `instanceId` int(10) unsigned NOT NULL COMMENT 'Instance Identifier',
-  `team` smallint(5) unsigned NOT NULL,
-  `joinX` float NOT NULL DEFAULT '0',
-  `joinY` float NOT NULL DEFAULT '0',
-  `joinZ` float NOT NULL DEFAULT '0',
-  `joinO` float NOT NULL DEFAULT '0',
-  `joinMapId` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Map Identifier',
-  `taxiStart` int(10) unsigned NOT NULL DEFAULT '0',
-  `taxiEnd` int(10) unsigned NOT NULL DEFAULT '0',
-  `mountSpell` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_battleground_data: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_battleground_data` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_battleground_data` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_battleground_random
-DROP TABLE IF EXISTS `character_battleground_random`;
-CREATE TABLE IF NOT EXISTS `character_battleground_random` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_battleground_random: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_battleground_random` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_battleground_random` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_cuf_profiles
-DROP TABLE IF EXISTS `character_cuf_profiles`;
-CREATE TABLE IF NOT EXISTS `character_cuf_profiles` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Character Guid',
-  `id` tinyint(3) unsigned NOT NULL COMMENT 'Profile Id (0-4)',
-  `name` varchar(12) NOT NULL COMMENT 'Profile Name',
-  `frameHeight` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Profile Frame Height',
-  `frameWidth` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Profile Frame Width',
-  `sortBy` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame Sort By',
-  `healthText` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame Health Text',
-  `boolOptions` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Many Configurable Bool Options',
-  `topPoint` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame top alignment',
-  `bottomPoint` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame bottom alignment',
-  `leftPoint` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame left alignment',
-  `topOffset` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame position offset from top',
-  `bottomOffset` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame position offset from bottom',
-  `leftOffset` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Frame position offset from left',
-  PRIMARY KEY (`guid`,`id`),
-  KEY `index` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_cuf_profiles: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_cuf_profiles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_cuf_profiles` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_currency
-DROP TABLE IF EXISTS `character_currency`;
-CREATE TABLE IF NOT EXISTS `character_currency` (
-  `CharacterGuid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `Currency` smallint(5) unsigned NOT NULL,
-  `Quantity` int(10) unsigned NOT NULL,
-  `WeeklyQuantity` int(10) unsigned NOT NULL,
-  `TrackedQuantity` int(10) unsigned NOT NULL,
-  `Flags` tinyint(3) unsigned NOT NULL,
-  `WeekCap` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`CharacterGuid`,`Currency`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_currency: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_currency` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_currency` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_declinedname
-DROP TABLE IF EXISTS `character_declinedname`;
-CREATE TABLE IF NOT EXISTS `character_declinedname` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `genitive` varchar(15) NOT NULL DEFAULT '',
-  `dative` varchar(15) NOT NULL DEFAULT '',
-  `accusative` varchar(15) NOT NULL DEFAULT '',
-  `instrumental` varchar(15) NOT NULL DEFAULT '',
-  `prepositional` varchar(15) NOT NULL DEFAULT '',
-  PRIMARY KEY (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_declinedname: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_declinedname` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_declinedname` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_equipmentsets
-DROP TABLE IF EXISTS `character_equipmentsets`;
-CREATE TABLE IF NOT EXISTS `character_equipmentsets` (
-  `guid` bigint(20) NOT NULL DEFAULT '0',
-  `setguid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `setindex` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `name` varchar(31) NOT NULL,
-  `iconname` varchar(100) NOT NULL,
-  `ignore_mask` int(11) unsigned NOT NULL DEFAULT '0',
-  `AssignedSpecIndex` int(11) NOT NULL DEFAULT '-1',
-  `item0` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item1` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item2` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item3` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item4` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item5` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item6` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item7` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item8` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item9` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item10` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item11` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item12` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item13` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item14` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item15` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item16` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item17` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item18` bigint(20) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`setguid`),
-  UNIQUE KEY `idx_set` (`guid`,`setguid`,`setindex`),
-  KEY `Idx_setindex` (`setindex`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_equipmentsets: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_equipmentsets` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_equipmentsets` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_fishingsteps
-DROP TABLE IF EXISTS `character_fishingsteps`;
-CREATE TABLE IF NOT EXISTS `character_fishingsteps` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `fishingSteps` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_fishingsteps: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_fishingsteps` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_fishingsteps` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_garrison
-DROP TABLE IF EXISTS `character_garrison`;
-CREATE TABLE IF NOT EXISTS `character_garrison` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `type` tinyint(3) unsigned NOT NULL,
-  `siteLevelId` int(10) unsigned NOT NULL DEFAULT '0',
-  `followerActivationsRemainingToday` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_garrison: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_garrison` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_garrison` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_garrison_blueprints
-DROP TABLE IF EXISTS `character_garrison_blueprints`;
-CREATE TABLE IF NOT EXISTS `character_garrison_blueprints` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `garrison_type` tinyint(3) unsigned NOT NULL,
-  `buildingId` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`garrison_type`,`buildingId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_garrison_blueprints: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_garrison_blueprints` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_garrison_blueprints` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_garrison_buildings
-DROP TABLE IF EXISTS `character_garrison_buildings`;
-CREATE TABLE IF NOT EXISTS `character_garrison_buildings` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `garrison_type` tinyint(3) unsigned NOT NULL,
-  `plotInstanceId` int(10) unsigned NOT NULL DEFAULT '0',
-  `buildingId` int(10) unsigned NOT NULL DEFAULT '0',
-  `timeBuilt` bigint(20) unsigned NOT NULL,
-  `active` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`garrison_type`,`plotInstanceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_garrison_buildings: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_garrison_buildings` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_garrison_buildings` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_garrison_followers
-DROP TABLE IF EXISTS `character_garrison_followers`;
-CREATE TABLE IF NOT EXISTS `character_garrison_followers` (
-  `dbId` bigint(20) unsigned NOT NULL,
-  `guid` bigint(20) unsigned NOT NULL,
-  `garrison_type` tinyint(3) unsigned NOT NULL,
-  `followerId` int(10) unsigned NOT NULL,
-  `quality` int(10) unsigned NOT NULL DEFAULT '2',
-  `level` int(10) unsigned NOT NULL DEFAULT '90',
-  `itemLevelWeapon` int(10) unsigned NOT NULL DEFAULT '600',
-  `itemLevelArmor` int(10) unsigned NOT NULL DEFAULT '600',
-  `xp` int(10) unsigned NOT NULL DEFAULT '0',
-  `currentBuilding` int(10) unsigned NOT NULL DEFAULT '0',
-  `currentMission` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`dbId`),
-  UNIQUE KEY `idx_guid_id` (`guid`,`followerId`),
-  CONSTRAINT `fk_foll_owner` FOREIGN KEY (`guid`) REFERENCES `characters` (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_garrison_followers: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_garrison_followers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_garrison_followers` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_garrison_follower_abilities
-DROP TABLE IF EXISTS `character_garrison_follower_abilities`;
-CREATE TABLE IF NOT EXISTS `character_garrison_follower_abilities` (
-  `dbId` bigint(20) unsigned NOT NULL,
-  `abilityId` int(10) unsigned NOT NULL,
-  `slot` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`dbId`,`abilityId`,`slot`),
-  CONSTRAINT `fk_foll_dbid` FOREIGN KEY (`dbId`) REFERENCES `character_garrison_followers` (`dbId`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_garrison_follower_abilities: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_garrison_follower_abilities` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_garrison_follower_abilities` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_garrison_missions
-DROP TABLE IF EXISTS `character_garrison_missions`;
-CREATE TABLE IF NOT EXISTS `character_garrison_missions` (
-  `dbId` bigint(20) unsigned NOT NULL,
-  `guid` bigint(20) unsigned NOT NULL,
-  `garrison_type` tinyint(3) unsigned NOT NULL,
-  `missionId` int(10) unsigned NOT NULL,
-  `offerTime` int(10) NOT NULL,
-  `startTime` int(10) NOT NULL,
-  `status` tinyint(3) unsigned NOT NULL,
-  PRIMARY KEY (`dbId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Дамп данных таблицы characters_dump.character_garrison_missions: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_garrison_missions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_garrison_missions` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_garrison_mission_rewards
-DROP TABLE IF EXISTS `character_garrison_mission_rewards`;
-CREATE TABLE IF NOT EXISTS `character_garrison_mission_rewards` (
-  `dbId` int(10) unsigned NOT NULL,
-  `type` tinyint(3) unsigned NOT NULL,
-  `itemId` int(10) NOT NULL DEFAULT '0',
-  `itemQuantity` int(10) unsigned NOT NULL DEFAULT '0',
-  `currencyId` int(10) NOT NULL DEFAULT '0',
-  `currencyQuantity` int(10) unsigned NOT NULL DEFAULT '0',
-  `FollowerXP` int(10) unsigned NOT NULL DEFAULT '0',
-  `BonusAbilityId` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Дамп данных таблицы characters_dump.character_garrison_mission_rewards: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_garrison_mission_rewards` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_garrison_mission_rewards` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_gifts
-DROP TABLE IF EXISTS `character_gifts`;
-CREATE TABLE IF NOT EXISTS `character_gifts` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `item_guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `entry` int(10) unsigned NOT NULL DEFAULT '0',
-  `flags` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`item_guid`),
-  KEY `idx_guid` (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_gifts: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_gifts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_gifts` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_glyphs
-DROP TABLE IF EXISTS `character_glyphs`;
-CREATE TABLE IF NOT EXISTS `character_glyphs` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `talentGroup` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `glyphId` smallint(5) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`talentGroup`,`glyphId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_glyphs: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_glyphs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_glyphs` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_homebind
-DROP TABLE IF EXISTS `character_homebind`;
-CREATE TABLE IF NOT EXISTS `character_homebind` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `mapId` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Map Identifier',
-  `zoneId` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Zone Identifier',
-  `posX` float NOT NULL DEFAULT '0',
-  `posY` float NOT NULL DEFAULT '0',
-  `posZ` float NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_homebind: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_homebind` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_homebind` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_instance
-DROP TABLE IF EXISTS `character_instance`;
-CREATE TABLE IF NOT EXISTS `character_instance` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `instance` int(10) unsigned NOT NULL DEFAULT '0',
-  `permanent` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `extendState` tinyint(2) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`guid`,`instance`),
-  KEY `instance` (`instance`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_instance: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_instance` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_instance` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_inventory
-DROP TABLE IF EXISTS `character_inventory`;
-CREATE TABLE IF NOT EXISTS `character_inventory` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `bag` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `slot` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `item` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Item Global Unique Identifier',
-  PRIMARY KEY (`item`),
-  UNIQUE KEY `guid` (`guid`,`bag`,`slot`),
-  KEY `idx_guid` (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_inventory: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_inventory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_inventory` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_pet
-DROP TABLE IF EXISTS `character_pet`;
-CREATE TABLE IF NOT EXISTS `character_pet` (
-  `id` int(10) unsigned NOT NULL DEFAULT '0',
-  `entry` int(10) unsigned NOT NULL DEFAULT '0',
-  `owner` bigint(10) unsigned NOT NULL DEFAULT '0',
-  `modelid` int(10) unsigned DEFAULT '0',
-  `CreatedBySpell` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `PetType` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `level` smallint(5) unsigned NOT NULL DEFAULT '1',
-  `exp` int(10) unsigned NOT NULL DEFAULT '0',
-  `Reactstate` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `name` varchar(21) NOT NULL DEFAULT 'Pet',
-  `renamed` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `active` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `slot` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `curhealth` int(10) unsigned NOT NULL DEFAULT '1',
-  `curmana` int(10) unsigned NOT NULL DEFAULT '0',
-  `savetime` int(10) unsigned NOT NULL DEFAULT '0',
-  `abdata` text,
-  `specialization` smallint(5) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `owner` (`owner`),
-  KEY `idx_slot` (`slot`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Pet System';
-
--- Дамп данных таблицы characters_dump.character_pet: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_pet` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_pet` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_pet_declinedname
-DROP TABLE IF EXISTS `character_pet_declinedname`;
-CREATE TABLE IF NOT EXISTS `character_pet_declinedname` (
-  `id` int(10) unsigned NOT NULL DEFAULT '0',
-  `owner` int(10) unsigned NOT NULL DEFAULT '0',
-  `genitive` varchar(12) NOT NULL DEFAULT '',
-  `dative` varchar(12) NOT NULL DEFAULT '',
-  `accusative` varchar(12) NOT NULL DEFAULT '',
-  `instrumental` varchar(12) NOT NULL DEFAULT '',
-  `prepositional` varchar(12) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `owner_key` (`owner`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_pet_declinedname: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_pet_declinedname` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_pet_declinedname` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_pvp_talent
-DROP TABLE IF EXISTS `character_pvp_talent`;
-CREATE TABLE IF NOT EXISTS `character_pvp_talent` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `talentId0` int(10) unsigned NOT NULL,
-  `talentId1` int(10) unsigned NOT NULL,
-  `talentId2` int(10) unsigned NOT NULL,
-  `talentId3` int(10) unsigned NOT NULL,
-  `talentGroup` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`talentGroup`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_pvp_talent: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_pvp_talent` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_pvp_talent` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_queststatus
-DROP TABLE IF EXISTS `character_queststatus`;
-CREATE TABLE IF NOT EXISTS `character_queststatus` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `quest` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `timer` int(10) unsigned NOT NULL DEFAULT '0',
-  `explored` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`quest`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_queststatus: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_queststatus` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_queststatus` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_queststatus_daily
-DROP TABLE IF EXISTS `character_queststatus_daily`;
-CREATE TABLE IF NOT EXISTS `character_queststatus_daily` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `quest` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest Identifier',
-  `time` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`quest`),
-  KEY `idx_guid` (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_queststatus_daily: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_queststatus_daily` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_queststatus_daily` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_queststatus_monthly
-DROP TABLE IF EXISTS `character_queststatus_monthly`;
-CREATE TABLE IF NOT EXISTS `character_queststatus_monthly` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `quest` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest Identifier',
-  PRIMARY KEY (`guid`,`quest`),
-  KEY `idx_guid` (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_queststatus_monthly: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_queststatus_monthly` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_queststatus_monthly` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_queststatus_objectives
-DROP TABLE IF EXISTS `character_queststatus_objectives`;
-CREATE TABLE IF NOT EXISTS `character_queststatus_objectives` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `quest` int(10) unsigned NOT NULL DEFAULT '0',
-  `objective` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `data` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`quest`,`objective`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_queststatus_objectives: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_queststatus_objectives` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_queststatus_objectives` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_queststatus_objectives_criteria
-DROP TABLE IF EXISTS `character_queststatus_objectives_criteria`;
-CREATE TABLE IF NOT EXISTS `character_queststatus_objectives_criteria` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `questObjectiveId` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`guid`,`questObjectiveId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_queststatus_objectives_criteria: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_queststatus_objectives_criteria` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_queststatus_objectives_criteria` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_queststatus_objectives_criteria_progress
-DROP TABLE IF EXISTS `character_queststatus_objectives_criteria_progress`;
-CREATE TABLE IF NOT EXISTS `character_queststatus_objectives_criteria_progress` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `criteriaId` int(10) unsigned NOT NULL,
-  `counter` bigint(20) unsigned NOT NULL,
-  `date` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`criteriaId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_queststatus_objectives_criteria_progress: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_queststatus_objectives_criteria_progress` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_queststatus_objectives_criteria_progress` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_queststatus_rewarded
-DROP TABLE IF EXISTS `character_queststatus_rewarded`;
-CREATE TABLE IF NOT EXISTS `character_queststatus_rewarded` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `quest` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest Identifier',
-  `active` tinyint(10) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`guid`,`quest`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_queststatus_rewarded: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_queststatus_rewarded` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_queststatus_rewarded` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_queststatus_seasonal
-DROP TABLE IF EXISTS `character_queststatus_seasonal`;
-CREATE TABLE IF NOT EXISTS `character_queststatus_seasonal` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `quest` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest Identifier',
-  `event` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Event Identifier',
-  PRIMARY KEY (`guid`,`quest`),
-  KEY `idx_guid` (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_queststatus_seasonal: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_queststatus_seasonal` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_queststatus_seasonal` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_queststatus_weekly
-DROP TABLE IF EXISTS `character_queststatus_weekly`;
-CREATE TABLE IF NOT EXISTS `character_queststatus_weekly` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `quest` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Quest Identifier',
-  PRIMARY KEY (`guid`,`quest`),
-  KEY `idx_guid` (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_queststatus_weekly: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_queststatus_weekly` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_queststatus_weekly` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_recovery
-DROP TABLE IF EXISTS `character_recovery`;
-CREATE TABLE IF NOT EXISTS `character_recovery` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `delivered` tinyint(1) DEFAULT '0',
-  `account` int(11) unsigned NOT NULL,
-  `race` int(11) unsigned NOT NULL,
-  `class` int(11) unsigned NOT NULL,
-  `level` int(11) unsigned NOT NULL,
-  `skill1` int(11) NOT NULL DEFAULT '0',
-  `skill1_value` int(11) NOT NULL DEFAULT '0',
-  `skill2` int(11) NOT NULL DEFAULT '0',
-  `skill2_value` int(11) NOT NULL DEFAULT '0',
-  `items` text NOT NULL,
-  `spells` text NOT NULL,
-  `at_login` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50917 DEFAULT CHARSET=latin1;
-
--- Дамп данных таблицы characters_dump.character_recovery: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_recovery` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_recovery` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_reputation
-DROP TABLE IF EXISTS `character_reputation`;
-CREATE TABLE IF NOT EXISTS `character_reputation` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `faction` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `standing` int(11) NOT NULL DEFAULT '0',
-  `flags` smallint(5) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`faction`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_reputation: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_reputation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_reputation` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_shop
-DROP TABLE IF EXISTS `character_shop`;
-CREATE TABLE IF NOT EXISTS `character_shop` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `guid` bigint(20) NOT NULL,
-  `type` tinyint(3) NOT NULL,
-  `itemId` int(10) NOT NULL DEFAULT '0',
-  `itemCount` int(10) NOT NULL DEFAULT '0',
-  `delivered` tinyint(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Дамп данных таблицы characters_dump.character_shop: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_shop` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_shop` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_skills
-DROP TABLE IF EXISTS `character_skills`;
-CREATE TABLE IF NOT EXISTS `character_skills` (
-  `guid` bigint(20) unsigned NOT NULL COMMENT 'Global Unique Identifier',
-  `skill` smallint(5) unsigned NOT NULL,
-  `value` smallint(5) unsigned NOT NULL,
-  `max` smallint(5) unsigned NOT NULL,
-  PRIMARY KEY (`guid`,`skill`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_skills: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_skills` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_skills` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_social
-DROP TABLE IF EXISTS `character_social`;
-CREATE TABLE IF NOT EXISTS `character_social` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Character Global Unique Identifier',
-  `friend` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Friend Global Unique Identifier',
-  `flags` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Friend Flags',
-  `note` varchar(48) NOT NULL DEFAULT '' COMMENT 'Friend Note',
-  PRIMARY KEY (`guid`,`friend`,`flags`),
-  KEY `friend` (`friend`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_social: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_social` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_social` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_spell
-DROP TABLE IF EXISTS `character_spell`;
-CREATE TABLE IF NOT EXISTS `character_spell` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `spell` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'Spell Identifier',
-  `active` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `disabled` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`spell`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player System';
-
--- Дамп данных таблицы characters_dump.character_spell: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_spell` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_spell` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_spell_charges
-DROP TABLE IF EXISTS `character_spell_charges`;
-CREATE TABLE IF NOT EXISTS `character_spell_charges` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier, Low part',
-  `categoryId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'SpellCategory.dbc Identifier',
-  `rechargeStart` int(10) unsigned NOT NULL DEFAULT '0',
-  `rechargeEnd` int(10) unsigned NOT NULL DEFAULT '0',
-  KEY `idx_guid` (`guid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_spell_charges: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_spell_charges` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_spell_charges` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_spell_cooldown
-DROP TABLE IF EXISTS `character_spell_cooldown`;
-CREATE TABLE IF NOT EXISTS `character_spell_cooldown` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier, Low part',
-  `spell` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Spell Identifier',
-  `item` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Item Identifier',
-  `time` int(10) unsigned NOT NULL DEFAULT '0',
-  `categoryId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Spell category Id',
-  `categoryEnd` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`spell`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_spell_cooldown: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_spell_cooldown` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_spell_cooldown` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_stats
-DROP TABLE IF EXISTS `character_stats`;
-CREATE TABLE IF NOT EXISTS `character_stats` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier, Low part',
-  `maxhealth` int(10) unsigned NOT NULL DEFAULT '0',
-  `maxpower1` int(10) unsigned NOT NULL DEFAULT '0',
-  `maxpower2` int(10) unsigned NOT NULL DEFAULT '0',
-  `maxpower3` int(10) unsigned NOT NULL DEFAULT '0',
-  `maxpower4` int(10) unsigned NOT NULL DEFAULT '0',
-  `maxpower5` int(10) unsigned NOT NULL DEFAULT '0',
-  `maxpower6` int(10) unsigned NOT NULL DEFAULT '0',
-  `strength` int(10) unsigned NOT NULL DEFAULT '0',
-  `agility` int(10) unsigned NOT NULL DEFAULT '0',
-  `stamina` int(10) unsigned NOT NULL DEFAULT '0',
-  `intellect` int(10) unsigned NOT NULL DEFAULT '0',
-  `armor` int(10) unsigned NOT NULL DEFAULT '0',
-  `resHoly` int(10) unsigned NOT NULL DEFAULT '0',
-  `resFire` int(10) unsigned NOT NULL DEFAULT '0',
-  `resNature` int(10) unsigned NOT NULL DEFAULT '0',
-  `resFrost` int(10) unsigned NOT NULL DEFAULT '0',
-  `resShadow` int(10) unsigned NOT NULL DEFAULT '0',
-  `resArcane` int(10) unsigned NOT NULL DEFAULT '0',
-  `blockPct` float unsigned NOT NULL DEFAULT '0',
-  `dodgePct` float unsigned NOT NULL DEFAULT '0',
-  `parryPct` float unsigned NOT NULL DEFAULT '0',
-  `critPct` float unsigned NOT NULL DEFAULT '0',
-  `rangedCritPct` float unsigned NOT NULL DEFAULT '0',
-  `spellCritPct` float unsigned NOT NULL DEFAULT '0',
-  `attackPower` int(10) unsigned NOT NULL DEFAULT '0',
-  `rangedAttackPower` int(10) unsigned NOT NULL DEFAULT '0',
-  `spellPower` int(10) unsigned NOT NULL DEFAULT '0',
-  `resilience` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_stats: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_stats` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_stats` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_talent
-DROP TABLE IF EXISTS `character_talent`;
-CREATE TABLE IF NOT EXISTS `character_talent` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `talentId` mediumint(8) unsigned NOT NULL,
-  `talentGroup` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`talentId`,`talentGroup`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_talent: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_talent` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_talent` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_transmog_outfits
-DROP TABLE IF EXISTS `character_transmog_outfits`;
-CREATE TABLE IF NOT EXISTS `character_transmog_outfits` (
-  `guid` bigint(20) NOT NULL DEFAULT '0',
-  `setguid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `setindex` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `name` varchar(128) NOT NULL,
-  `iconname` varchar(256) NOT NULL,
-  `ignore_mask` int(11) NOT NULL DEFAULT '0',
-  `appearance0` int(10) NOT NULL DEFAULT '0',
-  `appearance1` int(10) NOT NULL DEFAULT '0',
-  `appearance2` int(10) NOT NULL DEFAULT '0',
-  `appearance3` int(10) NOT NULL DEFAULT '0',
-  `appearance4` int(10) NOT NULL DEFAULT '0',
-  `appearance5` int(10) NOT NULL DEFAULT '0',
-  `appearance6` int(10) NOT NULL DEFAULT '0',
-  `appearance7` int(10) NOT NULL DEFAULT '0',
-  `appearance8` int(10) NOT NULL DEFAULT '0',
-  `appearance9` int(10) NOT NULL DEFAULT '0',
-  `appearance10` int(10) NOT NULL DEFAULT '0',
-  `appearance11` int(10) NOT NULL DEFAULT '0',
-  `appearance12` int(10) NOT NULL DEFAULT '0',
-  `appearance13` int(10) NOT NULL DEFAULT '0',
-  `appearance14` int(10) NOT NULL DEFAULT '0',
-  `appearance15` int(10) NOT NULL DEFAULT '0',
-  `appearance16` int(10) NOT NULL DEFAULT '0',
-  `appearance17` int(10) NOT NULL DEFAULT '0',
-  `appearance18` int(10) NOT NULL DEFAULT '0',
-  `mainHandEnchant` int(10) NOT NULL DEFAULT '0',
-  `offHandEnchant` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`setguid`),
-  UNIQUE KEY `idx_set` (`guid`,`setguid`,`setindex`),
-  KEY `Idx_setindex` (`setindex`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_transmog_outfits: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_transmog_outfits` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_transmog_outfits` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_void_storage
-DROP TABLE IF EXISTS `character_void_storage`;
-CREATE TABLE IF NOT EXISTS `character_void_storage` (
-  `itemId` bigint(20) unsigned NOT NULL,
-  `playerGuid` bigint(20) unsigned NOT NULL,
-  `itemEntry` mediumint(8) unsigned NOT NULL,
-  `slot` tinyint(3) unsigned NOT NULL,
-  `creatorGuid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `randomBonusListId` int(10) unsigned NOT NULL DEFAULT '0',
-  `fixedScalingLevel` int(10) unsigned DEFAULT '0',
-  `artifactKnowledgeLevel` int(10) unsigned DEFAULT '0',
-  `challengeId` int(10) unsigned NOT NULL DEFAULT '0',
-  `challengeLevel` int(10) unsigned NOT NULL DEFAULT '0',
-  `challengeAffix1` int(10) unsigned NOT NULL DEFAULT '0',
-  `challengeAffix2` int(10) unsigned NOT NULL DEFAULT '0',
-  `challengeAffix3` int(10) unsigned NOT NULL DEFAULT '0',
-  `challengeIsCharged` int(10) unsigned NOT NULL DEFAULT '0',
-  `context` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `bonusListIDs` text,
-  PRIMARY KEY (`itemId`),
-  UNIQUE KEY `idx_player_slot` (`playerGuid`,`slot`),
-  KEY `idx_player` (`playerGuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.character_void_storage: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_void_storage` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_void_storage` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.character_world_quest
-DROP TABLE IF EXISTS `character_world_quest`;
-CREATE TABLE IF NOT EXISTS `character_world_quest` (
-  `guid` bigint(20) unsigned NOT NULL,
-  `questId` int(10) unsigned NOT NULL,
-  `lastupdate` int(10) unsigned NOT NULL,
-  `timer` int(10) unsigned NOT NULL,
-  `variableID` int(10) unsigned NOT NULL,
-  `value` int(10) NOT NULL,
-  PRIMARY KEY (`guid`,`questId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Дамп данных таблицы characters_dump.character_world_quest: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `character_world_quest` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_world_quest` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.corpse
 DROP TABLE IF EXISTS `corpse`;
-CREATE TABLE IF NOT EXISTS `corpse` (
+
+CREATE TABLE `corpse` (
   `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Character Global Unique Identifier',
   `posX` float NOT NULL DEFAULT '0',
   `posY` float NOT NULL DEFAULT '0',
@@ -1274,25 +1287,25 @@ CREATE TABLE IF NOT EXISTS `corpse` (
   KEY `idx_time` (`time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Death System';
 
--- Дамп данных таблицы characters_dump.corpse: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `corpse` DISABLE KEYS */;
-/*!40000 ALTER TABLE `corpse` ENABLE KEYS */;
+/*Data for the table `corpse` */
 
--- Дамп структуры для таблица characters_dump.corpse_phases
+/*Table structure for table `corpse_phases` */
+
 DROP TABLE IF EXISTS `corpse_phases`;
-CREATE TABLE IF NOT EXISTS `corpse_phases` (
+
+CREATE TABLE `corpse_phases` (
   `OwnerGuid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `PhaseId` int(10) unsigned NOT NULL,
   PRIMARY KEY (`OwnerGuid`,`PhaseId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.corpse_phases: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `corpse_phases` DISABLE KEYS */;
-/*!40000 ALTER TABLE `corpse_phases` ENABLE KEYS */;
+/*Data for the table `corpse_phases` */
 
--- Дамп структуры для таблица characters_dump.creature_respawn
+/*Table structure for table `creature_respawn` */
+
 DROP TABLE IF EXISTS `creature_respawn`;
-CREATE TABLE IF NOT EXISTS `creature_respawn` (
+
+CREATE TABLE `creature_respawn` (
   `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
   `respawnTime` int(10) unsigned NOT NULL DEFAULT '0',
   `mapId` smallint(10) unsigned NOT NULL DEFAULT '0',
@@ -1301,54 +1314,54 @@ CREATE TABLE IF NOT EXISTS `creature_respawn` (
   KEY `idx_instance` (`instanceId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Grid Loading System';
 
--- Дамп данных таблицы characters_dump.creature_respawn: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `creature_respawn` DISABLE KEYS */;
-/*!40000 ALTER TABLE `creature_respawn` ENABLE KEYS */;
+/*Data for the table `creature_respawn` */
 
--- Дамп структуры для таблица characters_dump.gameobject_respawn
-DROP TABLE IF EXISTS `gameobject_respawn`;
-CREATE TABLE IF NOT EXISTS `gameobject_respawn` (
-  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
-  `respawnTime` int(10) unsigned NOT NULL DEFAULT '0',
-  `mapId` smallint(10) unsigned NOT NULL DEFAULT '0',
-  `instanceId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Instance Identifier',
-  PRIMARY KEY (`guid`,`instanceId`),
-  KEY `idx_instance` (`instanceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Grid Loading System';
+/*Table structure for table `game_event_condition_save` */
 
--- Дамп данных таблицы characters_dump.gameobject_respawn: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `gameobject_respawn` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gameobject_respawn` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.game_event_condition_save
 DROP TABLE IF EXISTS `game_event_condition_save`;
-CREATE TABLE IF NOT EXISTS `game_event_condition_save` (
+
+CREATE TABLE `game_event_condition_save` (
   `eventEntry` tinyint(3) unsigned NOT NULL,
   `condition_id` int(10) unsigned NOT NULL DEFAULT '0',
   `done` float DEFAULT '0',
   PRIMARY KEY (`eventEntry`,`condition_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.game_event_condition_save: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `game_event_condition_save` DISABLE KEYS */;
-/*!40000 ALTER TABLE `game_event_condition_save` ENABLE KEYS */;
+/*Data for the table `game_event_condition_save` */
 
--- Дамп структуры для таблица characters_dump.game_event_save
+/*Table structure for table `game_event_save` */
+
 DROP TABLE IF EXISTS `game_event_save`;
-CREATE TABLE IF NOT EXISTS `game_event_save` (
+
+CREATE TABLE `game_event_save` (
   `eventEntry` tinyint(3) unsigned NOT NULL,
   `state` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `next_start` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`eventEntry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.game_event_save: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `game_event_save` DISABLE KEYS */;
-/*!40000 ALTER TABLE `game_event_save` ENABLE KEYS */;
+/*Data for the table `game_event_save` */
 
--- Дамп структуры для таблица characters_dump.gm_bug
+/*Table structure for table `gameobject_respawn` */
+
+DROP TABLE IF EXISTS `gameobject_respawn`;
+
+CREATE TABLE `gameobject_respawn` (
+  `guid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
+  `respawnTime` int(10) unsigned NOT NULL DEFAULT '0',
+  `mapId` smallint(10) unsigned NOT NULL DEFAULT '0',
+  `instanceId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Instance Identifier',
+  PRIMARY KEY (`guid`,`instanceId`),
+  KEY `idx_instance` (`instanceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Grid Loading System';
+
+/*Data for the table `gameobject_respawn` */
+
+/*Table structure for table `gm_bug` */
+
 DROP TABLE IF EXISTS `gm_bug`;
-CREATE TABLE IF NOT EXISTS `gm_bug` (
+
+CREATE TABLE `gm_bug` (
   `id` int(10) unsigned NOT NULL,
   `playerGuid` bigint(20) unsigned NOT NULL,
   `note` text NOT NULL,
@@ -1364,13 +1377,13 @@ CREATE TABLE IF NOT EXISTS `gm_bug` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.gm_bug: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `gm_bug` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gm_bug` ENABLE KEYS */;
+/*Data for the table `gm_bug` */
 
--- Дамп структуры для таблица characters_dump.gm_complaint
+/*Table structure for table `gm_complaint` */
+
 DROP TABLE IF EXISTS `gm_complaint`;
-CREATE TABLE IF NOT EXISTS `gm_complaint` (
+
+CREATE TABLE `gm_complaint` (
   `id` int(10) unsigned NOT NULL,
   `playerGuid` bigint(20) unsigned NOT NULL,
   `note` text NOT NULL,
@@ -1389,13 +1402,13 @@ CREATE TABLE IF NOT EXISTS `gm_complaint` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.gm_complaint: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `gm_complaint` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gm_complaint` ENABLE KEYS */;
+/*Data for the table `gm_complaint` */
 
--- Дамп структуры для таблица characters_dump.gm_complaint_chatlog
+/*Table structure for table `gm_complaint_chatlog` */
+
 DROP TABLE IF EXISTS `gm_complaint_chatlog`;
-CREATE TABLE IF NOT EXISTS `gm_complaint_chatlog` (
+
+CREATE TABLE `gm_complaint_chatlog` (
   `complaintId` int(10) unsigned NOT NULL,
   `lineId` int(10) unsigned NOT NULL,
   `timestamp` int(10) unsigned NOT NULL,
@@ -1403,13 +1416,13 @@ CREATE TABLE IF NOT EXISTS `gm_complaint_chatlog` (
   PRIMARY KEY (`complaintId`,`lineId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.gm_complaint_chatlog: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `gm_complaint_chatlog` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gm_complaint_chatlog` ENABLE KEYS */;
+/*Data for the table `gm_complaint_chatlog` */
 
--- Дамп структуры для таблица characters_dump.gm_suggestion
+/*Table structure for table `gm_suggestion` */
+
 DROP TABLE IF EXISTS `gm_suggestion`;
-CREATE TABLE IF NOT EXISTS `gm_suggestion` (
+
+CREATE TABLE `gm_suggestion` (
   `id` int(10) unsigned NOT NULL,
   `playerGuid` bigint(20) unsigned NOT NULL,
   `note` text NOT NULL,
@@ -1425,13 +1438,42 @@ CREATE TABLE IF NOT EXISTS `gm_suggestion` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.gm_suggestion: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `gm_suggestion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gm_suggestion` ENABLE KEYS */;
+/*Data for the table `gm_suggestion` */
 
--- Дамп структуры для таблица characters_dump.groups
+/*Table structure for table `group_instance` */
+
+DROP TABLE IF EXISTS `group_instance`;
+
+CREATE TABLE `group_instance` (
+  `guid` int(10) unsigned NOT NULL DEFAULT '0',
+  `instance` int(10) unsigned NOT NULL DEFAULT '0',
+  `permanent` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`guid`,`instance`),
+  KEY `instance` (`instance`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `group_instance` */
+
+/*Table structure for table `group_member` */
+
+DROP TABLE IF EXISTS `group_member`;
+
+CREATE TABLE `group_member` (
+  `guid` int(10) unsigned NOT NULL,
+  `memberGuid` bigint(20) unsigned NOT NULL,
+  `memberFlags` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `subgroup` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `roles` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`memberGuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Groups';
+
+/*Data for the table `group_member` */
+
+/*Table structure for table `groups` */
+
 DROP TABLE IF EXISTS `groups`;
-CREATE TABLE IF NOT EXISTS `groups` (
+
+CREATE TABLE `groups` (
   `guid` int(10) unsigned NOT NULL,
   `leaderGuid` bigint(20) unsigned NOT NULL,
   `lootMethod` tinyint(3) unsigned NOT NULL,
@@ -1454,42 +1496,13 @@ CREATE TABLE IF NOT EXISTS `groups` (
   KEY `leaderGuid` (`leaderGuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Groups';
 
--- Дамп данных таблицы characters_dump.groups: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
+/*Data for the table `groups` */
 
--- Дамп структуры для таблица characters_dump.group_instance
-DROP TABLE IF EXISTS `group_instance`;
-CREATE TABLE IF NOT EXISTS `group_instance` (
-  `guid` int(10) unsigned NOT NULL DEFAULT '0',
-  `instance` int(10) unsigned NOT NULL DEFAULT '0',
-  `permanent` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`guid`,`instance`),
-  KEY `instance` (`instance`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*Table structure for table `guild` */
 
--- Дамп данных таблицы characters_dump.group_instance: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `group_instance` DISABLE KEYS */;
-/*!40000 ALTER TABLE `group_instance` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.group_member
-DROP TABLE IF EXISTS `group_member`;
-CREATE TABLE IF NOT EXISTS `group_member` (
-  `guid` int(10) unsigned NOT NULL,
-  `memberGuid` bigint(20) unsigned NOT NULL,
-  `memberFlags` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `subgroup` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `roles` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`memberGuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Groups';
-
--- Дамп данных таблицы characters_dump.group_member: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `group_member` DISABLE KEYS */;
-/*!40000 ALTER TABLE `group_member` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.guild
 DROP TABLE IF EXISTS `guild`;
-CREATE TABLE IF NOT EXISTS `guild` (
+
+CREATE TABLE `guild` (
   `guildid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `name` varchar(24) NOT NULL DEFAULT '',
   `leaderguid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -1505,13 +1518,13 @@ CREATE TABLE IF NOT EXISTS `guild` (
   PRIMARY KEY (`guildid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Guild System';
 
--- Дамп данных таблицы characters_dump.guild: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild` ENABLE KEYS */;
+/*Data for the table `guild` */
 
--- Дамп структуры для таблица characters_dump.guild_achievement
+/*Table structure for table `guild_achievement` */
+
 DROP TABLE IF EXISTS `guild_achievement`;
-CREATE TABLE IF NOT EXISTS `guild_achievement` (
+
+CREATE TABLE `guild_achievement` (
   `guildId` bigint(20) unsigned NOT NULL,
   `achievement` int(10) unsigned NOT NULL,
   `date` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1519,13 +1532,13 @@ CREATE TABLE IF NOT EXISTS `guild_achievement` (
   PRIMARY KEY (`guildId`,`achievement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.guild_achievement: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_achievement` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_achievement` ENABLE KEYS */;
+/*Data for the table `guild_achievement` */
 
--- Дамп структуры для таблица characters_dump.guild_achievement_progress
+/*Table structure for table `guild_achievement_progress` */
+
 DROP TABLE IF EXISTS `guild_achievement_progress`;
-CREATE TABLE IF NOT EXISTS `guild_achievement_progress` (
+
+CREATE TABLE `guild_achievement_progress` (
   `guildId` bigint(20) unsigned NOT NULL,
   `criteria` int(10) unsigned NOT NULL,
   `counter` bigint(20) unsigned NOT NULL,
@@ -1534,13 +1547,13 @@ CREATE TABLE IF NOT EXISTS `guild_achievement_progress` (
   PRIMARY KEY (`guildId`,`criteria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.guild_achievement_progress: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_achievement_progress` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_achievement_progress` ENABLE KEYS */;
+/*Data for the table `guild_achievement_progress` */
 
--- Дамп структуры для таблица characters_dump.guild_bank_eventlog
+/*Table structure for table `guild_bank_eventlog` */
+
 DROP TABLE IF EXISTS `guild_bank_eventlog`;
-CREATE TABLE IF NOT EXISTS `guild_bank_eventlog` (
+
+CREATE TABLE `guild_bank_eventlog` (
   `guildid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Guild Identificator',
   `LogGuid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Log record identificator - auxiliary column',
   `TabId` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Guild bank TabId',
@@ -1556,13 +1569,13 @@ CREATE TABLE IF NOT EXISTS `guild_bank_eventlog` (
   KEY `Idx_LogGuid` (`LogGuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.guild_bank_eventlog: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_bank_eventlog` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_bank_eventlog` ENABLE KEYS */;
+/*Data for the table `guild_bank_eventlog` */
 
--- Дамп структуры для таблица characters_dump.guild_bank_item
+/*Table structure for table `guild_bank_item` */
+
 DROP TABLE IF EXISTS `guild_bank_item`;
-CREATE TABLE IF NOT EXISTS `guild_bank_item` (
+
+CREATE TABLE `guild_bank_item` (
   `guildid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `TabId` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `SlotId` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -1572,13 +1585,13 @@ CREATE TABLE IF NOT EXISTS `guild_bank_item` (
   KEY `Idx_item_guid` (`item_guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.guild_bank_item: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_bank_item` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_bank_item` ENABLE KEYS */;
+/*Data for the table `guild_bank_item` */
 
--- Дамп структуры для таблица characters_dump.guild_bank_right
+/*Table structure for table `guild_bank_right` */
+
 DROP TABLE IF EXISTS `guild_bank_right`;
-CREATE TABLE IF NOT EXISTS `guild_bank_right` (
+
+CREATE TABLE `guild_bank_right` (
   `guildid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `TabId` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `rid` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -1588,13 +1601,13 @@ CREATE TABLE IF NOT EXISTS `guild_bank_right` (
   KEY `guildid_key` (`guildid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.guild_bank_right: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_bank_right` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_bank_right` ENABLE KEYS */;
+/*Data for the table `guild_bank_right` */
 
--- Дамп структуры для таблица characters_dump.guild_bank_tab
+/*Table structure for table `guild_bank_tab` */
+
 DROP TABLE IF EXISTS `guild_bank_tab`;
-CREATE TABLE IF NOT EXISTS `guild_bank_tab` (
+
+CREATE TABLE `guild_bank_tab` (
   `guildid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `TabId` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `TabName` varchar(16) NOT NULL DEFAULT '',
@@ -1604,13 +1617,13 @@ CREATE TABLE IF NOT EXISTS `guild_bank_tab` (
   KEY `guildid_key` (`guildid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.guild_bank_tab: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_bank_tab` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_bank_tab` ENABLE KEYS */;
+/*Data for the table `guild_bank_tab` */
 
--- Дамп структуры для таблица characters_dump.guild_eventlog
+/*Table structure for table `guild_eventlog` */
+
 DROP TABLE IF EXISTS `guild_eventlog`;
-CREATE TABLE IF NOT EXISTS `guild_eventlog` (
+
+CREATE TABLE `guild_eventlog` (
   `guildid` bigint(20) unsigned NOT NULL COMMENT 'Guild Identificator',
   `LogGuid` int(10) unsigned NOT NULL COMMENT 'Log record identificator - auxiliary column',
   `EventType` tinyint(3) unsigned NOT NULL COMMENT 'Event type',
@@ -1624,13 +1637,13 @@ CREATE TABLE IF NOT EXISTS `guild_eventlog` (
   KEY `Idx_LogGuid` (`LogGuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Guild Eventlog';
 
--- Дамп данных таблицы characters_dump.guild_eventlog: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_eventlog` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_eventlog` ENABLE KEYS */;
+/*Data for the table `guild_eventlog` */
 
--- Дамп структуры для таблица characters_dump.guild_finder_applicant
+/*Table structure for table `guild_finder_applicant` */
+
 DROP TABLE IF EXISTS `guild_finder_applicant`;
-CREATE TABLE IF NOT EXISTS `guild_finder_applicant` (
+
+CREATE TABLE `guild_finder_applicant` (
   `guildId` bigint(20) unsigned NOT NULL DEFAULT '0',
   `playerGuid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `availability` tinyint(3) unsigned DEFAULT '0',
@@ -1641,13 +1654,13 @@ CREATE TABLE IF NOT EXISTS `guild_finder_applicant` (
   PRIMARY KEY (`guildId`,`playerGuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.guild_finder_applicant: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_finder_applicant` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_finder_applicant` ENABLE KEYS */;
+/*Data for the table `guild_finder_applicant` */
 
--- Дамп структуры для таблица characters_dump.guild_finder_guild_settings
+/*Table structure for table `guild_finder_guild_settings` */
+
 DROP TABLE IF EXISTS `guild_finder_guild_settings`;
-CREATE TABLE IF NOT EXISTS `guild_finder_guild_settings` (
+
+CREATE TABLE `guild_finder_guild_settings` (
   `guildId` bigint(20) unsigned NOT NULL,
   `availability` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `classRoles` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -1658,13 +1671,13 @@ CREATE TABLE IF NOT EXISTS `guild_finder_guild_settings` (
   PRIMARY KEY (`guildId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.guild_finder_guild_settings: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_finder_guild_settings` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_finder_guild_settings` ENABLE KEYS */;
+/*Data for the table `guild_finder_guild_settings` */
 
--- Дамп структуры для таблица characters_dump.guild_member
+/*Table structure for table `guild_member` */
+
 DROP TABLE IF EXISTS `guild_member`;
-CREATE TABLE IF NOT EXISTS `guild_member` (
+
+CREATE TABLE `guild_member` (
   `guildid` bigint(20) unsigned NOT NULL COMMENT 'Guild Identificator',
   `guid` bigint(20) unsigned NOT NULL,
   `rank` tinyint(3) unsigned NOT NULL,
@@ -1675,13 +1688,13 @@ CREATE TABLE IF NOT EXISTS `guild_member` (
   KEY `guildid_rank_key` (`guildid`,`rank`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Guild System';
 
--- Дамп данных таблицы characters_dump.guild_member: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_member` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_member` ENABLE KEYS */;
+/*Data for the table `guild_member` */
 
--- Дамп структуры для таблица characters_dump.guild_member_withdraw
+/*Table structure for table `guild_member_withdraw` */
+
 DROP TABLE IF EXISTS `guild_member_withdraw`;
-CREATE TABLE IF NOT EXISTS `guild_member_withdraw` (
+
+CREATE TABLE `guild_member_withdraw` (
   `guid` bigint(20) unsigned NOT NULL,
   `tab0` int(10) unsigned NOT NULL DEFAULT '0',
   `tab1` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1695,13 +1708,13 @@ CREATE TABLE IF NOT EXISTS `guild_member_withdraw` (
   PRIMARY KEY (`guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Guild Member Daily Withdraws';
 
--- Дамп данных таблицы characters_dump.guild_member_withdraw: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_member_withdraw` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_member_withdraw` ENABLE KEYS */;
+/*Data for the table `guild_member_withdraw` */
 
--- Дамп структуры для таблица characters_dump.guild_newslog
+/*Table structure for table `guild_newslog` */
+
 DROP TABLE IF EXISTS `guild_newslog`;
-CREATE TABLE IF NOT EXISTS `guild_newslog` (
+
+CREATE TABLE `guild_newslog` (
   `guildid` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Guild Identificator',
   `LogGuid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Log record identificator - auxiliary column',
   `EventType` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Event type',
@@ -1715,13 +1728,13 @@ CREATE TABLE IF NOT EXISTS `guild_newslog` (
   KEY `Idx_LogGuid` (`LogGuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.guild_newslog: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_newslog` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_newslog` ENABLE KEYS */;
+/*Data for the table `guild_newslog` */
 
--- Дамп структуры для таблица characters_dump.guild_rank
+/*Table structure for table `guild_rank` */
+
 DROP TABLE IF EXISTS `guild_rank`;
-CREATE TABLE IF NOT EXISTS `guild_rank` (
+
+CREATE TABLE `guild_rank` (
   `guildid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `rid` tinyint(3) unsigned NOT NULL,
   `rname` varchar(20) NOT NULL DEFAULT '',
@@ -1731,13 +1744,13 @@ CREATE TABLE IF NOT EXISTS `guild_rank` (
   KEY `Idx_rid` (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Guild System';
 
--- Дамп данных таблицы characters_dump.guild_rank: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `guild_rank` DISABLE KEYS */;
-/*!40000 ALTER TABLE `guild_rank` ENABLE KEYS */;
+/*Data for the table `guild_rank` */
 
--- Дамп структуры для таблица characters_dump.instance
+/*Table structure for table `instance` */
+
 DROP TABLE IF EXISTS `instance`;
-CREATE TABLE IF NOT EXISTS `instance` (
+
+CREATE TABLE `instance` (
   `id` int(10) unsigned NOT NULL DEFAULT '0',
   `map` smallint(5) unsigned NOT NULL DEFAULT '0',
   `resettime` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1751,13 +1764,13 @@ CREATE TABLE IF NOT EXISTS `instance` (
   KEY `difficulty` (`difficulty`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.instance: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `instance` DISABLE KEYS */;
-/*!40000 ALTER TABLE `instance` ENABLE KEYS */;
+/*Data for the table `instance` */
 
--- Дамп структуры для таблица characters_dump.instance_reset
+/*Table structure for table `instance_reset` */
+
 DROP TABLE IF EXISTS `instance_reset`;
-CREATE TABLE IF NOT EXISTS `instance_reset` (
+
+CREATE TABLE `instance_reset` (
   `mapid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `difficulty` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `resettime` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1765,163 +1778,269 @@ CREATE TABLE IF NOT EXISTS `instance_reset` (
   KEY `difficulty` (`difficulty`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.instance_reset: ~149 rows (приблизительно)
-/*!40000 ALTER TABLE `instance_reset` DISABLE KEYS */;
-INSERT INTO `instance_reset` (`mapid`, `difficulty`, `resettime`) VALUES
-	(33, 2, 1426996800),
-	(36, 2, 1426996800),
-	(249, 3, 1427515200),
-	(249, 4, 1427515200),
-	(269, 2, 1426996800),
-	(409, 9, 1427515200),
-	(469, 9, 1427515200),
-	(509, 3, 1427169600),
-	(531, 9, 1427515200),
-	(532, 3, 1427515200),
-	(533, 3, 1427515200),
-	(533, 4, 1427515200),
-	(534, 4, 1427515200),
-	(540, 2, 1426996800),
-	(542, 2, 1426996800),
-	(543, 2, 1426996800),
-	(544, 4, 1427515200),
-	(545, 2, 1426996800),
-	(546, 2, 1426996800),
-	(547, 2, 1426996800),
-	(548, 4, 1427515200),
-	(550, 4, 1427515200),
-	(552, 2, 1426996800),
-	(553, 2, 1426996800),
-	(554, 2, 1426996800),
-	(555, 2, 1426996800),
-	(556, 2, 1426996800),
-	(557, 2, 1426996800),
-	(558, 2, 1426996800),
-	(560, 2, 1426996800),
-	(564, 4, 1427515200),
-	(565, 4, 1427515200),
-	(568, 2, 1426996800),
-	(574, 2, 1426996800),
-	(575, 2, 1426996800),
-	(576, 2, 1426996800),
-	(578, 2, 1426996800),
-	(580, 4, 1427515200),
-	(585, 2, 1426996800),
-	(595, 2, 1426996800),
-	(598, 2, 1426996800),
-	(599, 2, 1426996800),
-	(600, 2, 1426996800),
-	(601, 2, 1426996800),
-	(602, 2, 1426996800),
-	(603, 3, 1427515200),
-	(603, 4, 1427515200),
-	(604, 2, 1426996800),
-	(608, 2, 1426996800),
-	(615, 3, 1427515200),
-	(615, 4, 1427515200),
-	(616, 3, 1427515200),
-	(616, 4, 1427515200),
-	(619, 2, 1426996800),
-	(624, 3, 1427515200),
-	(624, 4, 1427515200),
-	(631, 3, 1427515200),
-	(631, 4, 1427515200),
-	(631, 5, 1427515200),
-	(631, 6, 1427515200),
-	(632, 2, 1426996800),
-	(643, 2, 1426996800),
-	(644, 2, 1426996800),
-	(645, 2, 1426996800),
-	(649, 3, 1427515200),
-	(649, 4, 1427515200),
-	(649, 5, 1427515200),
-	(649, 6, 1427515200),
-	(650, 2, 1426996800),
-	(657, 2, 1426996800),
-	(658, 2, 1426996800),
-	(668, 2, 1426996800),
-	(669, 3, 1427515200),
-	(669, 4, 1427515200),
-	(669, 5, 1427515200),
-	(669, 6, 1427515200),
-	(670, 2, 1426996800),
-	(671, 3, 1427515200),
-	(671, 4, 1427515200),
-	(671, 5, 1427515200),
-	(671, 6, 1427515200),
-	(720, 3, 1427515200),
-	(720, 4, 1427515200),
-	(720, 5, 1427515200),
-	(720, 6, 1427515200),
-	(724, 3, 1427515200),
-	(724, 4, 1427515200),
-	(724, 5, 1427515200),
-	(724, 6, 1427515200),
-	(725, 2, 1426996800),
-	(754, 3, 1427515200),
-	(754, 4, 1427515200),
-	(754, 5, 1427515200),
-	(754, 6, 1427515200),
-	(755, 2, 1426996800),
-	(757, 3, 1427515200),
-	(757, 4, 1427515200),
-	(757, 5, 1427515200),
-	(757, 6, 1427515200),
-	(859, 2, 1426996800),
-	(938, 2, 1426996800),
-	(939, 2, 1426996800),
-	(940, 2, 1426996800),
-	(959, 2, 1426996800),
-	(960, 2, 1426996800),
-	(961, 2, 1426996800),
-	(962, 2, 1426996800),
-	(967, 3, 1427515200),
-	(967, 4, 1427515200),
-	(967, 5, 1427515200),
-	(967, 6, 1427515200),
-	(994, 2, 1426996800),
-	(996, 3, 1427515200),
-	(996, 4, 1427515200),
-	(996, 5, 1427515200),
-	(996, 6, 1427515200),
-	(1001, 2, 1426996800),
-	(1004, 2, 1426996800),
-	(1007, 2, 1426996800),
-	(1008, 3, 1427515200),
-	(1008, 4, 1427515200),
-	(1008, 5, 1427515200),
-	(1008, 6, 1427515200),
-	(1009, 3, 1427515200),
-	(1009, 4, 1427515200),
-	(1009, 5, 1427515200),
-	(1009, 6, 1427515200),
-	(1011, 2, 1426996800),
-	(1098, 3, 1427515200),
-	(1098, 4, 1427515200),
-	(1098, 5, 1427515200),
-	(1098, 6, 1427515200),
-	(1136, 14, 1427515200),
-	(1136, 15, 1427515200),
-	(1136, 16, 1427515200),
-	(1175, 2, 1426996800),
-	(1176, 2, 1426996800),
-	(1182, 2, 1426996800),
-	(1195, 2, 1426996800),
-	(1205, 14, 1427515200),
-	(1205, 15, 1427515200),
-	(1205, 16, 1427515200),
-	(1208, 2, 1426996800),
-	(1209, 2, 1426996800),
-	(1228, 14, 1427515200),
-	(1228, 15, 1427515200),
-	(1228, 16, 1427515200),
-	(1279, 2, 1426996800),
-	(1358, 2, 1426996800);
-/*!40000 ALTER TABLE `instance_reset` ENABLE KEYS */;
+/*Data for the table `instance_reset` */
 
--- Дамп структуры для таблица characters_dump.instance_scenario_progress
+insert  into `instance_reset`(`mapid`,`difficulty`,`resettime`) values 
+(33,2,1582689600),
+(36,2,1582689600),
+(249,3,1582948800),
+(249,4,1582948800),
+(269,2,1582689600),
+(409,9,1582948800),
+(469,9,1582948800),
+(509,3,1582689600),
+(531,9,1582948800),
+(532,3,1582948800),
+(533,3,1582948800),
+(533,4,1582948800),
+(534,4,1582948800),
+(540,2,1582689600),
+(542,2,1582689600),
+(543,2,1582689600),
+(544,4,1582948800),
+(545,2,1582689600),
+(546,2,1582689600),
+(547,2,1582689600),
+(548,4,1582948800),
+(550,4,1582948800),
+(552,2,1582689600),
+(553,2,1582689600),
+(554,2,1582689600),
+(555,2,1582689600),
+(556,2,1582689600),
+(557,2,1582689600),
+(558,2,1582689600),
+(560,2,1582689600),
+(564,14,1583208000),
+(564,33,1583208000),
+(565,4,1582948800),
+(568,2,1582689600),
+(574,2,1582689600),
+(575,2,1582689600),
+(576,2,1582689600),
+(578,2,1582689600),
+(580,4,1582948800),
+(585,2,1582689600),
+(595,2,1582689600),
+(598,2,1582689600),
+(599,2,1582689600),
+(600,2,1582689600),
+(601,2,1582689600),
+(602,2,1582689600),
+(603,14,1583208000),
+(603,33,1583208000),
+(604,2,1582689600),
+(608,2,1582689600),
+(615,3,1582948800),
+(615,4,1582948800),
+(616,3,1582948800),
+(616,4,1582948800),
+(619,2,1582689600),
+(624,3,1582948800),
+(624,4,1582948800),
+(631,3,1582948800),
+(631,4,1582948800),
+(631,5,1582948800),
+(631,6,1582948800),
+(632,2,1582689600),
+(643,2,1582689600),
+(644,2,1582689600),
+(645,2,1582689600),
+(649,3,1582948800),
+(649,4,1582948800),
+(649,5,1582948800),
+(649,6,1582948800),
+(650,2,1582689600),
+(657,2,1582689600),
+(658,2,1582689600),
+(668,2,1582689600),
+(669,3,1582948800),
+(669,4,1582948800),
+(669,5,1582948800),
+(669,6,1582948800),
+(670,2,1582689600),
+(671,3,1582948800),
+(671,4,1582948800),
+(671,5,1582948800),
+(671,6,1582948800),
+(720,14,1583208000),
+(720,15,1583208000),
+(720,33,1583208000),
+(724,3,1582948800),
+(724,4,1582948800),
+(724,5,1582948800),
+(724,6,1582948800),
+(725,2,1582689600),
+(754,3,1582948800),
+(754,4,1582948800),
+(754,5,1582948800),
+(754,6,1582948800),
+(755,2,1582689600),
+(757,3,1582948800),
+(757,4,1582948800),
+(859,2,1582689600),
+(938,2,1582689600),
+(939,2,1582689600),
+(940,2,1582689600),
+(959,2,1582689600),
+(960,2,1582689600),
+(961,2,1582689600),
+(962,2,1582689600),
+(967,3,1582948800),
+(967,4,1582948800),
+(967,5,1582948800),
+(967,6,1582948800),
+(967,7,1583208000),
+(994,2,1582689600),
+(996,3,1582948800),
+(996,4,1582948800),
+(996,5,1582948800),
+(996,6,1582948800),
+(996,7,1583208000),
+(1001,2,1582689600),
+(1004,2,1582689600),
+(1007,2,1582689600),
+(1008,3,1582948800),
+(1008,4,1582948800),
+(1008,5,1582948800),
+(1008,6,1582948800),
+(1008,7,1583208000),
+(1009,3,1582948800),
+(1009,4,1582948800),
+(1009,5,1582948800),
+(1009,6,1582948800),
+(1009,7,1583208000),
+(1011,2,1582689600),
+(1098,3,1582948800),
+(1098,4,1582948800),
+(1098,5,1582948800),
+(1098,6,1582948800),
+(1098,7,1583208000),
+(1136,14,1582948800),
+(1136,15,1582948800),
+(1136,16,1582948800),
+(1136,17,1583208000),
+(1175,2,1582689600),
+(1175,23,1583208000),
+(1176,2,1582689600),
+(1176,23,1583208000),
+(1182,2,1582689600),
+(1182,23,1583208000),
+(1195,2,1582689600),
+(1195,23,1583208000),
+(1205,14,1582948800),
+(1205,15,1582948800),
+(1205,16,1582948800),
+(1205,17,1583208000),
+(1208,2,1582689600),
+(1208,23,1583208000),
+(1209,2,1582689600),
+(1209,23,1583208000),
+(1228,14,1582948800),
+(1228,15,1582948800),
+(1228,16,1582948800),
+(1228,17,1583208000),
+(1279,2,1582689600),
+(1279,23,1583208000),
+(1358,2,1582689600),
+(1358,23,1583208000),
+(1448,14,1583208000),
+(1448,15,1583208000),
+(1448,16,1583208000),
+(1448,17,1583208000),
+(1456,2,1582689600),
+(1456,23,1583208000),
+(1458,2,1582689600),
+(1458,23,1583208000),
+(1466,2,1582689600),
+(1466,23,1583208000),
+(1477,2,1582689600),
+(1477,23,1583208000),
+(1492,2,1582689600),
+(1492,23,1583208000),
+(1493,2,1582689600),
+(1493,23,1583208000),
+(1501,2,1582689600),
+(1501,23,1583208000),
+(1516,23,1583208000),
+(1520,14,1583208000),
+(1520,15,1583208000),
+(1520,16,1583208000),
+(1520,17,1583208000),
+(1530,14,1583208000),
+(1530,15,1583208000),
+(1530,16,1583208000),
+(1530,17,1583208000),
+(1544,2,1582689600),
+(1544,23,1583208000),
+(1571,23,1583208000),
+(1594,2,1582689600),
+(1594,23,1583208000),
+(1648,14,1583208000),
+(1648,15,1583208000),
+(1648,16,1583208000),
+(1648,17,1583208000),
+(1651,23,1583208000),
+(1676,14,1583208000),
+(1676,15,1583208000),
+(1676,16,1583208000),
+(1676,17,1583208000),
+(1677,2,1582689600),
+(1677,23,1583208000),
+(1712,14,1583208000),
+(1712,15,1583208000),
+(1712,16,1583208000),
+(1712,17,1583208000),
+(1753,2,1582689600),
+(1753,23,1583208000),
+(1754,2,1582689600),
+(1754,23,1583208000),
+(1762,2,1582689600),
+(1762,23,1583208000),
+(1763,2,1582689600),
+(1763,23,1583208000),
+(1771,2,1582689600),
+(1771,23,1583208000),
+(1822,2,1582689600),
+(1822,23,1583208000),
+(1841,2,1582689600),
+(1841,23,1583208000),
+(1861,14,1583208000),
+(1861,15,1583208000),
+(1861,16,1583208000),
+(1861,17,1583208000),
+(1862,2,1582689600),
+(1862,23,1583208000),
+(1864,2,1582689600),
+(1864,23,1583208000),
+(1877,2,1582689600),
+(1877,23,1583208000),
+(2070,14,1583208000),
+(2070,15,1583208000),
+(2070,16,1583208000),
+(2070,17,1583208000),
+(2096,14,1583208000),
+(2096,15,1583208000),
+(2096,16,1583208000),
+(2096,17,1583208000),
+(2097,2,1582689600),
+(2097,23,1583208000),
+(2164,14,1583208000),
+(2164,15,1583208000),
+(2164,16,1583208000),
+(2164,17,1583208000),
+(2217,14,1582689600),
+(2217,15,1582689600),
+(2217,16,1582689600),
+(2217,17,1582689600),
+(2233,2,1582689600),
+(2235,151,1583208000);
+
+/*Table structure for table `instance_scenario_progress` */
+
 DROP TABLE IF EXISTS `instance_scenario_progress`;
-CREATE TABLE IF NOT EXISTS `instance_scenario_progress` (
+
+CREATE TABLE `instance_scenario_progress` (
   `id` int(10) unsigned NOT NULL,
   `criteria` int(10) unsigned NOT NULL,
   `counter` bigint(20) unsigned NOT NULL,
@@ -1929,43 +2048,13 @@ CREATE TABLE IF NOT EXISTS `instance_scenario_progress` (
   PRIMARY KEY (`id`,`criteria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.instance_scenario_progress: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `instance_scenario_progress` DISABLE KEYS */;
-/*!40000 ALTER TABLE `instance_scenario_progress` ENABLE KEYS */;
+/*Data for the table `instance_scenario_progress` */
 
--- Дамп структуры для таблица characters_dump.item_azerite
-DROP TABLE IF EXISTS `item_azerite`;
-CREATE TABLE IF NOT EXISTS `item_azerite` (
-  `CharacterGuid` bigint(20) unsigned NOT NULL,
-  `ItemGuid` bigint(20) unsigned NOT NULL,
-  `Level` int(10) unsigned NOT NULL DEFAULT '0',
-  `Xp` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`CharacterGuid`,`ItemGuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*Table structure for table `item_instance` */
 
--- Дамп данных таблицы characters_dump.item_azerite: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_azerite` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_azerite` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.item_azerite_empowered
-DROP TABLE IF EXISTS `item_azerite_empowered`;
-CREATE TABLE IF NOT EXISTS `item_azerite_empowered` (
-  `CharacterGuid` bigint(20) unsigned NOT NULL,
-  `ItemGuid` bigint(20) unsigned NOT NULL,
-  `PowereId1` int(10) unsigned NOT NULL DEFAULT '0',
-  `PowereId2` int(10) unsigned NOT NULL DEFAULT '0',
-  `PowereId3` int(10) unsigned NOT NULL DEFAULT '0',
-  `PowereId4` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`CharacterGuid`,`ItemGuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Дамп данных таблицы characters_dump.item_azerite_empowered: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_azerite_empowered` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_azerite_empowered` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.item_instance
 DROP TABLE IF EXISTS `item_instance`;
-CREATE TABLE IF NOT EXISTS `item_instance` (
+
+CREATE TABLE `item_instance` (
   `guid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `itemEntry` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `owner_guid` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -1992,13 +2081,13 @@ CREATE TABLE IF NOT EXISTS `item_instance` (
   KEY `idx_owner_guid` (`owner_guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Item System';
 
--- Дамп данных таблицы characters_dump.item_instance: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_instance` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_instance` ENABLE KEYS */;
+/*Data for the table `item_instance` */
 
--- Дамп структуры для таблица characters_dump.item_instance_artifact
+/*Table structure for table `item_instance_artifact` */
+
 DROP TABLE IF EXISTS `item_instance_artifact`;
-CREATE TABLE IF NOT EXISTS `item_instance_artifact` (
+
+CREATE TABLE `item_instance_artifact` (
   `itemGuid` bigint(20) unsigned NOT NULL,
   `xp` bigint(20) unsigned NOT NULL DEFAULT '0',
   `artifactAppearanceId` int(10) unsigned NOT NULL DEFAULT '0',
@@ -2006,26 +2095,101 @@ CREATE TABLE IF NOT EXISTS `item_instance_artifact` (
   PRIMARY KEY (`itemGuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.item_instance_artifact: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_instance_artifact` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_instance_artifact` ENABLE KEYS */;
+/*Data for the table `item_instance_artifact` */
 
--- Дамп структуры для таблица characters_dump.item_instance_artifact_powers
+/*Table structure for table `item_instance_artifact_powers` */
+
 DROP TABLE IF EXISTS `item_instance_artifact_powers`;
-CREATE TABLE IF NOT EXISTS `item_instance_artifact_powers` (
+
+CREATE TABLE `item_instance_artifact_powers` (
   `itemGuid` bigint(20) unsigned NOT NULL,
   `artifactPowerId` int(10) unsigned NOT NULL,
   `purchasedRank` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`itemGuid`,`artifactPowerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.item_instance_artifact_powers: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_instance_artifact_powers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_instance_artifact_powers` ENABLE KEYS */;
+/*Data for the table `item_instance_artifact_powers` */
 
--- Дамп структуры для таблица characters_dump.item_instance_gems
+/*Table structure for table `item_instance_azerite` */
+
+DROP TABLE IF EXISTS `item_instance_azerite`;
+
+CREATE TABLE `item_instance_azerite` (
+  `itemGuid` bigint(20) unsigned NOT NULL,
+  `xp` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `level` int(10) unsigned NOT NULL DEFAULT '1',
+  `knowledgeLevel` int(10) unsigned NOT NULL DEFAULT '0',
+  `selectedAzeriteEssences1specId` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences1azeriteEssenceId1` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences1azeriteEssenceId2` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences1azeriteEssenceId3` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences1azeriteEssenceId4` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences2specId` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences2azeriteEssenceId1` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences2azeriteEssenceId2` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences2azeriteEssenceId3` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences2azeriteEssenceId4` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences3specId` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences3azeriteEssenceId1` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences3azeriteEssenceId2` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences3azeriteEssenceId3` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences3azeriteEssenceId4` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences4specId` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences4azeriteEssenceId1` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences4azeriteEssenceId2` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences4azeriteEssenceId3` int(10) unsigned DEFAULT '0',
+  `selectedAzeriteEssences4azeriteEssenceId4` int(10) unsigned DEFAULT '0',
+  PRIMARY KEY (`itemGuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `item_instance_azerite` */
+
+/*Table structure for table `item_instance_azerite_empowered` */
+
+DROP TABLE IF EXISTS `item_instance_azerite_empowered`;
+
+CREATE TABLE `item_instance_azerite_empowered` (
+  `itemGuid` bigint(20) unsigned NOT NULL,
+  `azeritePowerId1` int(11) NOT NULL,
+  `azeritePowerId2` int(11) NOT NULL,
+  `azeritePowerId3` int(11) NOT NULL,
+  `azeritePowerId4` int(11) NOT NULL,
+  `azeritePowerId5` int(11) NOT NULL,
+  PRIMARY KEY (`itemGuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `item_instance_azerite_empowered` */
+
+/*Table structure for table `item_instance_azerite_milestone_power` */
+
+DROP TABLE IF EXISTS `item_instance_azerite_milestone_power`;
+
+CREATE TABLE `item_instance_azerite_milestone_power` (
+  `itemGuid` bigint(20) unsigned NOT NULL,
+  `azeriteItemMilestonePowerId` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`itemGuid`,`azeriteItemMilestonePowerId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `item_instance_azerite_milestone_power` */
+
+/*Table structure for table `item_instance_azerite_unlocked_essence` */
+
+DROP TABLE IF EXISTS `item_instance_azerite_unlocked_essence`;
+
+CREATE TABLE `item_instance_azerite_unlocked_essence` (
+  `itemGuid` bigint(20) unsigned NOT NULL,
+  `azeriteEssenceId` int(10) unsigned NOT NULL,
+  `rank` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`itemGuid`,`azeriteEssenceId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `item_instance_azerite_unlocked_essence` */
+
+/*Table structure for table `item_instance_gems` */
+
 DROP TABLE IF EXISTS `item_instance_gems`;
-CREATE TABLE IF NOT EXISTS `item_instance_gems` (
+
+CREATE TABLE `item_instance_gems` (
   `itemGuid` bigint(20) unsigned NOT NULL,
   `gemItemId1` int(10) unsigned NOT NULL DEFAULT '0',
   `gemBonuses1` text,
@@ -2042,13 +2206,13 @@ CREATE TABLE IF NOT EXISTS `item_instance_gems` (
   PRIMARY KEY (`itemGuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.item_instance_gems: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_instance_gems` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_instance_gems` ENABLE KEYS */;
+/*Data for the table `item_instance_gems` */
 
--- Дамп структуры для таблица characters_dump.item_instance_modifiers
+/*Table structure for table `item_instance_modifiers` */
+
 DROP TABLE IF EXISTS `item_instance_modifiers`;
-CREATE TABLE IF NOT EXISTS `item_instance_modifiers` (
+
+CREATE TABLE `item_instance_modifiers` (
   `itemGuid` bigint(20) unsigned NOT NULL,
   `fixedScalingLevel` int(10) unsigned DEFAULT '0',
   `artifactKnowledgeLevel` int(10) unsigned DEFAULT '0',
@@ -2061,13 +2225,13 @@ CREATE TABLE IF NOT EXISTS `item_instance_modifiers` (
   PRIMARY KEY (`itemGuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.item_instance_modifiers: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_instance_modifiers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_instance_modifiers` ENABLE KEYS */;
+/*Data for the table `item_instance_modifiers` */
 
--- Дамп структуры для таблица characters_dump.item_instance_transmog
+/*Table structure for table `item_instance_transmog` */
+
 DROP TABLE IF EXISTS `item_instance_transmog`;
-CREATE TABLE IF NOT EXISTS `item_instance_transmog` (
+
+CREATE TABLE `item_instance_transmog` (
   `itemGuid` bigint(20) unsigned NOT NULL,
   `itemModifiedAppearanceAllSpecs` int(11) NOT NULL DEFAULT '0',
   `itemModifiedAppearanceSpec1` int(11) NOT NULL DEFAULT '0',
@@ -2082,13 +2246,13 @@ CREATE TABLE IF NOT EXISTS `item_instance_transmog` (
   PRIMARY KEY (`itemGuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.item_instance_transmog: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_instance_transmog` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_instance_transmog` ENABLE KEYS */;
+/*Data for the table `item_instance_transmog` */
 
--- Дамп структуры для таблица characters_dump.item_loot_items
+/*Table structure for table `item_loot_items` */
+
 DROP TABLE IF EXISTS `item_loot_items`;
-CREATE TABLE IF NOT EXISTS `item_loot_items` (
+
+CREATE TABLE `item_loot_items` (
   `container_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'guid of container (item_instance.guid)',
   `item_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'loot item entry (item_instance.itemEntry)',
   `item_count` int(10) NOT NULL DEFAULT '0' COMMENT 'stack size',
@@ -2104,25 +2268,25 @@ CREATE TABLE IF NOT EXISTS `item_loot_items` (
   PRIMARY KEY (`container_id`,`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.item_loot_items: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_loot_items` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_loot_items` ENABLE KEYS */;
+/*Data for the table `item_loot_items` */
 
--- Дамп структуры для таблица characters_dump.item_loot_money
+/*Table structure for table `item_loot_money` */
+
 DROP TABLE IF EXISTS `item_loot_money`;
-CREATE TABLE IF NOT EXISTS `item_loot_money` (
+
+CREATE TABLE `item_loot_money` (
   `container_id` bigint(20) NOT NULL DEFAULT '0' COMMENT 'guid of container (item_instance.guid)',
   `money` int(10) NOT NULL DEFAULT '0' COMMENT 'money loot (in copper)',
   PRIMARY KEY (`container_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.item_loot_money: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_loot_money` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_loot_money` ENABLE KEYS */;
+/*Data for the table `item_loot_money` */
 
--- Дамп структуры для таблица characters_dump.item_refund_instance
+/*Table structure for table `item_refund_instance` */
+
 DROP TABLE IF EXISTS `item_refund_instance`;
-CREATE TABLE IF NOT EXISTS `item_refund_instance` (
+
+CREATE TABLE `item_refund_instance` (
   `item_guid` bigint(20) unsigned NOT NULL COMMENT 'Item GUID',
   `player_guid` bigint(20) unsigned NOT NULL COMMENT 'Player GUID',
   `paidMoney` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -2130,38 +2294,38 @@ CREATE TABLE IF NOT EXISTS `item_refund_instance` (
   PRIMARY KEY (`item_guid`,`player_guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Item Refund System';
 
--- Дамп данных таблицы characters_dump.item_refund_instance: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_refund_instance` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_refund_instance` ENABLE KEYS */;
+/*Data for the table `item_refund_instance` */
 
--- Дамп структуры для таблица characters_dump.item_soulbound_trade_data
+/*Table structure for table `item_soulbound_trade_data` */
+
 DROP TABLE IF EXISTS `item_soulbound_trade_data`;
-CREATE TABLE IF NOT EXISTS `item_soulbound_trade_data` (
+
+CREATE TABLE `item_soulbound_trade_data` (
   `itemGuid` bigint(20) unsigned NOT NULL COMMENT 'Item GUID',
   `allowedPlayers` text NOT NULL COMMENT 'Space separated GUID list of players who can receive this item in trade',
   PRIMARY KEY (`itemGuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Item Refund System';
 
--- Дамп данных таблицы characters_dump.item_soulbound_trade_data: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `item_soulbound_trade_data` DISABLE KEYS */;
-/*!40000 ALTER TABLE `item_soulbound_trade_data` ENABLE KEYS */;
+/*Data for the table `item_soulbound_trade_data` */
 
--- Дамп структуры для таблица characters_dump.lfg_data
+/*Table structure for table `lfg_data` */
+
 DROP TABLE IF EXISTS `lfg_data`;
-CREATE TABLE IF NOT EXISTS `lfg_data` (
+
+CREATE TABLE `lfg_data` (
   `guid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
   `dungeon` int(10) unsigned NOT NULL DEFAULT '0',
   `state` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='LFG Data';
 
--- Дамп данных таблицы characters_dump.lfg_data: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `lfg_data` DISABLE KEYS */;
-/*!40000 ALTER TABLE `lfg_data` ENABLE KEYS */;
+/*Data for the table `lfg_data` */
 
--- Дамп структуры для таблица characters_dump.log_gm
+/*Table structure for table `log_gm` */
+
 DROP TABLE IF EXISTS `log_gm`;
-CREATE TABLE IF NOT EXISTS `log_gm` (
+
+CREATE TABLE `log_gm` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `date` datetime DEFAULT NULL,
   `gm_account_id` bigint(20) DEFAULT NULL,
@@ -2178,13 +2342,13 @@ CREATE TABLE IF NOT EXISTS `log_gm` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Дамп данных таблицы characters_dump.log_gm: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `log_gm` DISABLE KEYS */;
-/*!40000 ALTER TABLE `log_gm` ENABLE KEYS */;
+/*Data for the table `log_gm` */
 
--- Дамп структуры для таблица characters_dump.mail
+/*Table structure for table `mail` */
+
 DROP TABLE IF EXISTS `mail`;
-CREATE TABLE IF NOT EXISTS `mail` (
+
+CREATE TABLE `mail` (
   `id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Identifier',
   `messageType` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `stationery` tinyint(3) NOT NULL DEFAULT '41',
@@ -2203,13 +2367,13 @@ CREATE TABLE IF NOT EXISTS `mail` (
   KEY `idx_receiver` (`receiver`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Mail System';
 
--- Дамп данных таблицы characters_dump.mail: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `mail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mail` ENABLE KEYS */;
+/*Data for the table `mail` */
 
--- Дамп структуры для таблица characters_dump.mail_items
+/*Table structure for table `mail_items` */
+
 DROP TABLE IF EXISTS `mail_items`;
-CREATE TABLE IF NOT EXISTS `mail_items` (
+
+CREATE TABLE `mail_items` (
   `mail_id` int(10) unsigned NOT NULL DEFAULT '0',
   `item_guid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `receiver` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'Character Global Unique Identifier',
@@ -2218,43 +2382,13 @@ CREATE TABLE IF NOT EXISTS `mail_items` (
   KEY `idx_mail_id` (`mail_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.mail_items: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `mail_items` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mail_items` ENABLE KEYS */;
+/*Data for the table `mail_items` */
 
--- Дамп структуры для таблица characters_dump.petition
-DROP TABLE IF EXISTS `petition`;
-CREATE TABLE IF NOT EXISTS `petition` (
-  `ownerguid` bigint(20) unsigned NOT NULL,
-  `petitionguid` bigint(20) unsigned DEFAULT '0',
-  `name` varchar(24) NOT NULL,
-  PRIMARY KEY (`ownerguid`),
-  UNIQUE KEY `index_ownerguid_petitionguid` (`ownerguid`,`petitionguid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Guild System';
+/*Table structure for table `pet_aura` */
 
--- Дамп данных таблицы characters_dump.petition: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `petition` DISABLE KEYS */;
-/*!40000 ALTER TABLE `petition` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.petition_sign
-DROP TABLE IF EXISTS `petition_sign`;
-CREATE TABLE IF NOT EXISTS `petition_sign` (
-  `ownerguid` bigint(20) unsigned NOT NULL,
-  `petitionguid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `playerguid` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `player_account` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`petitionguid`,`playerguid`),
-  KEY `Idx_playerguid` (`playerguid`),
-  KEY `Idx_ownerguid` (`ownerguid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Guild System';
-
--- Дамп данных таблицы characters_dump.petition_sign: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `petition_sign` DISABLE KEYS */;
-/*!40000 ALTER TABLE `petition_sign` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.pet_aura
 DROP TABLE IF EXISTS `pet_aura`;
-CREATE TABLE IF NOT EXISTS `pet_aura` (
+
+CREATE TABLE `pet_aura` (
   `guid` int(10) unsigned NOT NULL COMMENT 'Global Unique Identifier',
   `casterGuid` binary(16) NOT NULL COMMENT 'Full Global Unique Identifier',
   `spell` int(10) unsigned NOT NULL,
@@ -2267,13 +2401,13 @@ CREATE TABLE IF NOT EXISTS `pet_aura` (
   PRIMARY KEY (`guid`,`spell`,`effectMask`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Pet System';
 
--- Дамп данных таблицы characters_dump.pet_aura: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `pet_aura` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pet_aura` ENABLE KEYS */;
+/*Data for the table `pet_aura` */
 
--- Дамп структуры для таблица characters_dump.pet_aura_effect
+/*Table structure for table `pet_aura_effect` */
+
 DROP TABLE IF EXISTS `pet_aura_effect`;
-CREATE TABLE IF NOT EXISTS `pet_aura_effect` (
+
+CREATE TABLE `pet_aura_effect` (
   `guid` int(10) unsigned NOT NULL COMMENT 'Global Unique Identifier',
   `casterGuid` binary(16) NOT NULL COMMENT 'Full Global Unique Identifier',
   `spell` int(10) unsigned NOT NULL,
@@ -2284,26 +2418,26 @@ CREATE TABLE IF NOT EXISTS `pet_aura_effect` (
   PRIMARY KEY (`guid`,`casterGuid`,`spell`,`effectMask`,`effectIndex`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Pet System';
 
--- Дамп данных таблицы characters_dump.pet_aura_effect: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `pet_aura_effect` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pet_aura_effect` ENABLE KEYS */;
+/*Data for the table `pet_aura_effect` */
 
--- Дамп структуры для таблица characters_dump.pet_spell
+/*Table structure for table `pet_spell` */
+
 DROP TABLE IF EXISTS `pet_spell`;
-CREATE TABLE IF NOT EXISTS `pet_spell` (
+
+CREATE TABLE `pet_spell` (
   `guid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier',
   `spell` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'Spell Identifier',
   `active` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`guid`,`spell`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Pet System';
 
--- Дамп данных таблицы characters_dump.pet_spell: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `pet_spell` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pet_spell` ENABLE KEYS */;
+/*Data for the table `pet_spell` */
 
--- Дамп структуры для таблица characters_dump.pet_spell_charges
+/*Table structure for table `pet_spell_charges` */
+
 DROP TABLE IF EXISTS `pet_spell_charges`;
-CREATE TABLE IF NOT EXISTS `pet_spell_charges` (
+
+CREATE TABLE `pet_spell_charges` (
   `guid` int(10) unsigned NOT NULL,
   `categoryId` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'SpellCategory.dbc Identifier',
   `rechargeStart` int(10) unsigned NOT NULL DEFAULT '0',
@@ -2311,13 +2445,13 @@ CREATE TABLE IF NOT EXISTS `pet_spell_charges` (
   KEY `idx_guid` (`guid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.pet_spell_charges: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `pet_spell_charges` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pet_spell_charges` ENABLE KEYS */;
+/*Data for the table `pet_spell_charges` */
 
--- Дамп структуры для таблица characters_dump.pet_spell_cooldown
+/*Table structure for table `pet_spell_cooldown` */
+
 DROP TABLE IF EXISTS `pet_spell_cooldown`;
-CREATE TABLE IF NOT EXISTS `pet_spell_cooldown` (
+
+CREATE TABLE `pet_spell_cooldown` (
   `guid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Global Unique Identifier, Low part',
   `spell` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Spell Identifier',
   `time` int(10) unsigned NOT NULL DEFAULT '0',
@@ -2326,25 +2460,76 @@ CREATE TABLE IF NOT EXISTS `pet_spell_cooldown` (
   PRIMARY KEY (`guid`,`spell`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.pet_spell_cooldown: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `pet_spell_cooldown` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pet_spell_cooldown` ENABLE KEYS */;
+/*Data for the table `pet_spell_cooldown` */
 
--- Дамп структуры для таблица characters_dump.pool_quest_save
+/*Table structure for table `petition` */
+
+DROP TABLE IF EXISTS `petition`;
+
+CREATE TABLE `petition` (
+  `ownerguid` bigint(20) unsigned NOT NULL,
+  `petitionguid` bigint(20) unsigned DEFAULT '0',
+  `name` varchar(24) NOT NULL,
+  PRIMARY KEY (`ownerguid`),
+  UNIQUE KEY `index_ownerguid_petitionguid` (`ownerguid`,`petitionguid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Guild System';
+
+/*Data for the table `petition` */
+
+/*Table structure for table `petition_sign` */
+
+DROP TABLE IF EXISTS `petition_sign`;
+
+CREATE TABLE `petition_sign` (
+  `ownerguid` bigint(20) unsigned NOT NULL,
+  `petitionguid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `playerguid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `player_account` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`petitionguid`,`playerguid`),
+  KEY `Idx_playerguid` (`playerguid`),
+  KEY `Idx_ownerguid` (`ownerguid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Guild System';
+
+/*Data for the table `petition_sign` */
+
+/*Table structure for table `pool_quest_save` */
+
 DROP TABLE IF EXISTS `pool_quest_save`;
-CREATE TABLE IF NOT EXISTS `pool_quest_save` (
+
+CREATE TABLE `pool_quest_save` (
   `pool_id` int(10) unsigned NOT NULL DEFAULT '0',
   `quest_id` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`pool_id`,`quest_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.pool_quest_save: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `pool_quest_save` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pool_quest_save` ENABLE KEYS */;
+/*Data for the table `pool_quest_save` */
 
--- Дамп структуры для таблица characters_dump.pvpstats_battlegrounds
+insert  into `pool_quest_save`(`pool_id`,`quest_id`) values 
+(346,29349),
+(347,26556),
+(348,25157),
+(349,25159),
+(350,26420),
+(351,26183),
+(352,29351),
+(353,29343),
+(354,29358),
+(355,29332),
+(356,29361),
+(357,29314),
+(358,29323),
+(359,11377),
+(360,11668),
+(361,13836),
+(362,13103),
+(363,12958),
+(364,31336);
+
+/*Table structure for table `pvpstats_battlegrounds` */
+
 DROP TABLE IF EXISTS `pvpstats_battlegrounds`;
-CREATE TABLE IF NOT EXISTS `pvpstats_battlegrounds` (
+
+CREATE TABLE `pvpstats_battlegrounds` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `winner_faction` tinyint(4) NOT NULL,
   `bracket_id` tinyint(3) unsigned NOT NULL,
@@ -2353,13 +2538,13 @@ CREATE TABLE IF NOT EXISTS `pvpstats_battlegrounds` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.pvpstats_battlegrounds: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `pvpstats_battlegrounds` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pvpstats_battlegrounds` ENABLE KEYS */;
+/*Data for the table `pvpstats_battlegrounds` */
 
--- Дамп структуры для таблица characters_dump.pvpstats_players
+/*Table structure for table `pvpstats_players` */
+
 DROP TABLE IF EXISTS `pvpstats_players`;
-CREATE TABLE IF NOT EXISTS `pvpstats_players` (
+
+CREATE TABLE `pvpstats_players` (
   `battleground_id` bigint(20) unsigned NOT NULL,
   `character_guid` bigint(20) unsigned NOT NULL,
   `winner` bit(1) NOT NULL,
@@ -2377,13 +2562,13 @@ CREATE TABLE IF NOT EXISTS `pvpstats_players` (
   PRIMARY KEY (`battleground_id`,`character_guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.pvpstats_players: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `pvpstats_players` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pvpstats_players` ENABLE KEYS */;
+/*Data for the table `pvpstats_players` */
 
--- Дамп структуры для таблица characters_dump.quest_tracker
+/*Table structure for table `quest_tracker` */
+
 DROP TABLE IF EXISTS `quest_tracker`;
-CREATE TABLE IF NOT EXISTS `quest_tracker` (
+
+CREATE TABLE `quest_tracker` (
   `id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `character_guid` bigint(20) unsigned NOT NULL DEFAULT '0',
   `quest_accept_time` datetime NOT NULL,
@@ -2395,24 +2580,24 @@ CREATE TABLE IF NOT EXISTS `quest_tracker` (
   PRIMARY KEY (`id`,`character_guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.quest_tracker: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `quest_tracker` DISABLE KEYS */;
-/*!40000 ALTER TABLE `quest_tracker` ENABLE KEYS */;
+/*Data for the table `quest_tracker` */
 
--- Дамп структуры для таблица characters_dump.reserved_name
+/*Table structure for table `reserved_name` */
+
 DROP TABLE IF EXISTS `reserved_name`;
-CREATE TABLE IF NOT EXISTS `reserved_name` (
+
+CREATE TABLE `reserved_name` (
   `name` varchar(12) NOT NULL DEFAULT '',
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Player Reserved Names';
 
--- Дамп данных таблицы characters_dump.reserved_name: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `reserved_name` DISABLE KEYS */;
-/*!40000 ALTER TABLE `reserved_name` ENABLE KEYS */;
+/*Data for the table `reserved_name` */
 
--- Дамп структуры для таблица characters_dump.updates
+/*Table structure for table `updates` */
+
 DROP TABLE IF EXISTS `updates`;
-CREATE TABLE IF NOT EXISTS `updates` (
+
+CREATE TABLE `updates` (
   `name` varchar(200) NOT NULL COMMENT 'filename with extension of the update.',
   `hash` char(40) DEFAULT '' COMMENT 'sha1 hash of the sql file.',
   `state` enum('RELEASED','ARCHIVED') NOT NULL DEFAULT 'RELEASED' COMMENT 'defines if an update is released or archived.',
@@ -2421,63 +2606,488 @@ CREATE TABLE IF NOT EXISTS `updates` (
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='List of all applied updates in this database.';
 
--- Дамп структуры для таблица characters_dump.updates_include
+/*Data for the table `updates` */
+
+insert  into `updates`(`name`,`hash`,`state`,`timestamp`,`speed`) values 
+('2019_11_30_00_characters.sql','D0678E62B651AECA60C2DD6989BF80BD999AD12B','ARCHIVED','2020-02-25 16:34:45',101),
+('2020_01_13_00_characters.sql','0D0F7AA393B7217CE89093AA746E158057086610','ARCHIVED','2020-02-25 16:34:46',52),
+('2020_02_17_00_characters.sql','14460565E48ACC3AC753A183E51A9941B6A21385','ARCHIVED','2020-02-25 16:34:46',44),
+('2020_02_19_00_characters.sql','2A1D9F03C7C3674A99D2743E1FE75DF2FF368306','ARCHIVED','2020-02-25 16:34:46',256),
+('2020_02_19_01_characters.sql','42A802F914EDDAC08D4991D8C4FF1AEB201A6300','ARCHIVED','2020-02-25 16:34:46',89),
+('2020_02_25_00_characters.sql','0ACDD35EC9745231BCFA701B78056DEF94D0CC53','RELEASED','2020-02-25 16:51:04',36);
+
+/*Table structure for table `updates_include` */
+
 DROP TABLE IF EXISTS `updates_include`;
-CREATE TABLE IF NOT EXISTS `updates_include` (
+
+CREATE TABLE `updates_include` (
   `path` varchar(200) NOT NULL COMMENT 'directory to include. $ means relative to the source directory.',
   `state` enum('RELEASED','ARCHIVED') NOT NULL DEFAULT 'RELEASED' COMMENT 'defines if the directory contains released or archived updates.',
   PRIMARY KEY (`path`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='List of directories where we want to include sql updates.';
 
--- Дамп данных таблицы characters_dump.updates_include: 1 rows
-/*!40000 ALTER TABLE `updates_include` DISABLE KEYS */;
-INSERT INTO `updates_include` (`path`, `state`) VALUES
-	('$/sql/ashamane/characters', 'RELEASED');
-/*!40000 ALTER TABLE `updates_include` ENABLE KEYS */;
+/*Data for the table `updates_include` */
 
--- Дамп структуры для таблица characters_dump.warden_action
+insert  into `updates_include`(`path`,`state`) values 
+('$/sql/ashamane/characters','RELEASED'),
+('$/sql/ashamane/old/characters','ARCHIVED');
+
+/*Table structure for table `warden_action` */
+
 DROP TABLE IF EXISTS `warden_action`;
-CREATE TABLE IF NOT EXISTS `warden_action` (
+
+CREATE TABLE `warden_action` (
   `wardenId` smallint(5) unsigned NOT NULL,
   `action` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`wardenId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы characters_dump.warden_action: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `warden_action` DISABLE KEYS */;
-/*!40000 ALTER TABLE `warden_action` ENABLE KEYS */;
+/*Data for the table `warden_action` */
 
--- Дамп структуры для таблица characters_dump.worldstates
-DROP TABLE IF EXISTS `worldstates`;
-CREATE TABLE IF NOT EXISTS `worldstates` (
-  `entry` int(10) unsigned NOT NULL DEFAULT '0',
-  `value` int(10) unsigned NOT NULL DEFAULT '0',
-  `comment` tinytext,
-  PRIMARY KEY (`entry`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Variable Saves';
+/*Table structure for table `world_quest` */
 
--- Дамп данных таблицы characters_dump.worldstates: ~4 rows (приблизительно)
-/*!40000 ALTER TABLE `worldstates` DISABLE KEYS */;
-INSERT INTO `worldstates` (`entry`, `value`, `comment`) VALUES
-	(20001, 0, 'NextArenaPointDistributionTime'),
-	(20002, 0, 'NextWeeklyQuestResetTime'),
-	(20003, 0, 'NextBGRandomDailyResetTime'),
-	(20004, 0, 'cleaning_flags');
-/*!40000 ALTER TABLE `worldstates` ENABLE KEYS */;
-
--- Дамп структуры для таблица characters_dump.world_quest
 DROP TABLE IF EXISTS `world_quest`;
-CREATE TABLE IF NOT EXISTS `world_quest` (
+
+CREATE TABLE `world_quest` (
   `id` int(10) unsigned NOT NULL,
   `rewardid` int(10) unsigned NOT NULL,
   `starttime` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Дамп данных таблицы characters_dump.world_quest: ~0 rows (приблизительно)
-/*!40000 ALTER TABLE `world_quest` DISABLE KEYS */;
-/*!40000 ALTER TABLE `world_quest` ENABLE KEYS */;
+/*Data for the table `world_quest` */
 
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+insert  into `world_quest`(`id`,`rewardid`,`starttime`) values 
+(41013,78,1582638000),
+(41077,53,1582638000),
+(41205,50,1582638000),
+(41207,40,1582638000),
+(41210,50,1582638000),
+(41273,43,1582638000),
+(41308,65,1582638000),
+(41324,21,1582638000),
+(41338,21,1582638000),
+(41340,21,1582638000),
+(41344,85,1582638000),
+(41435,50,1582638000),
+(41442,9,1582638000),
+(41528,22,1582638000),
+(41531,22,1582638000),
+(41670,0,1582638000),
+(41680,0,1582638000),
+(41857,13,1582638000),
+(41956,1,1582638000),
+(41980,71,1582638000),
+(42108,53,1582638000),
+(42233,0,1582638000),
+(42234,0,1582638000),
+(42275,15,1582638000),
+(42421,0,1582638000),
+(42511,14,1582638000),
+(42623,65,1582638000),
+(42636,8,1582638000),
+(42711,46,1582638000),
+(42712,13,1582638000),
+(42744,13,1582638000),
+(42780,13,1582638000),
+(42797,0,1582638000),
+(42924,13,1582638000),
+(43430,76,1582638000),
+(43456,10,1582638000),
+(43460,76,1582638000),
+(43512,70,1582638000),
+(43758,2,1582638000),
+(43778,1,1582638000),
+(44016,69,1582638000),
+(44050,0,1582638000),
+(44067,0,1582638000),
+(44304,75,1582638000),
+(44780,75,1582638000),
+(44788,4,1582638000),
+(44805,24,1582638000),
+(44813,25,1582638000),
+(44823,10,1582638000),
+(44892,60,1582638000),
+(44923,28,1582638000),
+(44939,67,1582638000),
+(45035,46,1582638000),
+(45048,32,1582638000),
+(45070,20,1582638000),
+(45743,59,1582638000),
+(45878,18,1582638000),
+(45988,64,1582638000),
+(46073,69,1582638000),
+(46112,36,1582638000),
+(46138,84,1582638000),
+(46180,19,1582638000),
+(46189,0,1582638000),
+(46190,0,1582638000),
+(46507,67,1582638000),
+(46755,25,1582638000),
+(46945,0,1582638000),
+(47646,47,1582638000),
+(48098,76,1582638000),
+(48363,84,1582638000),
+(48373,0,1582638000),
+(48640,28,1582638000),
+(48780,59,1582638000),
+(48837,0,1582638000),
+(48953,13,1582638000),
+(49043,45,1582638000),
+(49053,36,1582638000),
+(49056,36,1582638000),
+(49068,34,1582638000),
+(49091,0,1582638000),
+(49413,48,1582638000),
+(49994,18,1582638000),
+(50322,8,1582638000),
+(50459,0,1582638000),
+(50483,0,1582638000),
+(50505,81,1582638000),
+(50509,75,1582638000),
+(50511,28,1582638000),
+(50512,24,1582638000),
+(50564,58,1582638000),
+(50574,15,1582638000),
+(50604,0,1582638000),
+(50605,0,1582638000),
+(50689,53,1582638000),
+(50747,49,1582638000),
+(50756,10,1582638000),
+(50853,0,1582638000),
+(50858,59,1582638000),
+(50885,57,1582638000),
+(51006,9,1582638000),
+(51023,34,1582638000),
+(51025,76,1582638000),
+(51032,32,1582638000),
+(51033,1,1582638000),
+(51035,33,1582638000),
+(51064,0,1582638000),
+(51081,28,1582638000),
+(51084,7,1582638000),
+(51092,82,1582638000),
+(51096,81,1582638000),
+(51097,25,1582638000),
+(51103,25,1582638000),
+(51106,60,1582638000),
+(51185,0,1582638000),
+(51213,13,1582638000),
+(51287,13,1582638000),
+(51379,13,1582638000),
+(51406,32,1582638000),
+(51411,0,1582638000),
+(51412,0,1582638000),
+(51505,28,1582638000),
+(51541,74,1582638000),
+(51565,48,1582638000),
+(51577,20,1582638000),
+(51586,0,1582638000),
+(51613,0,1582638000),
+(51622,47,1582638000),
+(51627,0,1582638000),
+(51630,0,1582638000),
+(51633,0,1582638000),
+(51640,0,1582638000),
+(51641,0,1582638000),
+(51651,57,1582638000),
+(51652,25,1582638000),
+(51706,33,1582638000),
+(51738,71,1582638000),
+(51783,2,1582638000),
+(51831,38,1582638000),
+(51843,7,1582638000),
+(51874,68,1582638000),
+(51890,27,1582638000),
+(51891,68,1582638000),
+(51895,24,1582638000),
+(51919,26,1582638000),
+(51921,68,1582638000),
+(51933,82,1582638000),
+(51988,30,1582638000),
+(51995,53,1582638000),
+(52004,49,1582638000),
+(52009,36,1582638000),
+(52011,46,1582638000),
+(52057,40,1582638000),
+(52124,8,1582638000),
+(52145,33,1582638000),
+(52157,39,1582638000),
+(52165,56,1582638000),
+(52181,23,1582638000),
+(52198,63,1582638000),
+(52209,15,1582638000),
+(52230,10,1582638000),
+(52249,2,1582638000),
+(52309,26,1582638000),
+(52310,29,1582638000),
+(52325,45,1582638000),
+(52336,87,1582638000),
+(52351,55,1582638000),
+(52355,0,1582638000),
+(52358,0,1582638000),
+(52363,0,1582638000),
+(52375,51,1582638000),
+(52379,76,1582638000),
+(52383,2,1582638000),
+(52389,0,1582638000),
+(52408,84,1582638000),
+(52414,0,1582638000),
+(52415,0,1582638000),
+(52416,0,1582638000),
+(52417,0,1582638000),
+(52420,0,1582638000),
+(52424,0,1582638000),
+(52425,0,1582638000),
+(52454,13,1582638000),
+(52455,36,1582638000),
+(52458,13,1582638000),
+(52471,36,1582638000),
+(52832,0,1582638000),
+(52864,36,1582638000),
+(52871,0,1582638000),
+(52874,0,1582638000),
+(52889,74,1582638000),
+(52938,45,1582638000),
+(52951,0,1582638000),
+(52964,64,1582638000),
+(53274,22,1582638000),
+(53314,50,1582638000);
+
+/*Table structure for table `worldstates` */
+
+DROP TABLE IF EXISTS `worldstates`;
+
+CREATE TABLE `worldstates` (
+  `entry` int(10) unsigned NOT NULL DEFAULT '0',
+  `value` int(10) unsigned NOT NULL DEFAULT '0',
+  `comment` tinytext,
+  PRIMARY KEY (`entry`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Variable Saves';
+
+/*Data for the table `worldstates` */
+
+insert  into `worldstates`(`entry`,`value`,`comment`) values 
+(1,0,NULL),
+(2,0,NULL),
+(3,0,NULL),
+(4,0,NULL),
+(5,0,NULL),
+(6,0,NULL),
+(7,0,NULL),
+(8,0,NULL),
+(9,0,NULL),
+(10,0,NULL),
+(11,0,NULL),
+(12,0,NULL),
+(13,0,NULL),
+(14,0,NULL),
+(15,0,NULL),
+(16,0,NULL),
+(17,0,NULL),
+(18,0,NULL),
+(19,0,NULL),
+(20,0,NULL),
+(21,0,NULL),
+(22,0,NULL),
+(23,0,NULL),
+(24,0,NULL),
+(25,0,NULL),
+(26,0,NULL),
+(27,0,NULL),
+(28,0,NULL),
+(29,1582637931,NULL),
+(30,0,NULL),
+(31,0,NULL),
+(32,0,NULL),
+(33,1582638010,NULL),
+(34,0,NULL),
+(35,0,NULL),
+(36,0,NULL),
+(37,0,NULL),
+(38,1582637931,NULL),
+(39,0,NULL),
+(40,0,NULL),
+(41,0,NULL),
+(42,0,NULL),
+(43,0,NULL),
+(44,0,NULL),
+(45,0,NULL),
+(46,0,NULL),
+(47,0,NULL),
+(48,0,NULL),
+(49,0,NULL),
+(50,0,NULL),
+(51,0,NULL),
+(52,0,NULL),
+(53,0,NULL),
+(54,0,NULL),
+(55,0,NULL),
+(56,0,NULL),
+(57,0,NULL),
+(58,0,NULL),
+(59,0,NULL),
+(60,0,NULL),
+(61,0,NULL),
+(62,0,NULL),
+(63,0,NULL),
+(64,0,NULL),
+(65,0,NULL),
+(66,0,NULL),
+(67,1582638010,NULL),
+(68,0,NULL),
+(69,0,NULL),
+(70,0,NULL),
+(71,0,NULL),
+(72,0,NULL),
+(73,0,NULL),
+(74,0,NULL),
+(75,0,NULL),
+(76,0,NULL),
+(77,0,NULL),
+(78,0,NULL),
+(79,0,NULL),
+(80,0,NULL),
+(81,0,NULL),
+(82,0,NULL),
+(83,0,NULL),
+(84,0,NULL),
+(85,0,NULL),
+(86,0,NULL),
+(87,0,NULL),
+(88,0,NULL),
+(89,0,NULL),
+(90,0,NULL),
+(91,0,NULL),
+(92,0,NULL),
+(93,0,NULL),
+(94,0,NULL),
+(95,0,NULL),
+(96,0,NULL),
+(97,0,NULL),
+(98,0,NULL),
+(99,0,NULL),
+(100,1582637931,NULL),
+(101,0,NULL),
+(102,0,NULL),
+(103,0,NULL),
+(104,0,NULL),
+(105,0,NULL),
+(106,0,NULL),
+(107,0,NULL),
+(108,0,NULL),
+(109,0,NULL),
+(110,0,NULL),
+(111,0,NULL),
+(112,0,NULL),
+(113,0,NULL),
+(114,0,NULL),
+(115,0,NULL),
+(116,0,NULL),
+(117,0,NULL),
+(118,0,NULL),
+(119,0,NULL),
+(120,0,NULL),
+(121,0,NULL),
+(122,0,NULL),
+(123,0,NULL),
+(124,0,NULL),
+(125,0,NULL),
+(126,0,NULL),
+(127,0,NULL),
+(128,0,NULL),
+(129,0,NULL),
+(130,0,NULL),
+(131,0,NULL),
+(132,0,NULL),
+(133,0,NULL),
+(134,0,NULL),
+(135,0,NULL),
+(136,0,NULL),
+(137,0,NULL),
+(138,0,NULL),
+(139,0,NULL),
+(140,0,NULL),
+(141,0,NULL),
+(142,0,NULL),
+(143,0,NULL),
+(144,0,NULL),
+(145,0,NULL),
+(146,0,NULL),
+(147,0,NULL),
+(148,0,NULL),
+(149,0,NULL),
+(150,0,NULL),
+(151,0,NULL),
+(152,0,NULL),
+(153,0,NULL),
+(154,0,NULL),
+(155,0,NULL),
+(156,0,NULL),
+(157,0,NULL),
+(158,0,NULL),
+(159,0,NULL),
+(160,0,NULL),
+(161,0,NULL),
+(162,0,NULL),
+(163,0,NULL),
+(164,0,NULL),
+(165,0,NULL),
+(166,0,NULL),
+(167,0,NULL),
+(168,0,NULL),
+(169,0,NULL),
+(170,0,NULL),
+(171,0,NULL),
+(172,0,NULL),
+(173,0,NULL),
+(174,0,NULL),
+(175,0,NULL),
+(176,0,NULL),
+(177,0,NULL),
+(178,0,NULL),
+(179,0,NULL),
+(180,0,NULL),
+(181,0,NULL),
+(182,0,NULL),
+(183,0,NULL),
+(184,0,NULL),
+(185,0,NULL),
+(186,0,NULL),
+(187,0,NULL),
+(188,0,NULL),
+(189,0,NULL),
+(190,0,NULL),
+(191,0,NULL),
+(192,0,NULL),
+(193,0,NULL),
+(194,0,NULL),
+(195,0,NULL),
+(196,0,NULL),
+(197,0,NULL),
+(198,0,NULL),
+(199,0,NULL),
+(200,0,NULL),
+(3781,9000000,NULL),
+(3801,0,NULL),
+(3802,1,NULL),
+(5332,600000,NULL),
+(5334,1,NULL),
+(5344,0,NULL),
+(5384,0,NULL),
+(5385,1,NULL),
+(5387,1,NULL),
+(5546,0,NULL),
+(5547,0,NULL),
+(20001,1583204400,'NextArenaPointDistributionTime'),
+(20002,1583242740,'NextWeeklyQuestResetTime'),
+(20003,1582686000,'NextBGRandomDailyResetTime'),
+(20004,0,'cleaning_flags'),
+(20006,1582686000,NULL),
+(20007,1583010000,NULL),
+(20050,1,NULL);
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

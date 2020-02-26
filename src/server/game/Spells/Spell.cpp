@@ -4726,26 +4726,43 @@ void Spell::TakePower()
     {
         Powers powerType = Powers(cost.Power);
         bool hit = true;
+
         if (m_caster->IsPlayer())
         {
-            if (powerType == POWER_RAGE || powerType == POWER_ENERGY || powerType == POWER_RUNES)
+            ObjectGuid targetGUID = m_targets.GetUnitTargetGUID();
+            if (!targetGUID.IsEmpty())
             {
-                ObjectGuid targetGUID = m_targets.GetUnitTargetGUID();
-                if (!targetGUID.IsEmpty())
+                for (std::vector<TargetInfo>::iterator ihit = m_UniqueTargetInfo.begin(); ihit != m_UniqueTargetInfo.end(); ++ihit)
                 {
-                    for (std::vector<TargetInfo>::iterator ihit = m_UniqueTargetInfo.begin(); ihit != m_UniqueTargetInfo.end(); ++ihit)
+                    if (ihit->targetGUID == targetGUID)
                     {
-                        if (ihit->targetGUID == targetGUID)
+                        if (ihit->missCondition != SPELL_MISS_NONE && ihit->missCondition != SPELL_MISS_IMMUNE)
                         {
-                            if (ihit->missCondition != SPELL_MISS_NONE)
+                            switch (powerType)
                             {
-                                hit = false;
-                                //lower spell cost on fail (by talent aura)
-                                if (Player* modOwner = m_caster->ToPlayer()->GetSpellModOwner())
-                                    modOwner->ApplySpellMod(m_spellInfo->Id, SPELLMOD_SPELL_COST_REFUND_ON_FAIL, cost.Amount);
+                                case POWER_CHI:
+                                case POWER_HOLY_POWER:
+                                case POWER_COMBO_POINTS:
+                                case POWER_RUNES:
+                                case POWER_RUNIC_POWER:
+                                    cost.Amount = 0;
+                                    break;
+                                case POWER_ENERGY:
+                                case POWER_FOCUS:
+                                case POWER_RAGE:
+                                case POWER_FURY:
+                                case POWER_MAELSTROM:
+                                    cost.Amount = CalculatePct(cost.Amount, 20);
+                                    break;
+                                default:
+                                    break;
                             }
-                            break;
+                            hit = false;
+                            //lower spell cost on fail (by talent aura)
+                            if (Player* modOwner = m_caster->ToPlayer()->GetSpellModOwner())
+                                modOwner->ApplySpellMod(m_spellInfo->Id, SPELLMOD_SPELL_COST_REFUND_ON_FAIL, cost.Amount);
                         }
+                        break;
                     }
                 }
             }

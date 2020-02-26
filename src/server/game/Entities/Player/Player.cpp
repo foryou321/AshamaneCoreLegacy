@@ -2121,15 +2121,11 @@ void Player::Regenerate(Powers power)
     }
 
     if (m_regenTimerCount >= 2000)
-    {
         SetPower(power, curValue);
-    }
     else
     {
         if (curValue == 0)
-        {
             SetPower(power, curValue);
-        }
         else
         {
             SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Power, powerIndex), curValue);

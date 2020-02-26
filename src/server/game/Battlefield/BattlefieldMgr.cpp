@@ -74,9 +74,9 @@ void BattlefieldMgr::AddZone(uint32 zoneId, Battlefield* bf)
     _battlefieldMap[zoneId] = bf;
 }
 
-void BattlefieldMgr::HandlePlayerEnterZone(Player* player, Area* zone)
+void BattlefieldMgr::HandlePlayerEnterZone(Player* player, uint32 zoneId)
 {
-    BattlefieldMap::iterator itr = _battlefieldMap.find(zone->GetId());
+    BattlefieldMap::iterator itr = _battlefieldMap.find(zoneId);
     if (itr == _battlefieldMap.end())
         return;
 
@@ -84,13 +84,13 @@ void BattlefieldMgr::HandlePlayerEnterZone(Player* player, Area* zone)
     if (!bf->IsEnabled() || bf->HasPlayer(player))
         return;
 
-    bf->HandlePlayerEnterZone(player, zone);
+    bf->HandlePlayerEnterZone(player, zoneId);
     TC_LOG_DEBUG("bg.battlefield", "%s entered battlefield id %u", player->GetGUID().ToString().c_str(), bf->GetTypeId());
 }
 
-void BattlefieldMgr::HandlePlayerLeaveZone(Player* player, Area* zone)
+void BattlefieldMgr::HandlePlayerLeaveZone(Player* player, uint32 zoneId)
 {
-    BattlefieldMap::iterator itr = _battlefieldMap.find(zone->GetId());
+    BattlefieldMap::iterator itr = _battlefieldMap.find(zoneId);
     if (itr == _battlefieldMap.end())
         return;
 
@@ -98,7 +98,7 @@ void BattlefieldMgr::HandlePlayerLeaveZone(Player* player, Area* zone)
     if (!itr->second->HasPlayer(player))
         return;
 
-    itr->second->HandlePlayerLeaveZone(player, zone);
+    itr->second->HandlePlayerLeaveZone(player, zoneId);
     TC_LOG_DEBUG("bg.battlefield", "Player %s left battlefield id %u", player->GetGUID().ToString().c_str(), itr->second->GetTypeId());
 }
 

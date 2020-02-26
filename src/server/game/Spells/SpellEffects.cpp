@@ -6071,7 +6071,7 @@ void Spell::EffectUpdateZoneAurasAndPhases(SpellEffIndex /*effIndex*/)
     if (!unitTarget || unitTarget->GetTypeId() != TYPEID_PLAYER)
         return;
 
-    unitTarget->ToPlayer()->UpdateAreaDependentAuras();
+    unitTarget->ToPlayer()->UpdateAreaDependentAuras(unitTarget->GetAreaId());
 }
 
 void Spell::EffectGiveExperience(SpellEffIndex /*effIndex*/)

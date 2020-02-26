@@ -4469,5 +4469,8 @@ void Map::UpdateAreaDependentAuras()
     for (Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
         if (Player* player = itr->GetSource())
             if (player->IsInWorld())
-                player->UpdateAreaDependentAuras();
+            {
+                player->UpdateAreaDependentAuras(player->GetAreaId());
+                player->UpdateZoneDependentAuras(player->GetZoneId());
+            }
 }

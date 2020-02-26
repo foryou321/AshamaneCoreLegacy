@@ -91,7 +91,7 @@ public:
     void Enter() override;
     void Leave() override;
 
-    bool IsAllowedArea(AreaTableEntry const* area) const override;
+    bool IsAllowedArea(uint32 areaID) const override;
 
     // Plots
     std::vector<Plot*> GetPlots();

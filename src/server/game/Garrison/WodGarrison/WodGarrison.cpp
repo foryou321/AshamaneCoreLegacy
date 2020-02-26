@@ -254,9 +254,9 @@ void WodGarrison::Leave()
             uint32 futureAreaId = sMapMgr->GetAreaId(_owner->GetPhaseShift(), map->ParentMapID, _owner->GetPositionX(), _owner->GetPositionY(), _owner->GetPositionZ());
 
             // This check prevent infinite teleport if new map don't exactly overlap current map area
-            if (AreaTableEntry const* futureArea = sAreaTableStore.LookupEntry(futureAreaId))
+            /*if (AreaTableEntry const* futureArea = sAreaTableStore.LookupEntry(futureAreaId))
                 if (IsAllowedArea(futureArea))
-                    return;
+                    return;*/
 
             Garrison::Leave();
             _owner->SeamlessTeleportToMap(map->ParentMapID);
@@ -266,13 +266,12 @@ void WodGarrison::Leave()
     }
 }
 
-bool WodGarrison::IsAllowedArea(AreaTableEntry const* area) const
+bool WodGarrison::IsAllowedArea(uint32 areaID) const
 {
-    if (!area)
-        return false;
-
-    switch (area->ID)
+    if (AreaTableEntry const* area = sAreaTableStore.LookupEntry(areaID))
     {
+        switch (areaID)
+        {
         case 7004: // Horde Garrison
         //case 7765: // Horde Shipyard
         case 7078: // Alliance Garrison
@@ -280,9 +279,12 @@ bool WodGarrison::IsAllowedArea(AreaTableEntry const* area) const
             return true;
         default:
             break;
+        }
+
+        area->Flags[1] & AREA_FLAG_GARRISON && area->ContinentID == MAP_DRAENOR;
     }
 
-    return area->Flags[1] & AREA_FLAG_GARRISON && area->ContinentID == MAP_DRAENOR;
+    return true;
 }
 
 std::vector<WodGarrison::Plot*> WodGarrison::GetPlots()

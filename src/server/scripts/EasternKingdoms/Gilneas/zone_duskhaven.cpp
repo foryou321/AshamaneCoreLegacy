@@ -361,14 +361,20 @@ public:
             if (m_videoStarted)
                 return;
 
+            uint32 zoneId = 0;
+            uint32 areaId = 0;
             if (Player* player = me->SelectNearestPlayer(10.0f))
                 if (!HasPlayer(player->GetGUID()))
                     if (player->GetQuestStatus(QUEST_LAST_STAND) == QUEST_STATUS_REWARDED && player->GetQuestStatus(QUEST_LAST_CHANCE_AT_HUMANITY) == QUEST_STATUS_NONE)
-                        if (player->GetAreaId() == AREA_GILNEAS_DUSKHAVEN)
+                    {
+                        player->GetZoneAndAreaId(zoneId, areaId);
+
+                        if (areaId == AREA_GILNEAS_DUSKHAVEN)
                         {
                             m_playerGUID = player->GetGUID();
                             return;
                         }
+                    }
 
             m_playerGUID = ObjectGuid::Empty;
         }

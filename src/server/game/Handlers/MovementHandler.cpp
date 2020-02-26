@@ -206,7 +206,9 @@ void WorldSession::HandleMoveWorldportAck()
         _player->RemoveAurasByType(SPELL_AURA_MOUNTED);
 
     // update zone immediately, otherwise leave channel will cause crash in mtmap
-    GetPlayer()->UpdateArea(GetPlayer()->GetAreaIdFromPosition());
+    uint32 newzone, newarea;
+    GetPlayer()->GetZoneAndAreaId(newzone, newarea);
+    GetPlayer()->UpdateZone(newzone, newarea);
 
     // honorless target
     if (GetPlayer()->pvpInfo.IsHostile)
@@ -273,11 +275,14 @@ void WorldSession::HandleMoveTeleportAck(WorldPackets::Movement::MoveTeleportAck
     WorldLocation const& dest = plMover->GetTeleportDest();
 
     plMover->UpdatePosition(dest, true);
-    plMover->UpdateArea(plMover->GetAreaIdFromPosition());
     plMover->SetFallInformation(0, GetPlayer()->GetPositionZ());
+	
+    uint32 newzone, newarea;
+    plMover->GetZoneAndAreaId(newzone, newarea);
+    plMover->UpdateZone(newzone, newarea);
 
     // new zone
-    if (old_zone != plMover->GetZoneId())
+    if (old_zone != newzone)
     {
         // honorless target
         if (plMover->pvpInfo.IsHostile)

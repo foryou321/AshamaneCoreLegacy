@@ -38,7 +38,7 @@ public:
     bool Create(uint32 garrSiteId) override;
     void Delete() override;
 
-    bool IsAllowedArea(AreaTableEntry const* area) const override;
+    bool IsAllowedArea(uint32 areaID) const override;
 };
 
 #endif // WarCampaign_h__

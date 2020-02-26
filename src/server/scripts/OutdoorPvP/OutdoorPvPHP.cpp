@@ -78,7 +78,7 @@ bool OutdoorPvPHP::SetupOutdoorPvP()
     return true;
 }
 
-void OutdoorPvPHP::HandlePlayerEnterZone(Player* player, Area* zone)
+void OutdoorPvPHP::HandlePlayerEnterZone(Player* player, uint32 zone)
 {
     // add buffs
     if (player->GetTeam() == ALLIANCE)
@@ -94,7 +94,7 @@ void OutdoorPvPHP::HandlePlayerEnterZone(Player* player, Area* zone)
     OutdoorPvP::HandlePlayerEnterZone(player, zone);
 }
 
-void OutdoorPvPHP::HandlePlayerLeaveZone(Player* player, Area* zone)
+void OutdoorPvPHP::HandlePlayerLeaveZone(Player* player, uint32 zone)
 {
     // remove buffs
     if (player->GetTeam() == ALLIANCE)

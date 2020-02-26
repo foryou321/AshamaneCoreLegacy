@@ -17,7 +17,6 @@
  */
 
 #include "ScriptMgr.h"
-#include "Area.h"
 #include "AreaTrigger.h"
 #include "AreaTriggerAI.h"
 #include "Chat.h"
@@ -2377,12 +2376,12 @@ void ScriptMgr::OnPlayerBindToInstance(Player* player, Difficulty difficulty, ui
     FOREACH_SCRIPT(PlayerScript)->OnBindToInstance(player, difficulty, mapid, permanent, extendState);
 }
 
-void ScriptMgr::OnPlayerUpdateZone(Player* player, Area* newArea, Area* oldArea)
+void ScriptMgr::OnPlayerUpdateZone(Player* player, uint32 newZone, uint32 oldZone, uint32 newArea)
 {
-    FOREACH_SCRIPT(PlayerScript)->OnUpdateZone(player, newArea, oldArea);
+    FOREACH_SCRIPT(PlayerScript)->OnUpdateZone(player, newZone, oldZone, newArea);
 }
 
-void ScriptMgr::OnPlayerUpdateArea(Player* player, Area* newArea, Area* oldArea)
+void ScriptMgr::OnPlayerUpdateArea(Player* player, uint32 newArea, uint32 oldArea)
 {
     FOREACH_SCRIPT(PlayerScript)->OnUpdateArea(player, newArea, oldArea);
 }

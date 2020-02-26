@@ -60,9 +60,11 @@ void ClassHall::Delete()
     Garrison::Delete();
 }
 
-bool ClassHall::IsAllowedArea(AreaTableEntry const* area) const
+bool ClassHall::IsAllowedArea(uint32 areaID) const
 {
-    if (!area)
+    AreaTableEntry const* area = sAreaTableStore.LookupEntry(areaID);
+
+    if(!area)
         return false;
 
     // TODO : Find a better way to handle this

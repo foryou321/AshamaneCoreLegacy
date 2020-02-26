@@ -281,10 +281,8 @@ bool WodGarrison::IsAllowedArea(uint32 areaID) const
             break;
         }
 
-        area->Flags[1] & AREA_FLAG_GARRISON && area->ContinentID == MAP_DRAENOR;
+        return area->Flags[1] & AREA_FLAG_GARRISON && area->ContinentID == MAP_DRAENOR;
     }
-
-    return true;
 }
 
 std::vector<WodGarrison::Plot*> WodGarrison::GetPlots()

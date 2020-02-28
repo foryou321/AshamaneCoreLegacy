@@ -20,7 +20,7 @@
 
 bfa | legion
 :------------: | :------------:
-[![bfa Build Status](https://travis-ci.com/ReyDonovan/AshamaneCore.svg?branch=bfa)](https://travis-ci.com/ReyDonovan/AshamaneCore) | [![legion Build Status](https://travis-ci.com/ReyDonovan/AshamaneCore.svg?branch=legion)](https://travis-ci.com/ReyDonovan/AshamaneCore)
+[![bfa Build Status](https://travis-ci.com/ReyDonovan/AshamaneCoreLegacy.svg?branch=bfa)](https://travis-ci.com/ReyDonovan/AshamaneCore) | [![legion Build Status](https://travis-ci.com/ReyDonovan/AshamaneCoreLegacy.svg?branch=legion)](https://travis-ci.com/ReyDonovan/AshamaneCore)
 
 ## Introduction
 

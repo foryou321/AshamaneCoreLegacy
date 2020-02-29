@@ -4747,10 +4747,12 @@ class spell_item_demon_hunters_aspect : public AuraScript
     void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
         if (Unit* player = GetTarget()->ToPlayer())
+        {
             if (player->getGender() == GENDER_MALE)
                 player->SetDisplayId(MaleModels[urand(0, 10)]);
-             else
+            else
                 player->SetDisplayId(20126);
+        }
     }
 
     void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)

@@ -4835,13 +4835,13 @@ class spell_gen_gilneas_prison_periodic_dummy : public SpellScriptLoader
                 }
             }
 
-            void Register()
+            void Register() override
             {
                 OnEffectHitTarget += SpellEffectFn(spell_gen_gilneas_prison_periodic_dummy_SpellScript::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
             }
         };
 
-        SpellScript* GetSpellScript() const
+        SpellScript* GetSpellScript() const override
         {
             return new spell_gen_gilneas_prison_periodic_dummy_SpellScript();
         }
@@ -4877,13 +4877,13 @@ class spell_gen_throw_torch : public SpellScriptLoader
                         player->KilledMonsterCredit(CREDIT_ROUND_UP_WORGEN);
             }
 
-            void Register()
+            void Register() override
             {
                 BeforeHit += BeforeSpellHitFn(spell_gen_throw_torch_SpellScript::HandleBeforeHit);
             }
         };
 
-        SpellScript* GetSpellScript() const
+        SpellScript* GetSpellScript() const override
         {
             return new spell_gen_throw_torch_SpellScript();
         }

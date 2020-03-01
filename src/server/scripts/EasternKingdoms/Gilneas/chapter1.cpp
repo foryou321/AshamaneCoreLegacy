@@ -20,6 +20,8 @@
 #include "CombatAI.h"
 #include "MotionMaster.h"
 #include "ObjectAccessor.h"
+#include "GameObject.h"
+#include "GameObjectAI.h"
 #include "Player.h"
 #include "PassiveAI.h"
 #include "PhasingHandler.h"
@@ -691,6 +693,34 @@ class npc_crowleys_horse : public CreatureScript
         }
 };
 
+const uint32 WorgenOrCitizen[] =
+{
+    34981, 35660, 35836
+};
+
+/// 195327
+class go_merchant_square_door : public GameObjectScript
+{
+public:
+    go_merchant_square_door() : GameObjectScript("go_merchant_square_door") { }
+
+    bool OnGossipHello(Player* player, GameObject* go) override
+    {
+        int Random = rand32() % (sizeof(WorgenOrCitizen) / sizeof(uint32));
+
+        if (go->GetGoType() == GAMEOBJECT_TYPE_GOOBER)
+        {
+            if (go->GetGoState() == GO_STATE_READY)
+            {
+                go->SetGoState(GO_STATE_ACTIVE);
+                player->SummonCreature(WorgenOrCitizen[Random], go->GetPositionX(), go->GetPositionY(), go->GetPositionZ(), go->GetAngle(player), TEMPSUMMON_TIMED_DESPAWN, 30000);
+            }
+        }
+		
+        return true;
+    }
+};
+
 void AddSC_gilneas_c1()
 {
     new npc_frightened_citizen();
@@ -698,4 +728,5 @@ void AddSC_gilneas_c1()
     new npc_josiah_avery();
     new npc_greymanes_horse();
     new npc_crowleys_horse();
+    new go_merchant_square_door();
 }

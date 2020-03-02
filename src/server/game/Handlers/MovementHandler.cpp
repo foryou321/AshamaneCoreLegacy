@@ -140,13 +140,10 @@ void WorldSession::HandleMoveWorldportAck()
         }
     }
 
-    if (!seamlessTeleport)
-        GetPlayer()->SendInitialPacketsAfterAddToMap();
-    else
-    {
-        GetPlayer()->UpdateVisibilityForPlayer();
+    if (seamlessTeleport)
         GetPlayer()->SendGarrisonRemoteInfo();
-    }
+    else
+        GetPlayer()->UpdateVisibilityForPlayer();
 
     // flight fast teleport case
     if (GetPlayer()->GetMotionMaster()->GetCurrentMovementGeneratorType() == FLIGHT_MOTION_TYPE)

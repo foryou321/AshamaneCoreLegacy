@@ -416,12 +416,13 @@ void Loot::BuildLootResponse(WorldPackets::Loot::LootResponse& packet, Player* v
     uint8 lootIndex = 0;
     for (LootItem const& item : playerItems)
     {
+        ++lootIndex;
         if (!item.is_looted && item.conditions.empty() && item.AllowedForPlayer(viewer))
         {
             if (!item.currency)
             {
                 WorldPackets::Loot::LootItemData lootItem;
-                lootItem.LootListID = ++lootIndex;
+                lootItem.LootListID = lootIndex;
                 lootItem.UIType = LOOT_SLOT_TYPE_OWNER;
                 lootItem.Quantity = item.count;
                 lootItem.Loot.Initialize(item);
@@ -430,7 +431,7 @@ void Loot::BuildLootResponse(WorldPackets::Loot::LootResponse& packet, Player* v
             else
             {
                 WorldPackets::Loot::LootItemData lootItem;
-                lootItem.LootListID = ++lootIndex;
+                lootItem.LootListID = lootIndex;
                 lootItem.UIType = LOOT_SLOT_TYPE_OWNER;
                 lootItem.Quantity = item.count;
                 lootItem.Loot.Initialize(item);

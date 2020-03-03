@@ -109,6 +109,11 @@ void WorldSession::HandleMoveWorldportAck()
 
     if (!seamlessTeleport)
         GetPlayer()->SendInitialPacketsBeforeAddToMap();
+    else
+    {
+        GetPlayer()->UpdateVisibilityForPlayer();
+        GetPlayer()->SendGarrisonRemoteInfo();
+    }
 
     if (!GetPlayer()->GetMap()->AddPlayerToMap(GetPlayer(), !seamlessTeleport))
     {
@@ -138,14 +143,6 @@ void WorldSession::HandleMoveWorldportAck()
             if (_player->IsInvitedForBattlegroundInstance(_player->GetBattlegroundId()))
                 bg->AddPlayer(_player);
         }
-    }
-
-    if (!seamlessTeleport)
-        GetPlayer()->SendInitialPacketsAfterAddToMap();
-    else
-    {
-        GetPlayer()->UpdateVisibilityForPlayer();
-        GetPlayer()->SendGarrisonRemoteInfo();
     }
 
     // flight fast teleport case

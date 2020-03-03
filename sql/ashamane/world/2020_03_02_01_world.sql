@@ -114,13 +114,13 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId`=15 AND `SourceGroup`=12
 INSERT INTO `conditions` (`SourceTypeOrReferenceId`,`SourceGroup`,`SourceEntry`,`ElseGroup`,`ConditionTypeOrReference`,`ConditionValue1`,`ConditionValue2`,`ConditionValue3`, `ErrorTextId`,`ScriptName`,`Comment`) VALUES
 (15,12483,0,0,9,24960,0,0,0,'','Show gossip menu if player accept The_Wakening');
 
-DELETE FROM `creature` WHERE `guid` = '210219208'; 
-DELETE FROM `creature` WHERE (`id`=38895);
-insert into `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnDifficulties`, `phaseUseFlags`, `PhaseId`, `PhaseGroup`, `terrainSwapMap`, `modelid`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `unit_flags2`, `unit_flags3`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) values('280007721','38895','0','0','0','0','0','0','0','-1','0','0','1754.79','1666.84','121.394','3.35932','300','0','0','31','60','0','0','0','0','0','0','','0');
-DELETE FROM `creature` WHERE (`id`=49230);
-insert into `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnDifficulties`, `phaseUseFlags`, `PhaseId`, `PhaseGroup`, `terrainSwapMap`, `modelid`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `unit_flags2`, `unit_flags3`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) values('280007722','49230','0','0','0','0','0','0','0','-1','0','0','1752.44','1639.88','117.503','2.47339','300','0','0','31','60','0','0','0','0','0','0','','0');
-DELETE FROM `creature` WHERE (`id`=49231);
-insert into `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnDifficulties`, `phaseUseFlags`, `PhaseId`, `PhaseGroup`, `terrainSwapMap`, `modelid`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `unit_flags2`, `unit_flags3`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) values('280007723','49231','0','0','0','0','0','0','0','-1','0','0','1739.99','1704.5','128.823','1.58353','300','0','0','31','60','0','0','0','0','0','0','','0');
+SET @CGUID = 210219208;
+DELETE FROM `creature` WHERE `id` IN (38895, 49230, 49231);
+DELETE FROM `creature` WHERE `guid` BETWEEN @CGUID+0 AND @CGUID+2;
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnDifficulties`, `phaseUseFlags`, `PhaseId`, `PhaseGroup`, `terrainSwapMap`, `modelid`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `unit_flags2`, `unit_flags3`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES 
+(@CGUID+0,'38895','0','0','0','0','0','0','0','-1','0','0','1754.79','1666.84','121.394','3.35932','300','0','0','31','60','0','0','0','0','0','0','','0'),
+(@CGUID+1,'49230','0','0','0','0','0','0','0','-1','0','0','1752.44','1639.88','117.503','2.47339','300','0','0','31','60','0','0','0','0','0','0','','0'),
+(@CGUID+2,'49231','0','0','0','0','0','0','0','-1','0','0','1739.99','1704.5','128.823','1.58353','300','0','0','31','60','0','0','0','0','0','0','','0');
 
 DELETE FROM `creature_template_addon` WHERE (`entry`=49231);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `visibilityDistanceType`, `auras`) VALUES (49231, 0, 0, 8, 0, 0, 0, '');

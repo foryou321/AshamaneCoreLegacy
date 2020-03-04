@@ -68,8 +68,8 @@ void RealmList::Close()
 
 void RealmList::LoadBuildInfo()
 {
-    //                                                              0             1              2              3      4              5              6
-    if (QueryResult result = LoginDatabase.Query("SELECT majorVersion, minorVersion, bugfixVersion, hotfixVersion, build, win64AuthSeed, mac64AuthSeed FROM build_info ORDER BY build ASC"))
+    //                                                              0             1              2              3    4         5           6               7
+    if (QueryResult result = LoginDatabase.Query("SELECT majorVersion, minorVersion, bugfixVersion, hotfixVersion, build, winAuthSeed, win64AuthSeed, mac64AuthSeed FROM build_info ORDER BY build ASC"))
     {
         do
         {
@@ -85,15 +85,16 @@ void RealmList::LoadBuildInfo()
             else
                 std::fill(hotfixVersion.begin(), hotfixVersion.end(), '\0');
 
-            std::string winAuthSeedHexStr = fields[4].GetString();
+            build.Build = fields[4].GetUInt32();
+            std::string winAuthSeedHexStr = fields[5].GetString();
             if (winAuthSeedHexStr.length() == build.WinAuthSeed.size() * 2)
                 HexStrToByteArray(winAuthSeedHexStr, build.WinAuthSeed.data());
 
-            std::string win64AuthSeedHexStr = fields[5].GetString();
+            std::string win64AuthSeedHexStr = fields[6].GetString();
             if (win64AuthSeedHexStr.length() == build.Win64AuthSeed.size() * 2)
                 HexStrToByteArray(win64AuthSeedHexStr, build.Win64AuthSeed.data());
 
-            std::string mac64AuthSeedHexStr = fields[6].GetString();
+            std::string mac64AuthSeedHexStr = fields[7].GetString();
             if (mac64AuthSeedHexStr.length() == build.Mac64AuthSeed.size() * 2)
                 HexStrToByteArray(mac64AuthSeedHexStr, build.Mac64AuthSeed.data());
 
@@ -242,32 +243,9 @@ Realm const* RealmList::GetRealm(Battlenet::RealmHandle const& id) const
 
 RealmBuildInfo const* RealmList::GetBuildInfo(uint32 build) const
 {
-    // List of client builds for verbose version info in realmlist packet
-    static std::vector<RealmBuildInfo> const ClientBuilds =
-    {
-        { 21355, 6, 2, 4, ' ' },
-        { 20726, 6, 2, 3, ' ' },
-        { 20574, 6, 2, 2, 'a' },
-        { 20490, 6, 2, 2, 'a' },
-        { 15595, 4, 3, 4, ' ' },
-        { 14545, 4, 2, 2, ' ' },
-        { 13623, 4, 0, 6, 'a' },
-        { 13930, 3, 3, 5, 'a' },                                  // 3.3.5a China Mainland build
-        { 12340, 3, 3, 5, 'a' },
-        { 11723, 3, 3, 3, 'a' },
-        { 11403, 3, 3, 2, ' ' },
-        { 11159, 3, 3, 0, 'a' },
-        { 10505, 3, 2, 2, 'a' },
-        { 9947,  3, 1, 3, ' ' },
-        { 8606,  2, 4, 3, ' ' },
-        { 6141,  1, 12, 3, ' ' },
-        { 6005,  1, 12, 2, ' ' },
-        { 5875,  1, 12, 1, ' ' },
-    };
-
-    for (std::size_t i = 0; i < ClientBuilds.size(); ++i)
-        if (ClientBuilds[i].Build == build)
-            return &ClientBuilds[i];
+    for (RealmBuildInfo const& clientBuild : _builds)
+        if (clientBuild.Build == build)
+            return &clientBuild;
 
     return nullptr;
 }

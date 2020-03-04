@@ -369,7 +369,8 @@ insert  into `build_info`(`build`,`majorVersion`,`minorVersion`,`bugfixVersion`,
 (32722,8,2,5,NULL,NULL,'1A09BE1D38A122586B4931BECCEAD4AA',NULL,NULL,NULL),
 (32750,8,2,5,NULL,NULL,'C5CB669F5A5B237D1355430877173207','EF1F4E4D099EA2A81FD4C0DEBC1E7086',NULL,NULL),
 (32978,8,2,5,NULL,NULL,'76AE2EA03E525D97F5688843F5489000','1852C1F847E795D6EB45278CD433F339',NULL,NULL),
-(33369,8,3,0,NULL,NULL,'5986AC18B04D3C403F56A0CF8C4F0A14',NULL,NULL,NULL);
+(33369,8,3,0,NULL,NULL,'5986AC18B04D3C403F56A0CF8C4F0A14','F5A849C70A1054F07EA3AB833EBF6671',NULL,NULL),
+(33528,8,3,0,NULL,NULL,'0ECE033CA9B11D92F7D2792C785B47DF',NULL,NULL,NULL);
 
 /*Table structure for table `ip_banned` */
 
@@ -1857,7 +1858,7 @@ CREATE TABLE `realmlist` (
   `timezone` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `allowedSecurityLevel` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `population` float unsigned NOT NULL DEFAULT '0',
-  `gamebuild` int(10) unsigned NOT NULL DEFAULT '33369',
+  `gamebuild` int(10) unsigned NOT NULL DEFAULT '33528',
   `Region` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `Battlegroup` tinyint(3) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
@@ -1867,7 +1868,7 @@ CREATE TABLE `realmlist` (
 /*Data for the table `realmlist` */
 
 insert  into `realmlist`(`id`,`name`,`address`,`localAddress`,`localSubnetMask`,`port`,`icon`,`flag`,`timezone`,`allowedSecurityLevel`,`population`,`gamebuild`,`Region`,`Battlegroup`) values 
-(1,'AshamaneCoreLegacy','127.0.0.1','127.0.0.1','255.255.255.0',8085,0,2,1,0,0,33369,1,1);
+(1,'AshamaneCoreLegacy','127.0.0.1','127.0.0.1','255.255.255.0',8085,0,2,1,0,0,33528,1,1);
 
 /*Table structure for table `updates` */
 
@@ -1892,7 +1893,8 @@ insert  into `updates`(`name`,`hash`,`state`,`timestamp`,`speed`) values
 ('2020_01_11_00_auth.sql','A0C4863741C4B93D343B7837FBA38D6023A237F9','ARCHIVED','2020-02-25 16:34:45',55),
 ('2020_01_12_00_auth.sql','5E4ECF243259B9866A877E2D3798D1D753738E24','ARCHIVED','2020-02-25 16:34:45',49),
 ('2020_02_17_00_auth.sql','456FA32A7B7C6ABA479F2B099822988A24A2344B','ARCHIVED','2020-02-25 16:34:45',57),
-('2020_02_25_00_auth.sql','0ACDD35EC9745231BCFA701B78056DEF94D0CC53','RELEASED','2020-02-25 16:51:04',54);
+('2020_02_25_00_auth.sql','0ACDD35EC9745231BCFA701B78056DEF94D0CC53','ARCHIVED','2020-02-25 16:51:04',54),
+('2020_03_03_00_auth.sql','F473DFEABAC661704ECEA3D72E93A3280122CA30','RELEASED','2020-03-03 22:49:13',54);
 
 /*Table structure for table `updates_include` */
 

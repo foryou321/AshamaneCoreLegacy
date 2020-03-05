@@ -2626,7 +2626,7 @@ public:
                         rageSpent = cost.Amount;
                     }
 
-                    if (roll_chance_f((rageSpent / 10) * 0.75))
+                    if (roll_chance_f((rageSpent / 10) * 1.40))
                     {
                         caster->GetSpellHistory()->ResetCooldown(SPELL_WARRIOR_COLOSSUS_SMASH, true);
                         caster->GetSpellHistory()->ResetCooldown(SPELL_WARRIOR_MORTAL_STRIKE, true);
@@ -2638,7 +2638,7 @@ public:
 
         void Register() override
         {
-            OnEffectProc += AuraEffectProcFn(spell_warr_tactician_AuraScript::HandleEffectProc, EFFECT_1, SPELL_AURA_PROC_TRIGGER_SPELL);
+            OnEffectProc += AuraEffectProcFn(spell_warr_tactician_AuraScript::HandleEffectProc, EFFECT_0, SPELL_AURA_PROC_TRIGGER_SPELL);
         }
     };
 

@@ -899,7 +899,8 @@ void WorldSession::HandleLoadScreenOpcode(WorldPackets::Character::LoadingScreen
 {
     if (!loadingScreenNotify.Showing)
     {
-        GetPlayer()->SendInitialPacketsAfterAddToMap();
+        if (auto player = GetPlayer())
+            player->SendInitialPacketsAfterAddToMap();
         m_playerLoading.Clear();
     }
 }
@@ -990,11 +991,11 @@ void WorldSession::HandlePlayerLogin(LoginQueryHolder* holder)
         pCurrChar->SetGuildLevel(0);
     }
 
-    pCurrChar->SendInitialPacketsBeforeAddToMap();
-
     // TODO: Move this to BattlePetMgr::SendJournalLock() just to have all packets in one file
     WorldPackets::BattlePet::BattlePetJournalLockAcquired lock;
     SendPacket(lock.Write());
+
+    pCurrChar->SendInitialPacketsBeforeAddToMap();
 
     //Show cinematic at the first time that player login
     if (!pCurrChar->getCinematic())
@@ -1007,31 +1008,31 @@ void WorldSession::HandlePlayerLogin(LoginQueryHolder* holder)
                 pCurrChar->SendMovieStart(469);
             else if (cEntry->CinematicSequenceID)
                 pCurrChar->SendCinematicStart(cEntry->CinematicSequenceID);
-        }
-        else if (ChrRacesEntry const* rEntry = sChrRacesStore.LookupEntry(pCurrChar->getRace()))
-        {
-            if (pCurrChar->getRace() == RACE_NIGHTBORNE)
-                pCurrChar->GetSceneMgr().PlayScene(1900);
-            else if (pCurrChar->getRace() == RACE_HIGHMOUNTAIN_TAUREN)
-                pCurrChar->GetSceneMgr().PlayScene(1901);
-            else if (pCurrChar->getRace() == RACE_VOID_ELF)
-                pCurrChar->GetSceneMgr().PlayScene(1903);
-            else if (pCurrChar->getRace() == RACE_LIGHTFORGED_DRAENEI)
-                pCurrChar->GetSceneMgr().PlayScene(1902);
-            else if (pCurrChar->getRace() == RACE_DARK_IRON_DWARF)
-                pCurrChar->GetSceneMgr().PlayScene(2137);
-            else if (pCurrChar->getRace() == RACE_MAGHAR_ORC)
-                pCurrChar->GetSceneMgr().PlaySceneByPackageId(2085, 2);
-            else if (rEntry->CinematicSequenceID)
-                pCurrChar->SendCinematicStart(rEntry->CinematicSequenceID);
+            else if (ChrRacesEntry const* rEntry = sChrRacesStore.LookupEntry(pCurrChar->getRace()))
+            {
+                if (pCurrChar->getRace() == RACE_NIGHTBORNE)
+                    pCurrChar->GetSceneMgr().PlayScene(1900);
+                else if (pCurrChar->getRace() == RACE_HIGHMOUNTAIN_TAUREN)
+                    pCurrChar->GetSceneMgr().PlayScene(1901);
+                else if (pCurrChar->getRace() == RACE_VOID_ELF)
+                    pCurrChar->GetSceneMgr().PlayScene(1903);
+                else if (pCurrChar->getRace() == RACE_LIGHTFORGED_DRAENEI)
+                    pCurrChar->GetSceneMgr().PlayScene(1902);
+                else if (pCurrChar->getRace() == RACE_DARK_IRON_DWARF)
+                    pCurrChar->GetSceneMgr().PlayScene(2137);
+                else if (pCurrChar->getRace() == RACE_MAGHAR_ORC)
+                    pCurrChar->GetSceneMgr().PlaySceneByPackageId(2085, 2);
+                else if (rEntry->CinematicSequenceID)
+                    pCurrChar->SendCinematicStart(rEntry->CinematicSequenceID);
+            }
 
             // send new char string if not empty
             if (!sWorld->GetNewCharString().empty())
                 chH.PSendSysMessage("%s", sWorld->GetNewCharString().c_str());
-        }			
+        }
     }
 
-    if (!pCurrChar->GetMap()->AddPlayerToMap(pCurrChar) || !pCurrChar->GetMap()->IsGarrison())
+    if (!pCurrChar->GetMap()->AddPlayerToMap(pCurrChar))
     {
         AreaTriggerTeleportStruct const* at = sObjectMgr->GetGoBackTrigger(pCurrChar->GetMapId());
         if (at)
@@ -1054,6 +1055,8 @@ void WorldSession::HandlePlayerLogin(LoginQueryHolder* holder)
             pCurrChar->SetInGuild(UI64LIT(0));
         }
     }
+
+    pCurrChar->SendInitialPacketsAfterAddToMap();
 
     CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_CHAR_ONLINE);
     stmt->setUInt64(0, pCurrChar->GetGUID().GetCounter());
@@ -1135,7 +1138,7 @@ void WorldSession::HandlePlayerLogin(LoginQueryHolder* holder)
         SendNotification(LANG_RESET_TALENTS);
     }
 
-    bool firstLogin = pCurrChar->HasAtLoginFlag(AT_LOGIN_FIRST) && !pCurrChar->getCinematic();
+    bool firstLogin = pCurrChar->HasAtLoginFlag(AT_LOGIN_FIRST);
     if (firstLogin)
     {
         pCurrChar->RemoveAtLoginFlag(AT_LOGIN_FIRST);

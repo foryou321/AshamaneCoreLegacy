@@ -1537,7 +1537,7 @@ public:
     }
 };
 
-
+// 203179 - Opportunity Strike
 class spell_warr_opportunity_strike : public SpellScriptLoader
 {
 public:
@@ -1584,6 +1584,7 @@ public:
     }
 };
 
+// 6343 - Thunder Clap
 class spell_warr_thunder_clap : public SpellScriptLoader
 {
 public:

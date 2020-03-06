@@ -151,7 +151,8 @@ enum WarriorSpells
     SPELL_WARRIOR_VENGEANCE_AURA                    = 202572,
     SPELL_WARRIOR_VENGEANCE_FOCUSED_RAGE            = 202573,
     SPELL_WARRIOR_VENGEANCE_IGNORE_PAIN             = 202574,
-    SPELL_WARRIOR_VICTORIOUS_STATE                  = 32216,
+	SPELL_WARRIOR_VICTORIOUS                        = 32216,
+    SPELL_WARRIOR_VICTORIOUS_STATE                  = 32215,
     SPELL_WARRIOR_VICTORY_RUSH_DAMAGE               = 34428,
     SPELL_WARRIOR_VICTORY_RUSH_HEAL                 = 118779,
     SPELL_WARRIOR_VIGILANCE_PROC                    = 50725,
@@ -1618,45 +1619,77 @@ public:
     }
 };
 
+// 32215 - Victorious State
+class spell_warr_victorious_state : public SpellScriptLoader
+{
+    public:
+        spell_warr_victorious_state() : SpellScriptLoader("spell_warr_victorious_state") { }
+
+        class spell_warr_victorious_state_Aurascript : public AuraScript
+        {
+            PrepareAuraScript(spell_warr_victorious_state_Aurascript);
+
+            bool Validate(SpellInfo const* /*spellInfo*/) override
+            {
+                return ValidateSpellInfo({ SPELL_WARRIOR_IMPENDING_VICTORY });
+            }
+
+            void HandleOnProc(AuraEffect const* /*aurEff*/, ProcEventInfo& procInfo)
+            {
+                if (procInfo.GetActor()->GetTypeId() == TYPEID_PLAYER && procInfo.GetActor()->ToPlayer()->GetPrimarySpecialization() == TALENT_SPEC_WARRIOR_FURY)
+                    PreventDefaultAction();
+
+                procInfo.GetActor()->GetSpellHistory()->ResetCooldown(SPELL_WARRIOR_IMPENDING_VICTORY, true);
+            }
+
+            void Register() override
+            {
+                OnEffectProc += AuraEffectProcFn(spell_warr_victorious_state_Aurascript::HandleOnProc, EFFECT_0, SPELL_AURA_PROC_TRIGGER_SPELL);
+            }
+        };
+
+        AuraScript* GetAuraScript() const override
+        {
+            return new spell_warr_victorious_state_Aurascript();
+        }
+};
+
+// 34428 - Victory Rush
 class spell_warr_victory_rush : public SpellScriptLoader
 {
-public:
-    spell_warr_victory_rush() : SpellScriptLoader("spell_warr_victory_rush") { }
+    public:
+        spell_warr_victory_rush() : SpellScriptLoader("spell_warr_victory_rush") { }
 
-    class spell_warr_victory_rush_SpellScript : public SpellScript
-    {
-        PrepareSpellScript(spell_warr_victory_rush_SpellScript);
-
-        bool Validate(SpellInfo const* /*SpellEntry*/) override
+        class spell_warr_victory_rush_SpellScript : public SpellScript
         {
-            if (!sSpellMgr->GetSpellInfo(SPELL_WARRIOR_VICTORY_RUSH_DAMAGE))
-                return false;
-            return true;
-        }
+            PrepareSpellScript(spell_warr_victory_rush_SpellScript);
 
-        void HandleOnHit()
-        {
-            if (Player* _player = GetCaster()->ToPlayer())
+            bool Validate(SpellInfo const* /*spellInfo*/) override
             {
-                if (GetHitUnit())
-                {
-                    _player->CastSpell(_player, SPELL_WARRIOR_VICTORY_RUSH_HEAL, true);
-                    if (_player->HasAura(SPELL_WARRIOR_VICTORIOUS_STATE))
-                        _player->RemoveAura(SPELL_WARRIOR_VICTORIOUS_STATE);
-                }
+                return ValidateSpellInfo
+                ({
+                    SPELL_WARRIOR_VICTORIOUS,
+                    SPELL_WARRIOR_VICTORY_RUSH_HEAL
+                });
             }
-        }
 
-        void Register() override
+            void HandleHeal()
+            {
+                Unit* caster = GetCaster();
+                caster->CastSpell(caster, SPELL_WARRIOR_VICTORY_RUSH_HEAL, true);
+                caster->RemoveAurasDueToSpell(SPELL_WARRIOR_VICTORIOUS);
+            }
+
+            void Register() override
+            {
+                AfterCast += SpellCastFn(spell_warr_victory_rush_SpellScript::HandleHeal);
+            }
+        };
+
+        SpellScript* GetSpellScript() const override
         {
-            OnHit += SpellHitFn(spell_warr_victory_rush_SpellScript::HandleOnHit);
+            return new spell_warr_victory_rush_SpellScript();
         }
-    };
-
-    SpellScript* GetSpellScript() const override
-    {
-        return new spell_warr_victory_rush_SpellScript();
-    }
 };
 
 // 100 - Charge
@@ -3003,6 +3036,7 @@ void AddSC_warrior_spell_scripts()
     new spell_warr_unshackled_fury();
     new spell_warr_unrivaled_strenght();
     new spell_warr_victorious();
+	new spell_warr_victorious_state();
     new spell_warr_victory_rush();
     new spell_warr_vigilance();
     new spell_warr_vigilance_trigger();

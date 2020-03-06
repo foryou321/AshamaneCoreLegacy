@@ -18,7 +18,7 @@
 
 ## Build Status
 
-bfa | legion
+bfa stop support | legion
 :------------: | :------------:
 [![bfa Build Status](https://travis-ci.com/ReyDonovan/AshamaneCoreLegacy.svg?branch=bfa)](https://travis-ci.com/ReyDonovan/AshamaneCore) | [![legion Build Status](https://travis-ci.com/ReyDonovan/AshamaneCoreLegacy.svg?branch=legion)](https://travis-ci.com/ReyDonovan/AshamaneCore)
 

@@ -1244,6 +1244,7 @@ public:
     }
 };
 
+// 223657 Safeguard
 class spell_warr_safeguard : public SpellScriptLoader
 {
 public:
@@ -1303,6 +1304,7 @@ public:
     }
 };
 
+// 167105 Colossus Smash
 class spell_warr_colossus_smash : public SpellScriptLoader
 {
 public:
@@ -1333,6 +1335,7 @@ public:
     }
 };
 
+// 118000
 class spell_warr_dragon_roar : public SpellScriptLoader
 {
 public:
@@ -1393,6 +1396,7 @@ public:
     }
 };
 
+// 85288
 class spell_warr_raging_blow : public SpellScriptLoader
 {
 public:
@@ -1449,6 +1453,7 @@ public:
     }
 };
 
+// 2565
 class spell_warr_shield_block : public SpellScriptLoader
 {
 public:
@@ -1505,7 +1510,7 @@ public:
     }
 };
 
-//107570
+// 107570
 class spell_warr_storm_bolt : public SpellScriptLoader
 {
 public:
@@ -1778,7 +1783,7 @@ class spell_warr_charge_effect : public SpellScript
     }
 };
 
-// Spell Reflect
+// 23920 Spell Reflect
 class spell_warr_spell_reflect : public SpellScriptLoader
 {
 public:

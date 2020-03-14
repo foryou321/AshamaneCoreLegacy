@@ -580,7 +580,7 @@ void Creature::Update(uint32 diff)
                 if (m_groupLootTimer <= diff)
                 {
                     if (Group* group = sGroupMgr->GetGroupByGUID(lootingGroupLowGUID))
-                        group->EndRoll(&loot);
+                        group->EndRoll(&loot, GetMap());
 
                     m_groupLootTimer = 0;
                     lootingGroupLowGUID.Clear();
@@ -3270,3 +3270,9 @@ void Creature::ReLoad(bool skipDB)
 
     TC_LOG_DEBUG("sql.sql", "Creature SpawnID (" SI64FMTD ") reloaded.", GetSpawnId());
 }
+
+float Creature::GetSparringHealthLimit() const
+{
+    return sObjectMgr->GetSparringHealthLimitFor(GetEntry());
+}
+

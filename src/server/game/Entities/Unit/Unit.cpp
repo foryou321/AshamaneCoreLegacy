@@ -736,6 +736,22 @@ void Unit::DealDamageMods(Unit const* victim, uint32 &damage, uint32* absorb) co
 
 uint32 Unit::DealDamage(Unit* victim, uint32 damage, CleanDamage const* cleanDamage, DamageEffectType damagetype, SpellSchoolMask damageSchoolMask, SpellInfo const* spellProto, bool durabilityLoss)
 {
+    if (Creature* target = victim->ToCreature())
+    {
+        if (GetTypeId() == TYPEID_UNIT && !IsCharmedOwnedByPlayerOrPlayer())
+        {
+            float sparringLimitPct = target->GetSparringHealthLimit();
+
+            if (sparringLimitPct != 0.0f)
+            {
+                if (damage >= target->GetHealth()) // First check: if we have a sparring limit we will never allow creatures to kill the sparring victim
+                    damage = target->GetHealth() - 1;
+                else if (target->GetHealthPct() <= sparringLimitPct) // Second check: stop incomming damage when we have surpassed the health limit
+                    damage = 0;
+            }
+        }
+    }
+
     if (victim->getRace() == RACE_WORGEN && victim->ToPlayer())
     {
         if (Player* worgenVictm = victim->ToPlayer())
@@ -1941,6 +1957,18 @@ void Unit::CalcAbsorbResist(DamageInfo& damageInfo)
             uint32 split_absorb = 0;
             DealDamageMods(caster, splitDamage, &split_absorb);
 
+            if (Creature* target = damageInfo.GetVictim()->ToCreature())
+            {
+                if (GetTypeId() == TYPEID_UNIT && !IsCharmedOwnedByPlayerOrPlayer())
+                {
+                    float sparringLimitPct = target->GetSparringHealthLimit();
+		    
+                    if (sparringLimitPct != 0.0f)
+                        if (target->GetHealthPct() <= sparringLimitPct)
+                            damageInfo.ModifyDamage(damageInfo.GetDamage() * -1);
+                }
+            }
+
             SpellNonMeleeDamage log(this, caster, (*itr)->GetSpellInfo()->Id, (*itr)->GetBase()->GetSpellXSpellVisualId(), damageInfo.GetSchoolMask(), (*itr)->GetBase()->GetCastGUID());
             CleanDamage cleanDamage = CleanDamage(splitDamage, 0, BASE_ATTACK, MELEE_HIT_NORMAL);
             DealDamage(caster, splitDamage, &cleanDamage, DIRECT_DAMAGE, damageInfo.GetSchoolMask(), (*itr)->GetSpellInfo(), false);
@@ -2042,6 +2070,19 @@ void Unit::AttackerStateUpdate(Unit* victim, WeaponAttackType attType, bool extr
         CalculateMeleeDamage(victim, 0, &damageInfo, attType);
         // Send log damage message to client
         DealDamageMods(victim, damageInfo.damage, &damageInfo.absorb);
+
+        if (Creature* target = victim->ToCreature())
+        {
+            if (GetTypeId() == TYPEID_UNIT && !IsCharmedOwnedByPlayerOrPlayer())
+            {
+                float sparringLimitPct = target->GetSparringHealthLimit();
+
+                if (sparringLimitPct != 0.0f)
+                   if (target->GetHealthPct() <= sparringLimitPct)
+                       damageInfo.HitInfo |= HITINFO_FAKE_DAMAGE;
+            }
+        }
+
         SendAttackStateUpdate(&damageInfo);
 
         DealMeleeDamage(&damageInfo, true);
@@ -6519,12 +6560,12 @@ Unit* Unit::GetNextRandomRaidMemberOrPet(float radius)
         if (Player* Target = itr->GetSource())
         {
             // IsHostileTo check duel and controlled by enemy
-            if (Target != this && Target->IsAlive() && IsWithinDistInMap(Target, radius) && !IsHostileTo(Target))
+            if (Target != this && IsWithinDistInMap(Target, radius) && Target->IsAlive() && !IsHostileTo(Target))
                 nearMembers.push_back(Target);
 
         // Push player's pet to vector
         if (Unit* pet = Target->GetGuardianPet())
-            if (pet != this && pet->IsAlive() && IsWithinDistInMap(pet, radius) && !IsHostileTo(pet))
+            if (pet != this && IsWithinDistInMap(pet, radius) && pet->IsAlive() && !IsHostileTo(pet))
                 nearMembers.push_back(pet);
         }
 
@@ -9956,7 +9997,7 @@ void Unit::CleanupBeforeRemoveFromMap(bool finalCleanup)
     m_Events.KillAllEvents(false);                      // non-delatable (currently cast spells) will not deleted now but it will deleted at call in Map::RemoveAllObjectsInRemoveList
     CombatStop();
     DeleteThreatList();
-    getHostileRefManager().setOnlineOfflineState(false);
+    getHostileRefManager().deleteReferences();
     GetMotionMaster()->Clear(false);                    // remove different non-standard movement generators.
 }
 
@@ -12220,23 +12261,23 @@ void Unit::GetPartyMembers(std::list<Unit*> &TagUnitMap)
             Player* Target = itr->GetSource();
 
             // IsHostileTo check duel and controlled by enemy
-            if (Target && Target->GetSubGroup() == subgroup && !IsHostileTo(Target))
+            if (Target && Target->IsInMap(owner) && Target->GetSubGroup() == subgroup && !IsHostileTo(Target))
             {
-                if (Target->IsAlive() && IsInMap(Target))
+                if (Target->IsAlive())
                     TagUnitMap.push_back(Target);
 
                 if (Guardian* pet = Target->GetGuardianPet())
-                    if (pet->IsAlive() && IsInMap(Target))
+                    if (pet->IsAlive())
                         TagUnitMap.push_back(pet);
             }
         }
     }
     else
     {
-        if (owner->IsAlive() && (owner == this || IsInMap(owner)))
+        if ((owner == this || IsInMap(owner)) && owner->IsAlive())
             TagUnitMap.push_back(owner);
         if (Guardian* pet = owner->GetGuardianPet())
-            if (pet->IsAlive() && (pet == this || IsInMap(pet)))
+            if ((pet == this || IsInMap(pet)) && pet->IsAlive())
                 TagUnitMap.push_back(pet);
     }
 }
